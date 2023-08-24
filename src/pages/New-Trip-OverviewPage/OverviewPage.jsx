@@ -53,11 +53,14 @@ const OverviewPage= ()=>{
             <p className="recommended-places-overview">Recommended Places</p>
 
             <div className="recommended-container-overview">
-            <div>
-                card1
+            <div className="recommended-card">
+                <img src={"/assets/dummy-img/Rectangle 718.png"} alt={""} />
+                <p> Taman Nasional Wakatobi</p>
             </div>
-            <div>CARD 2</div>
-
+            <div className="recommended-card">
+                <img src={"/assets/dummy-img/Rectangle 718.png"} alt={""} />
+                <p> Gunung Bromo</p>
+            </div>
             </div>
         </article>
         </>

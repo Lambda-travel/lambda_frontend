@@ -88,13 +88,13 @@
     border-bottom: 1px solid #cfcfcf ;
     padding-bottom: 2rem;
     margin-bottom: 1rem;
+    border-top: 1px solid rgb(179, 176, 176);
 }
 
 .categories-btn-container {
     display: flex;
     gap: 2rem;
     margin-left: 1rem;
-    margin-bottom: 2rem;
 }
 
 .overview-btn-categories {
@@ -118,7 +118,7 @@
     background-color: transparent;
     margin-bottom: 50%;
     margin-left: -1rem;
-    
+    margin-top: 1.5rem;
 }
 
 .add-place-to-visit-btn {
@@ -134,4 +134,16 @@
 
 .recommended-places-overview {
     margin: 1rem;
+}
+
+.recommended-container-overview {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.recommended-card {
+    gap: 0.5rem;
+    align-items: center;
+    display: flex;
 }
