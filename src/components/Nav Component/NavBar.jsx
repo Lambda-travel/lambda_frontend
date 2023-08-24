@@ -3,16 +3,15 @@ import { FaBeer } from "react-icons/fa";
 import profileIcon from "../../../public/Group 36.svg";
 import homeIcon from "../../../public/Group 79.svg";
 import addIcon from "../../../public/Line 13.svg";
-import NavBar
-import NavBar from './NavBar';
+import NavBarStyle from "./NavBarstyle.css";
 
 function NavBar() {
   return (
     <div>
-      <div className="container">
-        <img src={profileIcon} alt="Profile Icon" />
-        <img src={homeIcon} alt="Home Icon" />
-        <img src={addIcon} alt="Add Icon" />
+      <div className="navContainer">
+        <img src={homeIcon} alt="Home Icon" className="icons" />
+        <img src={addIcon} alt="Add Icon" className="icons" />
+        <img src={profileIcon} alt="Profile Icon" className="icons" />
       </div>
     </div>
   );
