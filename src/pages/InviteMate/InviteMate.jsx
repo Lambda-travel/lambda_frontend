@@ -1,10 +1,14 @@
 import "./InviteMate.css";
+import homeIcon from "../../assets/homeicon_forheader.png";
 
 function InviteMate() {
   return (
     <>
       <header className="header">
-        <button className="homeBtn"> Home </button>
+        <button className="homeBtn">
+          <img src={homeIcon} />
+          Home{" "}
+        </button>
       </header>
       <div className="pageTitle">
         <h2>Invite your travelmate</h2>
