@@ -3,17 +3,17 @@ body{
     padding: 0; 
     font-family: 'Poppins'; 
 }
-
+/* Header */
 .header{
     margin: 50px 10px
 }
-
 .homeBtn{
     border-style: none;
     color: gray;
     font-size: large;
     background-color: white;
 }
+/* Title and small description */
 .pageTitle{
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ body{
     font-weight: lighter;
     color: gray;
 }
-
+/* Input fields */
 .form{
     display: flex;
     flex-direction: column;
@@ -64,6 +64,7 @@ label{
     font-size: 12px;
 }
 
+/* Buttons to start and cancel */
 .startCancelBtn{
     display: flex;
     flex-direction: column;
