@@ -1,5 +1,11 @@
+import InviteMate from "./pages/InviteMate/InviteMate";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <InviteMate />
+    </>
+  );
 }
 
 export default App;
