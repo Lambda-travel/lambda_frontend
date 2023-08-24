@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom"
 import "./overViewPage.css"
+import { useState} from "react";
+import AddPlace from "../../components/popUps/Add Place/AddPlace";
 
 
 const OverviewPage= ()=>{
+
+    const [ modal,setModal] = useState(false);
+
+    const toggleModal =()=>{
+        setModal(!modal)
+    }
+
+
     return (
         <>
         <article>
@@ -29,7 +39,7 @@ const OverviewPage= ()=>{
                         </svg>
                     </button>
                 </div>
-                <p className="date-of-trip"> 10 aug - 17 aug</p>
+                <p className="date-of-trip">Date: 10 aug - 17 aug</p>
                 <img className="profile-icon" src={"/assets/dummy-img/Avatar.svg"} alt={""} />
             </div>
 
@@ -46,7 +56,14 @@ const OverviewPage= ()=>{
                         </svg>
                         Places to Visit
                     </button>
-                    <button className="add-place-to-visit-btn"> <p>+</p> </button>
+
+                    <button
+                    onClick={toggleModal}
+                     className="add-place-to-visit-btn"> <p>+</p> 
+                    </button>
+
+                    {modal && <AddPlace toggleModal={toggleModal}/> }
+                    
                 </div>
 
 
