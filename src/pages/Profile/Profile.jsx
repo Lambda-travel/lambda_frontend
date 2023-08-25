@@ -13,7 +13,7 @@ function Profile() {
           <li>Home</li>
         </ul>
       </nav>
-      <div className="container">
+      <div className="container-profile">
         <div className="profileInfo">
           <div className="profileImage">
             <img src={avatar} alt="" />
@@ -35,7 +35,7 @@ function Profile() {
             <div className="tripsImagesLocation">
               <img src={tripImage} alt="trip image" className="tripImage" />
               <div>
-                <h3>Trip to indonesia</h3>
+                <h3 className="trip-title-profile">Trip to indonesia</h3>
                 <div className="tripDateAndMates">
                   <img
                     src={ellipse1}
@@ -47,7 +47,7 @@ function Profile() {
                     alt="mates"
                     className="travelMate2 mates"
                   />
-                  <p>Aug 26-28,2022-11 Places</p>
+                  <p className="date-trip-profile">Aug 26-28,2022-11 Places</p>
                 </div>
               </div>
             </div>

@@ -17,8 +17,6 @@ body {
   list-style: none;
 }
 .profileInfo {
-  border: 1px solid red;
-  display: flex;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,28 +28,29 @@ body {
 }
 
 .tripsAndGuidesContainer {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0.3rem;
+  margin-top: 2rem;
 }
 .editIcon {
   margin-left: -40px;
 }
 .userName {
+  color: #6b7280;
+  font-weight: 400;
   margin-top: -20px;
 }
 .tripsImagesLocation {
   display: flex;
-  border: 1px solid rgb(214, 214, 214);
+  border-bottom: 1px solid rgb(214, 214, 214);
   padding: 10px 100px;
   margin-left: -0px;
 }
 .tripImage {
-  width: 60px;
-  height: 60px;
-  margin-left: -20px;
+  width: 50%;
+  height: 50%;
+  margin-left: -5rem;
   margin-top: 20px;
   margin-right: 20px;
 }
@@ -77,6 +76,26 @@ body {
   width: 30px;
   height: 30px;
 }
-.tripDateAndMates p {
-  font-size: 10px;
+.tripDateAndMates {
+  display: flex;
+  margin-top: 0.2rem;
+  align-items: center;
+  margin-right: -6rem;
+
+}
+.profileName {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.trip-title-profile {
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.date-trip-profile {
+  font-weight: bolder;
+  font-size: 0.8rem;
+margin-left: 0.2rem;
 }
