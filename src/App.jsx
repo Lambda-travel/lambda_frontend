@@ -1,15 +1,19 @@
 
-import InviteMate from "./pages/InviteMate/InviteMate";
+//import { Routes,Route } from "react-router-dom";
+import OverviewPage from "./pages/New-Trip-OverviewPage/OverviewPage";
+import "./App.css"
+import { Route, Routes } from "react-router-dom";
 
-import React from "react";
-import NavBar from "./components/Nav Component/NavBar";
 
 function App() {
-  return (
-    <>
-      <InviteMate />
-    </>
-  );
+  return <>
+    <Routes>
+      <Route path="/home" />
+      <Route path="/trip/overview" element={<OverviewPage />} />
+    </Routes>
+    
+  </>;
+
 }
 
 export default App;
