@@ -1,5 +1,6 @@
 import "./PlanNewTrip.css";
 import homeIcon from "../../assets/homeicon_forheader.png";
+import { Link } from "react-router-dom";
 
 function PlanNewTrip() {
   return (
@@ -47,10 +48,12 @@ function PlanNewTrip() {
           />
         </div>
       </form>
-      <div className="startCancelBtn">
-        <button className="startBtn">Start Planning</button>
-        <button className="cancelBtn">Cancel</button>
-      </div>
+      <Link to="/travelmate">
+        <div className="startCancelBtn">
+          <button className="startBtn">Start Planning</button>
+          <button className="cancelBtn">Cancel</button>
+        </div>
+      </Link>
     </>
   );
 }

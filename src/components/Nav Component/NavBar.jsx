@@ -9,7 +9,9 @@ function NavBar() {
   return (
     <div>
       <div className="navContainer">
-        <img src={homeIcon} alt="Home Icon" className="icons" />
+        <Link to="/home">
+          <img src={homeIcon} alt="Home Icon" className="icons" />
+        </Link>
         <Link to="/newtrip">
           <img src={addIcon} alt="Add Icon" className="icons" />
         </Link>
