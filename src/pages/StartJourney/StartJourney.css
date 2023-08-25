@@ -1,0 +1,47 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh; 
+    background-color: #f9fafb; 
+}
+
+.titleDesc{
+    text-align: center;
+}
+
+h1{
+    font-weight: 100;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+span{
+    font-weight: 500;
+}
+p{
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.loginRegisterBtn{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+
+}
+.loginBtn, .registerBtn{
+    margin-bottom: 15px;
+    padding: 15px;
+    border-style: none;
+    border-radius: 60px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.loginBtn{
+    background-color: #ff676c;
+    color: #ffffff;
+}
+.registerBtn{
+    background-color: #ffffff;
+    color: #ff676c;
+}
