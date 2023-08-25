@@ -71,6 +71,7 @@
 }
 
 .date-of-trip {
+    color: #6b7280;
     margin: 1rem 0;
 }
 
@@ -88,13 +89,13 @@
     border-bottom: 1px solid #cfcfcf ;
     padding-bottom: 2rem;
     margin-bottom: 1rem;
-    border-top: 1px solid rgb(179, 176, 176);
 }
 
 .categories-btn-container {
+    background-color: #F9FAFB;
     display: flex;
     gap: 2rem;
-    margin-left: 1rem;
+    padding: 2rem;
 }
 
 .overview-btn-categories {
@@ -106,8 +107,10 @@
 }
 .itinerary-btn-categories {
     border: none;
+    color: #6b7280;
     background-color: transparent;
     font-size: 1rem;
+
 }
 
 .places-to-visit-handler-btn{
@@ -133,6 +136,7 @@
 }
 
 .recommended-places-overview {
+    color: #6b7280;
     margin: 1rem;
 }
 
@@ -147,3 +151,4 @@
     align-items: center;
     display: flex;
 }
+
