@@ -1,25 +1,16 @@
-import React from "react";
-import profile from "./Profile.css";
-import avatar from "../../../public/Avatar.svg";
-import ellipse1 from "../../../public/Ellipse 2.svg";
-import ellipse2 from "../../../public/Ellipse 3.svg";
-import editIcon from "../../../public/Group 1689.svg";
-import tripImage from "../../../public/Rectangle 705.png";
-
-import { AiOutlineHome } from "react-icons/ai";
-import { GrAdd } from "react-icons/gr";
-
-import { FaRegUser, FaChevronLeft } from "react-icons/fa";
+import "./Profile.css";
+import avatar from "../../assets/Avatar.svg";
+import ellipse1 from "../../assets/Ellipse 2.svg";
+import ellipse2 from "../../assets/Ellipse 3.svg";
+import editIcon from "../../assets/Group 1689.svg";
+import tripImage from "../../assets/Rectangle 705.png";
 
 function Profile() {
   return (
     <div className="bigContainer">
       <nav className="homeButton">
         <ul>
-          <li>
-            <FaChevronLeft />
-            Home
-          </li>
+          <li>Home</li>
         </ul>
       </nav>
       <div className="container">
@@ -61,11 +52,6 @@ function Profile() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="navmenu">
-          <AiOutlineHome />
-          <GrAdd />
-          <FaRegUser />
         </div>
       </div>
     </div>
