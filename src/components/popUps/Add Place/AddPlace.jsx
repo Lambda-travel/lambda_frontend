@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
 import "./addPlace.css"
 
-const AddPlace = ({toggleModal})=> {
+const AddPlace = ({toggleAdd})=> {
 
 
     return (
         <div className="modal">
             <div
-            onClick={toggleModal} 
-            className="overlay">
-                
+            onClick={toggleAdd} 
+            className="overlay"> 
             </div>
                 <div className="modal-content">
 
@@ -22,10 +21,10 @@ const AddPlace = ({toggleModal})=> {
                             <input className="input-description" type="text"></input>
                         </form>
                         <div className="container-btn-add-place">
-                            <button onClick={toggleModal} className="add-place-visit"> 
+                            <button onClick={toggleAdd} className="add-place-visit"> 
                             ADD
                             </button>
-                            <button onClick={toggleModal} className="cancel-add-place"> 
+                            <button onClick={toggleAdd} className="cancel-add-place"> 
                             Cancel
                             </button>
                         </div>
