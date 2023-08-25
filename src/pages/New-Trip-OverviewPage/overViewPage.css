@@ -71,6 +71,7 @@
 }
 
 .date-of-trip {
+    color: #6b7280;
     margin: 1rem 0;
 }
 
@@ -88,7 +89,6 @@
     border-bottom: 1px solid #cfcfcf ;
     padding-bottom: 2rem;
     margin-bottom: 1rem;
-    border-top: 1px solid rgb(179, 176, 176);
 }
 
 .categories-btn-container {
@@ -107,6 +107,7 @@
 }
 .itinerary-btn-categories {
     border: none;
+    color: #6b7280;
     background-color: transparent;
     font-size: 1rem;
 
@@ -135,6 +136,7 @@
 }
 
 .recommended-places-overview {
+    color: #6b7280;
     margin: 1rem;
 }
 
