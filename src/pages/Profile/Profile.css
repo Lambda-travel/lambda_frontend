@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 600px) {
+  .bigContainer {
+    margin-top: 60px;
+  }
+  .homeButton {
+    margin-left: 30px;
+  }
+  .homeButton ul li {
+    list-style: none;
+  }
+  .profileInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tripsPlusGuides {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -100px;
+  }
+
+  .tripsAndGuidesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .editIcon {
+    margin-left: -40px;
+  }
+  .userName {
+    margin-top: -20px;
+  }
+  .tripsImagesLocation {
+    display: flex;
+    border: 1px solid rgb(214, 214, 214);
+    padding: 10px 100px;
+    margin-left: -0px;
+  }
+  .tripImage {
+    width: 60px;
+    height: 60px;
+    margin-left: -20px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+  .tripDateAndMates {
+    display: flex;
+    margin-top: -10px;
+  }
+  .tripPlans {
+    margin-right: 50px;
+    border-bottom: 2px solid #ff5a5f;
+    color: #ff5a5f;
+  }
+  .travelMate2 {
+    margin-left: -8px;
+  }
+  .bottomLine {
+    width: 600px;
+    height: 1px;
+    background-color: #bfbfbf;
+  }
+  .mates {
+    width: 30px;
+    height: 30px;
+  }
+  .tripDateAndMates p {
+    font-size: 10px;
+  }
+}
