@@ -1,0 +1,149 @@
+/*
+      MAIN INFO 
+
+      TYPOGRAPHY
+      
+      POPPINS
+
+      COLORS :
+
+      #171717
+
+      #ff676C
+
+      #F9FAFB
+
+      #F3F2F2
+
+      #D9D9D9
+
+      #C5C884
+
+
+*/
+
+
+
+
+
+
+
+
+/*  ------------HEADER ------------*/
+
+.header-container {
+
+}
+.header-img {
+    width: 100%;
+
+}
+.header-btn-home {
+    margin-left: 4%;
+    gap: 0.2rem;
+    font-weight: bold;
+    margin-top: 15%;
+    color: white;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+
+}
+
+/*------------ USER INFO'S   ---------------------*/
+.info-user-container{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.name-and-edit{
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-trip-btn {
+    border: none;
+    background-color:transparent;
+}
+
+.date-of-trip {
+    margin: 1rem 0;
+}
+
+.profile-icon {
+    width: 2.7rem;
+}
+
+
+/*--------------------  PLACES TO VISIT ----------------------------*/
+
+.places-to-visit-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 6rem;
+    border-bottom: 1px solid #cfcfcf ;
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid rgb(179, 176, 176);
+}
+
+.categories-btn-container {
+    display: flex;
+    gap: 2rem;
+    margin-left: 1rem;
+}
+
+.overview-btn-categories {
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color:#ff676C ;
+    border-bottom:2px solid #ff676C;
+}
+.itinerary-btn-categories {
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+.places-to-visit-handler-btn{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    background-color: transparent;
+    margin-bottom: 50%;
+    margin-left: -1rem;
+    margin-top: 1.5rem;
+}
+
+.add-place-to-visit-btn {
+    align-self: flex-end;
+    background-color: #ff676C;
+    color: white;
+    font-size: 2rem;
+    border: none;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 0.5rem;
+}
+
+.recommended-places-overview {
+    margin: 1rem;
+}
+
+.recommended-container-overview {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.recommended-card {
+    gap: 0.5rem;
+    align-items: center;
+    display: flex;
+}
