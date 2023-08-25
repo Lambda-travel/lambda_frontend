@@ -9,10 +9,12 @@ body{
     margin: 50px 10px
 }
 .homeBtn{
+    display: flex;
+    align-items: center;
     border-style: none;
     color: gray;
     font-size: large;
-    background-color: white;
+    background-color: #f9fafb;
 }
 /* Title and small description */
 .pageTitle{

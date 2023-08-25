@@ -1,10 +1,14 @@
 import "./PlanNewTrip.css";
+import homeIcon from "../../assets/homeicon_forheader.png";
 
 function PlanNewTrip() {
   return (
     <>
       <header className="header">
-        <button className="homeBtn"> Home </button>
+        <button className="homeBtn">
+          <img src={homeIcon} />
+          Home{" "}
+        </button>
       </header>
       <div className="pageTitle">
         <h2>Plan a new trip</h2>
