@@ -22,6 +22,7 @@ body {
   height: 30px;
   margin: 50px;
 }
+
 .navcontainer--1 {
   display: none;
 }
@@ -51,5 +52,11 @@ body {
   .navcontainer--1 a {
     text-decoration: none;
     color: rgb(147, 147, 147);
+  }
+  .navcontainer--1 a:hover {
+    color: #ff5a5f;
+  }
+  .navcontainer--1 a:focus {
+    color: #ff5a5f;
   }
 }
