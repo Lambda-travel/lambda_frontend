@@ -1,0 +1,21 @@
+.img-card-itinerary {
+    width: 100%;
+}
+.description-itinerary-card {
+    margin: 0.5rem 1rem;
+}
+.title-card-itinerary {
+    font-weight: 400;
+}
+
+.description-card-itinerary {
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+.viewMore-card-itinerary {
+    margin-top: 1rem;
+    color: #FF5A5F;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}

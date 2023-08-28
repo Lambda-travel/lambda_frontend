@@ -65,17 +65,14 @@
     justify-content: space-between;
 }
 
-.edit-trip-btn {
-    border: none;
-    background-color:transparent;
-}
 
-.date-of-trip {
+
+.date-of-trip-itinerary {
     color: #6b7280;
     margin: 1rem 0;
 }
 
-.profile-icon {
+.profile-icon-itinerary {
     width: 2.7rem;
 }
 
