@@ -6,6 +6,7 @@
 }
 .title-card-itinerary {
     font-weight: 400;
+    margin-bottom: 1rem;
 }
 
 .description-card-itinerary {
@@ -18,4 +19,8 @@
     cursor: pointer;
     border: none;
     background-color: transparent;
+}
+.number-desc-card {
+    color: #FF5A5F;
+    margin-right: 0.9rem;
 }

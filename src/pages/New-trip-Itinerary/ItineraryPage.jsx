@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditTrip from "../../components/popUps/EditTrip/EditTrip";
 import "./itineraryStyle.css"
 import { Link } from "react-router-dom";
-import CardInfo from "../../components/test/CardInfo";
+import ListItinerary from "../../components/ListItinerary/ListItinerary/ListItinerary";
 
 
 
@@ -13,14 +13,6 @@ const ItineraryPage =()=> {
     const toggleEditTrip = () => {
         setEditTripPopUp(!editTripPopUp);
       };
-
-    /* CARDS */
-
-    const [showCard, setShowCard] = useState(false)
-    const toggleCard =()=> {
-        setShowCard(!showCard)
-    }
-
 
     return (
         <>
@@ -75,46 +67,14 @@ const ItineraryPage =()=> {
                         </button>
 
                         {editTripPopUp && <EditTrip toggleEditTrip={toggleEditTrip} />}
+                        
                     </div>
                     <p className="date-of-trip-itinerary">Date: 10 aug - 17 aug</p>
                     <img className="profile-icon-itinerary" src={"/src/assets/dummy-img/Avatar.svg"} alt={""} />
-                </div>
-                            {/* --------  CARDS  -------------- */}
-                <div onClick={toggleCard} className="list-card-itinerary">
-                    <div className="btn-and-date-itinerary">
-                        {
-                        showCard ?  <svg style={{width:"1.5rem"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                    </svg>
-                                :
-                                <svg style={{width:"1.5rem"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                                  </svg>
-                        }
-                    <p> 10 Aug</p>
                     </div>
-                    <button className="btn-add-destination">Add Destination</button>
-                    { showCard ? <CardInfo/> : null}
-                </div>
-                <div onClick={toggleCard} className="list-card-itinerary2">
-                <div className="btn-and-date-itinerary">
-                    <svg style={{width:"1.5rem"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                    </svg>
-                    <p> 11 Aug</p>
-                    </div>
-                    <button className="btn-add-destination">Add Destination</button>
-
-                </div>
-                <div className="list-card-itinerary3">
-                <div className="btn-and-date-itinerary">
-                    <svg style={{width:"1.5rem"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                    </svg>
-                    <p> 12 Aug</p>
-                    </div>
-                    <button className="btn-add-destination">Add Destination</button>
-                </div>
+                    {/* --------  LIST OF TRIP'S  -------------- */}
+                    
+                    <ListItinerary />
             </article>
         </>
     )

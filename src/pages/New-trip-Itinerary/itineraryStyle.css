@@ -2,6 +2,7 @@
 
 .main-container-itinerary{
     background-color: #F9FAFB;
+    margin-bottom: 3rem;
 }
 .container-btn-and-trip-itinerary {
     color: #6b7280;
@@ -68,6 +69,7 @@
 /*----------------- BUTTONS OVERVIEW AND ITINERARY --------------------------*/
 
 .btn-over-itinerary-page {
+    color: #6b7280;
     cursor: pointer;
     font-size: 1rem;
     border: none;
@@ -81,49 +83,3 @@
     border-bottom: 2px solid #FF5A5F;
 }
 
-/*------------------- LIST OF CARDS -------------------------*/
-
-.list-card-itinerary {
-    cursor: pointer;
-    flex-wrap: wrap;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 1.5rem 0;
-}
-.list-card-itinerary2 {
-    flex-wrap: wrap;
-    margin-top: 1rem;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 1.5rem 0;
-}
-.list-card-itinerary3 {
-    margin-top: 1rem;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 1.5rem 0;
-}
-
-.btn-and-date-itinerary {
-    cursor: pointer;
-    display: flex;
-    gap: 2rem;
-    margin-left: 1rem;
-}
- p {
-    font-weight: 600;
- }
-.btn-add-destination {
-    cursor: pointer;
-    font-weight: bold;
-    margin-right: 1.4rem;
-    border: none;
-    background-color: transparent;
-    color: #FF5A5F;
-}
