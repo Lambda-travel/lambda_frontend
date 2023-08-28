@@ -1,9 +1,9 @@
 import "./Profile.css";
 import avatar from "../../assets/Avatar.svg";
-import ellipse1 from "../../assets/Ellipse 2.svg";
-import ellipse2 from "../../assets/Ellipse 3.svg";
+
 import editIcon from "../../assets/Group 1689.svg";
-import tripImage from "../../assets/Rectangle 705.png";
+
+import TripPlansCard from "../../components/TripPlans Cards/TripPlansCard";
 
 function Profile() {
   return (
@@ -31,30 +31,9 @@ function Profile() {
           </div>
           <div className="bottomLine"></div>
 
-          <div className="tripPlansContent">
-            <div className="tripsImagesLocation">
-              <img src={tripImage} alt="trip image" className="tripImage" />
-              <div className="titleDateMate ">
-                <h3 className="trip-title-profile">Trip to indonesia</h3>
-                <div className="tripDateAndMates">
-                  <div className="matesAvatar">
-                    <img
-                      src={ellipse1}
-                      alt="mates"
-                      className="travelMate1 mates"
-                    />
-                    <img
-                      src={ellipse2}
-                      alt="mates"
-                      className="travelMate2 mates"
-                    />
-                  </div>
-
-                  <p className="date-trip-profile">Aug 26-28,2022-11 Places</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <TripPlansCard />
+          <TripPlansCard />
+          <TripPlansCard />
         </div>
       </div>
     </div>

@@ -27,118 +27,23 @@ body {
   margin-left: -100px;
 }
 
-.tripsAndGuidesContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
-  background-color: #f9fafb;
-}
 .editIcon {
   margin-left: -40px;
 }
 .userName {
   color: #6b7280;
-  font-weight: 400;
+  font-weight: 200;
   margin-top: -20px;
 }
-.tripsImagesLocation {
-  display: flex;
-  border-bottom: 1px solid rgb(214, 214, 214);
-  padding: 10px 100px;
-  margin-left: -0px;
-}
-.tripImage {
-  width: 50%;
-  height: 50%;
-  margin-left: -5rem;
-  margin-top: 20px;
-  margin-right: 20px;
-}
 
-.tripDateAndMates {
-  display: flex;
-  margin-top: -10px;
-}
-.tripPlans {
-  margin-right: 50px;
-  border-bottom: 2px solid #ff5a5f;
-  color: #ff5a5f;
-}
-.travelMate2 {
-  margin-left: -8px;
-}
 .bottomLine {
   width: 100%;
   height: 1px;
   background-color: #bfbfbf;
 }
-.mates {
-  width: 30px;
-  height: 30px;
-}
-.tripDateAndMates {
-  display: flex;
-  margin-top: 0.2rem;
-  align-items: center;
-  margin-right: -6rem;
-}
+
 .profileName {
   margin-top: 1rem;
   font-size: 1.6rem;
   font-weight: 800;
-}
-
-.trip-title-profile {
-  font-size: 1rem;
-  margin: 1rem 0;
-}
-
-.date-trip-profile {
-  font-weight: bolder;
-  font-size: 0.8rem;
-  margin-left: 0.2rem;
-}
-.titleDateMate h3 {
-  font-weight: 500;
-}
-.titleDateMate p {
-  font-weight: 100;
-}
-
-@media only screen and (min-width: 900px) {
-  .tripsImagesLocation {
-    width: 100vw;
-
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid rgb(196, 196, 196);
-  }
-  .tripsAndGuidesContainer {
-    height: 40vh;
-  }
-  .tripImage {
-    width: 10%;
-    height: 10%;
-    margin-left: -5rem;
-    margin-top: 20px;
-    margin-right: -600px;
-  }
-  .tripDateAndMates {
-    flex-direction: column-reverse;
-    margin-right: -30px;
-    margin-top: -1rem;
-  }
-  .titleDateMate h3 {
-    font-weight: 500;
-  }
-  .matesAvatar {
-    margin-right: 105px;
-  }
-  .titleDateMate p {
-    font-weight: 100;
-  }
-  .titleDateMate {
-    margin-top: 20px;
-  }
 }
