@@ -1,4 +1,5 @@
 import logoImg from "../../assets/logo.png";
+import Button from "../../components/Button/Button";
 import "./StartJourney.css";
 function StartJourney() {
   return (
@@ -14,11 +15,16 @@ function StartJourney() {
         </p>
       </div>
       <div className="loginRegisterBtn">
-        <button className="loginBtn">Login</button>
-        <button className="registerBtn">Register</button>
+        <Button text="Login" newClassName="loginButton" />
+        <Button text="Register" newClassName="registerButton" />
       </div>
     </div>
   );
 }
 
 export default StartJourney;
+
+{
+  /* <button className="loginBtn">Login</button>
+        <button className="registerBtn">Register</button> */
+}

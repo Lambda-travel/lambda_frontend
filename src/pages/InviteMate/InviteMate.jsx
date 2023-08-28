@@ -1,5 +1,6 @@
 import "./InviteMate.css";
 import homeIcon from "../../assets/homeicon_forheader.png";
+import Button from "../../components/Button/Button";
 
 function InviteMate() {
   return (
@@ -29,8 +30,8 @@ function InviteMate() {
         </div>
       </form>
       <div className="inviteAndMaybeBtn">
-        <button className="inviteBtn">Invite Travelmate</button>
-        <button className="maybeBtn">Maybe later</button>
+        <Button text="Invite Travelmate" newClassName="customButton" />
+        <Button text="Maybe later" newClassName="cancelButton" />
       </div>
     </>
   );

@@ -1,0 +1,55 @@
+
+/* USE IT AS PROPS ON THE BUTTON COMPONENT AND PASS IT AS newClassName="?????" */
+
+
+/* Principal button */
+.customButton{
+    width: 90%;
+    height: 50px;
+    background-color:  #ff676c; ;
+    color: #ffffff;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 13px;
+}
+
+/* Cancel and buttons like it */
+.cancelButton{
+    border-style: none;
+    color: #d9d9d9;
+    font-size: 13px;
+    background-color: #f9fafb;
+    margin-top: 10px;
+}
+
+/* Green button saying changes are saved */
+.changesSavedButton{
+    width: 90%;
+    height: 50px;
+    background-color:  #C5C884; ;
+    color: #ffffff;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 13px;
+} 
+/* Login Button on Start Journey Page */
+.loginButton{
+    margin-bottom: 15px;
+    padding: 15px;
+    border-style: none;
+    border-radius: 60px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #ff676c;
+    color: #ffffff;
+}
+
+/* Register Button on Start Journey Page */
+.registerButton{
+    margin-bottom: 15px;
+    padding: 15px;
+    border-style: none;
+    border-radius: 60px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    color: #ff676c;
+}

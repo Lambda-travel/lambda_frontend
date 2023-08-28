@@ -1,6 +1,7 @@
 import "./PlanNewTrip.css";
 import homeIcon from "../../assets/homeicon_forheader.png";
 import { Link } from "react-router-dom";
+import Button from "../../components/Button/Button";
 
 function PlanNewTrip() {
   return (
@@ -50,8 +51,8 @@ function PlanNewTrip() {
       </form>
       <Link to="/travelmate">
         <div className="startCancelBtn">
-          <button className="startBtn">Start Planning</button>
-          <button className="cancelBtn">Cancel</button>
+          <Button text="Start Planning" newClassName="customButton" />
+          <Button text="Cancel" newClassName="cancelButton" />
         </div>
       </Link>
     </>
@@ -59,3 +60,6 @@ function PlanNewTrip() {
 }
 
 export default PlanNewTrip;
+
+// <button className="startBtn">Start Planning</button>
+//           <button className="cancelBtn">Cancel</button>

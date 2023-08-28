@@ -28,20 +28,4 @@ p{
     display: flex;
     flex-direction: column;
     width: 60%;
-
-}
-.loginBtn, .registerBtn{
-    margin-bottom: 15px;
-    padding: 15px;
-    border-style: none;
-    border-radius: 60px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-.loginBtn{
-    background-color: #ff676c;
-    color: #ffffff;
-}
-.registerBtn{
-    background-color: #ffffff;
-    color: #ff676c;
 }
