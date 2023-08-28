@@ -72,29 +72,14 @@ label{
 .startCancelBtn{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    align-items: center;
+    width: 60%;
     margin: 0 auto;
     position: absolute;
-    bottom: 20%;
-    left: 25%;
-    
+    bottom: 15%;
+    left: 20%;
 }
 
-.startBtn{
-    margin-bottom: 10px;
-    height: 40px;
-    border-radius: 10px;
-    border-style:  none;
-    background-color: #ff676c ;
-    color: white;
-    font-size: 12px;
-}
 
-.cancelBtn{
-    border-style: none;
-    color: #d9d9d9;
-    font-size: 15px;
-    background-color: #f9fafb
-}
 
 
