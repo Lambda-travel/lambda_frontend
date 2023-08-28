@@ -22,3 +22,34 @@ body {
   height: 30px;
   margin: 50px;
 }
+.navcontainer--1 {
+  display: none;
+}
+@media only screen and (min-width: 1200px) {
+  .navContainer {
+    display: none;
+  }
+  .navcontainer--1 {
+    display: block;
+    margin-right: 50px;
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+
+  .navcontainer--1 ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    width: 100%;
+    margin-left: 100px;
+  }
+  .navcontainer--1 nav {
+    margin-right: 100px;
+    margin-top: 30px;
+  }
+  .navcontainer--1 a {
+    text-decoration: none;
+    color: rgb(147, 147, 147);
+  }
+}

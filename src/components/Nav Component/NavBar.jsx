@@ -8,6 +8,23 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <div>
+      <div className="navcontainer--1">
+        <nav>
+          <ul>
+            <Link to="/home">
+              {" "}
+              <li className="navHome">Home</li>
+            </Link>
+            <Link to="/newtrip">
+              <li className="navAdd">Add</li>
+            </Link>
+            <Link to="/profile">
+              {" "}
+              <li className="navProfile">Profile</li>
+            </Link>
+          </ul>
+        </nav>
+      </div>
       <div className="navContainer">
         <Link to="/home">
           <img src={homeIcon} alt="Home Icon" className="icons" />
