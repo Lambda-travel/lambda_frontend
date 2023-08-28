@@ -74,7 +74,7 @@ const OverviewPage = () => {
 
         <div className="categories-btn-container">
           <button className="overview-btn-categories">Overview</button>
-          <button className="itinerary-btn-categories">Itinerary</button>
+          <Link to="/trip/itinerary"><button className="itinerary-btn-categories">Itinerary</button></Link>
         </div>
         {/*-------- PLACES TO VISIT -------------*/}
         <div className="places-to-visit-container">

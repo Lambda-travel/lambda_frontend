@@ -1,0 +1,85 @@
+/* ----------------------- HEADER -------------------------- */
+
+.main-container-itinerary{
+    background-color: #F9FAFB;
+    margin-bottom: 3rem;
+}
+.container-btn-and-trip-itinerary {
+    color: #6b7280;
+    display: flex;
+    gap: 0.5rem;
+    margin: 3rem 0 3rem 1rem;
+    align-items: center;
+
+
+}
+.link-style-in-itinerary {
+    text-decoration: none;
+}
+.back-to-overview {
+    font-weight: 400;
+}
+
+.btn-back-trip-overview {
+    border: none;
+    background-color: transparent;
+}
+.container-buttons-header-itinerary {
+    display: flex;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+
+/*------------------- USER PROFILE ITINERARY----------------*/
+
+.info-user-container-itinerary{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    padding: 1rem 1rem;
+}
+
+.name-and-edit-itinerary{
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-trip-btn {
+    border: none;
+    background-color:transparent;
+}
+
+.date-of-trip-itinerary {
+    font-weight: 400;
+    color: #6b7280;
+    margin: 1rem 0;
+}
+
+.name-of-trip-in-itinerary {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.profile-icon {
+    width: 2.7rem;
+}
+
+/*----------------- BUTTONS OVERVIEW AND ITINERARY --------------------------*/
+
+.btn-over-itinerary-page {
+    color: #6b7280;
+    cursor: pointer;
+    font-size: 1rem;
+    border: none;
+    background-color: #F9FAFB;
+}
+.btn-iti-itinerary-page {
+    font-size: 1rem;
+    border: none;
+    background-color: #F9FAFB;
+    color: #FF5A5F;
+    border-bottom: 2px solid #FF5A5F;
+}
+
