@@ -34,19 +34,22 @@ function Profile() {
           <div className="tripPlansContent">
             <div className="tripsImagesLocation">
               <img src={tripImage} alt="trip image" className="tripImage" />
-              <div>
+              <div className="titleDateMate ">
                 <h3 className="trip-title-profile">Trip to indonesia</h3>
                 <div className="tripDateAndMates">
-                  <img
-                    src={ellipse1}
-                    alt="mates"
-                    className="travelMate1 mates"
-                  />
-                  <img
-                    src={ellipse2}
-                    alt="mates"
-                    className="travelMate2 mates"
-                  />
+                  <div className="matesAvatar">
+                    <img
+                      src={ellipse1}
+                      alt="mates"
+                      className="travelMate1 mates"
+                    />
+                    <img
+                      src={ellipse2}
+                      alt="mates"
+                      className="travelMate2 mates"
+                    />
+                  </div>
+
                   <p className="date-trip-profile">Aug 26-28,2022-11 Places</p>
                 </div>
               </div>
