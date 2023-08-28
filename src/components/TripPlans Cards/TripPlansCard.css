@@ -15,7 +15,7 @@ body {
 
 .tripsImagesLocation {
   display: flex;
-  border-bottom: 1px solid rgb(214, 214, 214);
+  border-bottom: 1px solid rgb(238, 238, 238);
   padding: 10px 100px;
   margin-left: -0px;
 }
@@ -72,7 +72,7 @@ body {
 
     display: flex;
     justify-content: space-around;
-    border: 1px solid rgb(196, 196, 196);
+    border: 1px solid rgb(238, 238, 238);
   }
   .tripsAndGuidesContainer {
     height: 40vh;

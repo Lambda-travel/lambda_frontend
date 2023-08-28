@@ -1,11 +1,13 @@
 import "./Profile.css";
 import avatar from "../../assets/Avatar.svg";
-
 import editIcon from "../../assets/Group 1689.svg";
-
 import TripPlansCard from "../../components/TripPlans Cards/TripPlansCard";
+import { useState } from "react";
+import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 function Profile() {
+  const [contentPage, setContentPage] = useState();
   return (
     <div className="bigContainer">
       <nav className="homeButton">
@@ -30,10 +32,17 @@ function Profile() {
             <div className="guides">Guides</div>
           </div>
           <div className="bottomLine"></div>
-
-          <TripPlansCard />
-          <TripPlansCard />
-          <TripPlansCard />
+          <div className="emptyContentWithButton">
+            <p>You have not planned a trip yet. </p>
+            <Link to="/newtrip">
+              {" "}
+              <Button
+                text="Start Planning a trip"
+                newClassName="customButton"
+              />
+            </Link>
+          </div>
+          {/* <TripPlansCard /> */}
         </div>
       </div>
     </div>
