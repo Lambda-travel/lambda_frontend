@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import "./cardInfoStyle.css"
+
 
 const CardInfo =()=> {
     return (
@@ -11,7 +13,7 @@ const CardInfo =()=> {
                 <p className="description-card-itinerary">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.  maxime repellat totam?
                 </p>
-                    <button className="viewMore-card-itinerary">View Details</button>
+                    <Link to="destination-detail"><button className="viewMore-card-itinerary">View Details</button></Link>
             </div>
         </div>
     )

@@ -14,6 +14,7 @@
     font-weight: 400;
 }
 .viewMore-card-itinerary {
+    cursor: pointer;
     margin-top: 1rem;
     color: #FF5A5F;
     cursor: pointer;
