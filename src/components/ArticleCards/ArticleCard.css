@@ -7,6 +7,9 @@ body {
   background: url("../../assets/Image.svg");
   width: 100%;
   height: 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .articleContainer {
   margin-top: 35px;
@@ -45,4 +48,6 @@ body {
   font-weight: 300;
   margin-top: 5px;
   margin-left: 5px;
+}
+@media only screen and (min-width: 900px) {
 }

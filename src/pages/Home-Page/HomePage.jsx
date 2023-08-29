@@ -26,7 +26,7 @@ function HomePage() {
           <p>Plan new trip</p>
         </div>
       </div>
-      <div className="cardsAndTripInfos">
+      <div className="cardsAndTripInfosMobile">
         <Swiper
           spaceBetween={190}
           slidesPerView={2}
@@ -47,6 +47,13 @@ function HomePage() {
           </SwiperSlide>
         </Swiper>
         {/* <UserTripsCard /> */}
+      </div>
+      <div className="cardsAndTripInfoDesktop">
+        <UserTripsCard />
+        <UserTripsCard />
+        <UserTripsCard />
+        <UserTripsCard />
+        <UserTripsCard />
       </div>
       <div className="articleCards">
         <ArticleCard />
