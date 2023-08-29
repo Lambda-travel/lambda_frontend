@@ -1,4 +1,3 @@
-import Button from "../Button/Button";
 import "./ArticleCard.css";
 import ellipse1 from "../../assets/ellipse 1.svg";
 import saveButton from "../../assets/save-button.svg";

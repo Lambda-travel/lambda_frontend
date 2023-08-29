@@ -2,6 +2,8 @@ import "./HomPage.css";
 import avatar from "../../assets/Avatar.svg";
 import UserTripsCard from "../../components/UserTripsCard/UserTripsCard";
 import ArticleCard from "../../components/ArticleCards/ArticleCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 function HomePage() {
   return (
@@ -25,7 +27,26 @@ function HomePage() {
         </div>
       </div>
       <div className="cardsAndTripInfos">
-        <UserTripsCard />
+        <Swiper
+          spaceBetween={190}
+          slidesPerView={2}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide>
+            <UserTripsCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UserTripsCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UserTripsCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UserTripsCard />
+          </SwiperSlide>
+        </Swiper>
+        {/* <UserTripsCard /> */}
       </div>
       <div className="articleCards">
         <ArticleCard />

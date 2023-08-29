@@ -37,6 +37,7 @@ body {
 }
 .cardsAndTripInfos {
   margin-top: -75px;
+  width: 100%;
 }
 .myTripAndPlanNew {
   padding: 10px 20px;
