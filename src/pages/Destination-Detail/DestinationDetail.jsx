@@ -49,16 +49,6 @@ const DestinationDetail =()=> {
     )
 }
 
-/*
 
-            <div className="container-images-desc-destination">
-                <div className="description-images-destination">
-                    <img className="img-desc-destination" src="/src/assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg"></img>
-                </div>
-                <div className="description-images-destination">
-                    <img className="img-desc-destination" src="/src/assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg"></img>
-                </div>
-            </div>
-*/
 
 export default DestinationDetail

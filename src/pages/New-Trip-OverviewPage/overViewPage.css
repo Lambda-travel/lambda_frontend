@@ -31,9 +31,6 @@
 
 /*  ------------HEADER ------------*/
 
-.header-container {
-
-}
 .header-img {
     width: 100%;
 
@@ -65,11 +62,21 @@
     justify-content: space-between;
 }
 
+.name-of-trip {
+    color: #353535;
+    font-weight: 400;
+}
+
 
 
 .date-of-trip-itinerary {
     color: #6b7280;
     margin: 1rem 0;
+}
+.date-of-trip {
+    color: #6b7280;
+    font-weight: 400;
+    margin-bottom: 1rem;
 }
 
 .profile-icon-itinerary {
@@ -89,7 +96,7 @@
 }
 
 .categories-btn-container {
-    background-color: #F9FAFB;
+    background-color: #e5e7eb36;
     display: flex;
     gap: 2rem;
     padding: 2rem;

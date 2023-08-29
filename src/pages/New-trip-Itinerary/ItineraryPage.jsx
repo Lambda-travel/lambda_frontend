@@ -13,7 +13,7 @@ const ItineraryPage =()=> {
     const toggleEditTrip = () => {
         setEditTripPopUp(!editTripPopUp);
       };
-
+ 
     return (
         <>
             <article className="main-container-itinerary">
