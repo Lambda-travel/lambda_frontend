@@ -1,0 +1,81 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  box-sizing: border-box;
+  font-family: "poppins";
+}
+/* USER INFO */
+.userInfo {
+  background-color: #ff676c;
+  width: 100%;
+  height: 257px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+}
+.avatarContainer {
+  background-color: white;
+  width: 54px;
+  height: 54px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nameAndMessageAndAvatar {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px;
+}
+.myTripAndPlanNew {
+  display: flex;
+  justify-content: space-between;
+}
+.cardsAndTripInfosMobile {
+  margin-top: -75px;
+  width: 100%;
+}
+.myTripAndPlanNew {
+  padding: 10px 20px;
+}
+.myTripAndPlanNew p {
+  font-size: 11px;
+  font-weight: 400;
+  color: #fff;
+}
+.myTripAndPlanNew h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+.nameAndMessage h3 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 22px;
+}
+.nameAndMessage span {
+  font-weight: 700;
+}
+.nameAndMessage p {
+  font-size: 11px;
+  font-weight: 400;
+  color: #fff;
+}
+.cardsAndTripInfoDesktop {
+  display: none;
+}
+
+@media only screen and (min-width: 700px) {
+  .cardsAndTripInfoDesktop {
+    display: flex;
+    margin-top: -75px;
+    width: 100%;
+  }
+  .cardsAndTripInfosMobile {
+    display: none;
+  }
+}
