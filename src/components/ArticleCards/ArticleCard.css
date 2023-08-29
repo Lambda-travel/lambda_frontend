@@ -1,0 +1,48 @@
+body {
+  font-family: "poppins";
+}
+
+/* Image and Guide button */
+.articleImage {
+  background: url("../../assets/Image.svg");
+  width: 100%;
+  height: 200px;
+}
+.articleContainer {
+  margin-top: 35px;
+}
+.guide {
+  color: #fff;
+  right: 0;
+}
+/* The article text and creators and the save button  */
+.articleContentAndCreator {
+  padding: 20px;
+}
+
+/* the article text  */
+.articleText h5 {
+  font-size: 12px;
+  font-weight: 600;
+}
+.articleText p {
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+/* Creator and save button */
+.articleCreatorAndSaveButton {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.articleCreator {
+  display: flex;
+}
+.articleCreator p {
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 5px;
+  margin-left: 5px;
+}

@@ -1,0 +1,45 @@
+body {
+  font-family: "poppins";
+}
+
+.tripsLocationAndOption {
+  display: flex;
+  justify-content: space-between;
+}
+.avatarsProfileAndDates {
+  display: flex;
+}
+
+.cardContainer {
+  width: 250px;
+  height: 130px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 20px;
+}
+.tripsLocationAndOption h3 {
+  font-weight: 500;
+  font-size: 15px;
+}
+.currentTripText {
+  font-size: 10px;
+  font-weight: 300;
+}
+.avatarsProfileAndDates p {
+  font-size: 10px;
+  font-weight: 200;
+}
+.borderLine {
+  width: 100%;
+  height: 1px;
+  background-color: #e1e1e1;
+  margin: 8px 0;
+}
+.avatarsProfiles .avatar2 {
+  margin-left: -5px;
+}
