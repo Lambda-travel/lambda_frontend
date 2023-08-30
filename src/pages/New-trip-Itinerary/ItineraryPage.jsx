@@ -13,7 +13,7 @@ const ItineraryPage =()=> {
     const toggleEditTrip = () => {
         setEditTripPopUp(!editTripPopUp);
       };
-
+ 
     return (
         <>
             <article className="main-container-itinerary">
@@ -40,7 +40,7 @@ const ItineraryPage =()=> {
                 </div>
                 </Link>
                 <div className="container-buttons-header-itinerary">
-                    <button className="btn-over-itinerary-page">Overview</button>
+                    <Link to="/trip/overview"><button className="btn-over-itinerary-page">Overview</button></Link>
                     <button className="btn-iti-itinerary-page">Itinerary</button>
                 </div>
                     {/* ------------ PROFILE ------------*/}
