@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom";
 import "./overViewPage.css";
 import { useState } from "react";
-import AddPlace from "../../components/popUps/Add Place/AddPlace";
 import EditTrip from "../../components/popUps/EditTrip/EditTrip";
 import backImage from "../../assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg";
 import Avatar from "../../assets/dummy-img/Avatar.svg";
+import PlacesToVisit from "./PlacesToVisit";
 
 const OverviewPage = () => {
-  const [addPopUp, setAddPopUp] = useState(false);
+
   const [editTripPopUp, setEditTripPopUp] = useState(false);
 
-  const toggleAdd = () => {
-    setAddPopUp(!addPopUp);
-  };
+
   const toggleEditTrip = () => {
     setEditTripPopUp(!editTripPopUp);
   };
@@ -22,7 +20,7 @@ const OverviewPage = () => {
       <article>
         {/*-------- H E A D E R -------------*/}
         <div className="header-container">
-          <Link to="/">
+          <Link to="/home">
             <button className="header-btn-home">
               <svg
                 style={{ width: "1.5rem" }}
@@ -77,32 +75,10 @@ const OverviewPage = () => {
           <Link to="/trip/itinerary"><button className="itinerary-btn-categories">Itinerary</button></Link>
         </div>
         {/*-------- PLACES TO VISIT -------------*/}
+            <PlacesToVisit/>
         <div className="places-to-visit-container">
-          <button className="places-to-visit-handler-btn">
-            <svg
-              style={{ width: "1.4rem" }}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-            Places to Visit
-          </button>
 
-          <button onClick={toggleAdd} className="add-place-to-visit-btn">
-            {" "}
-            <p>+</p>
-          </button>
 
-          {addPopUp && <AddPlace toggleAdd={toggleAdd} />}
         </div>
         {/*-------- RECOMMENDED PLACES -------------*/}
         <div>

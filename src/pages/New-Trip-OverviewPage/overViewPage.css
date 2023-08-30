@@ -128,16 +128,6 @@
     margin-top: 1.5rem;
 }
 
-.add-place-to-visit-btn {
-    align-self: flex-end;
-    background-color: #ff676C;
-    color: white;
-    font-size: 2rem;
-    border: none;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 0.5rem;
-}
 
 .recommended-places-overview {
     color: #6b7280;
