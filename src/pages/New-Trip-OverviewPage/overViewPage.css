@@ -87,9 +87,7 @@
 /*--------------------  PLACES TO VISIT ----------------------------*/
 
 .places-to-visit-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 6rem;
+
     border-bottom: 1px solid #cfcfcf ;
     padding-bottom: 2rem;
     margin-bottom: 1rem;

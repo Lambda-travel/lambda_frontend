@@ -76,10 +76,7 @@ const OverviewPage = () => {
         </div>
         {/*-------- PLACES TO VISIT -------------*/}
             <PlacesToVisit/>
-        <div className="places-to-visit-container">
-
-
-        </div>
+        <div className="places-to-visit-container"></div>
         {/*-------- RECOMMENDED PLACES -------------*/}
         <div>
           <p className="recommended-places-overview">Recommended Places</p>
