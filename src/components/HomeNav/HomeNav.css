@@ -1,0 +1,8 @@
+.homeBtn {
+  display: flex;
+  align-items: center;
+  border-style: none;
+  color: gray;
+  font-size: large;
+  background-color: #f9fafb;
+}

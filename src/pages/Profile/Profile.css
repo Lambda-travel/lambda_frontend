@@ -13,8 +13,8 @@ body {
 .homeButton {
   margin-left: 30px;
 }
-.homeButton ul li {
-  list-style: none;
+.homeButton a {
+  text-decoration: none;
 }
 .profileInfo {
   display: flex;

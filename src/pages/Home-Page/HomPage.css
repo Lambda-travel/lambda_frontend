@@ -68,6 +68,10 @@ body {
 .cardsAndTripInfoDesktop {
   display: none;
 }
+.articleCards a {
+  text-decoration: none;
+  color: #333;
+}
 
 @media only screen and (min-width: 700px) {
   .cardsAndTripInfoDesktop {

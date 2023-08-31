@@ -10,6 +10,7 @@ import InviteMate from "./pages/InviteMate/InviteMate";
 import ItineraryPage from "./pages/New-trip-Itinerary/ItineraryPage";
 import DestinationDetail from "./pages/Destination-Detail/DestinationDetail";
 import HomePage from "./pages/Home-Page/HomePage";
+import ArticlePage from "./pages/ArticlePage/ArticlePage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/newtrip" element={<PlanNewTrip />} />
         <Route path="/travelmate" element={<InviteMate />} />
+        <Route path="/article" element={<ArticlePage />} />
       </Routes>
 
       <NavBar />

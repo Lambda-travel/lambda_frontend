@@ -4,15 +4,18 @@ import ellipse1 from "../../assets/Ellipse 2.svg";
 import ellipse2 from "../../assets/Ellipse 3.svg";
 import editIcon from "../../assets/Group 1689.svg";
 import tripImage from "../../assets/Rectangle 705.png";
+import HomeNav from "../../components/HomeNav/HomeNav";
+import { Link } from "react-router-dom";
 
 function Profile() {
   return (
     <div className="bigContainer">
-      <nav className="homeButton">
-        <ul>
-          <li>Home</li>
-        </ul>
-      </nav>
+      <div className="homeButton">
+        <Link to="/home">
+          <HomeNav customClassName="homeBtn" />
+        </Link>
+      </div>
+
       <div className="container-profile">
         <div className="profileInfo">
           <div className="profileImage">
@@ -30,7 +33,6 @@ function Profile() {
             <div className="guides">Guides</div>
           </div>
           <div className="bottomLine"></div>
-
           <div className="tripPlansContent">
             <div className="tripsImagesLocation">
               <img src={tripImage} alt="trip image" className="tripImage" />

@@ -1,85 +1,77 @@
-body{
-    margin: 0;
-    padding: 0; 
-    font-family: 'Poppins';
-    background-color: #f9fafb ; 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  background-color: #f9fafb;
 }
 /* Header */
-.header{
-    margin: 50px 10px
+.header {
+  margin: 50px 10px;
 }
-.homeBtn{
-    display: flex;
-    align-items: center;
-    border-style: none;
-    color: gray;
-    font-size: large;
-    background-color: #f9fafb;
+.header a {
+  text-decoration: none;
 }
+
 /* Title and small description */
-.pageTitle{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width:70%;
-    margin: 5px auto;
-    text-align: center;
+.pageTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  margin: 5px auto;
+  text-align: center;
 }
-.pageTitle h2{
-    margin: 0;
-    font-weight: 500;
-    font-size: 20px;
+.pageTitle h2 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 20px;
 }
-.pageTitle p{
-    font-size: 15px;
-    font-weight: lighter;
-    color: gray;
+.pageTitle p {
+  font-size: 15px;
+  font-weight: lighter;
+  color: gray;
 }
 /* Input fields */
-.form{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: 5px auto;
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 5px auto;
 }
-.inputField{
-    height: 30px;
-    width: 63%;
-    border-style:none;
-    background-color: #f9fafb;
+.inputField {
+  height: 30px;
+  width: 63%;
+  border-style: none;
+  background-color: #f9fafb;
 }
-.inputField::placeholder{
-    color: #d9d9d9;
-    font-weight: bold;
+.inputField::placeholder {
+  color: #d9d9d9;
+  font-weight: bold;
 }
-.divInput{
-    display: flex;
-    align-items: center;
-    border-color: #d9d9d9;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 0.5px;
-    padding: 10px;
-    margin: 10px 0;
-    height: 30px;
+.divInput {
+  display: flex;
+  align-items: center;
+  border-color: #d9d9d9;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 0.5px;
+  padding: 10px;
+  margin: 10px 0;
+  height: 30px;
 }
-label{
-    width: 35%;
-    font-size: 12px;
+label {
+  width: 35%;
+  font-size: 12px;
 }
 
 /* Buttons to start and cancel */
-.startCancelBtn{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 60%;
-    margin: 0 auto;
-    position: absolute;
-    bottom: 15%;
-    left: 20%;
+.startCancelBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 15%;
+  left: 20%;
 }
-
-
-
-
