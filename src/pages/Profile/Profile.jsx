@@ -6,6 +6,7 @@ import editIcon from "../../assets/Group 1689.svg";
 import tripImage from "../../assets/Rectangle 705.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/Nav Component/NavBar"
 
 
 function Profile() {
@@ -70,7 +71,7 @@ function Profile() {
           </Link>
           :
           <div className="container-start-planning-trip">
-            <p className="text-trip-plans-profile">You haven't planned any trips yet.</p>
+            <p className="text-trip-plans-profile">You haven`t planned any trips yet.</p>
             <button className="customButton" onClick={showList}>Start planning a trip</button>
           </div>
 
@@ -79,6 +80,7 @@ function Profile() {
 
         </div>
       </div>
+      <NavBar/>
     </div>
   );
 }
