@@ -1,8 +1,22 @@
-.homeBtn {
+.header-home {
+  margin-left: 4%;
+  gap: 0.2rem;
+  font-weight: bold;
+  margin-top: 15px;
+  color: white;
+  position: relative;
   display: flex;
   align-items: center;
-  border-style: none;
-  color: gray;
-  font-size: large;
-  background-color: #f9fafb;
+  border: none;
+  background-color: transparent;
+  z-index: 10;
+}
+a {
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 700px) {
+  .header-home {
+    display: none;
+  }
 }

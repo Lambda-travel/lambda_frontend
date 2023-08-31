@@ -2,13 +2,17 @@ import HomeNav from "../../components/HomeNav/HomeNav";
 import "./ArticlePage.css";
 import elliseIcon from "../../assets/ellipse 1.svg";
 import arrowIcon from "../../assets/arrow-pointing-down.svg";
+import backgroundImage from "../../assets/Image.svg";
 function ArticlePage() {
   return (
     <div>
       <div className="ImageAndNav">
-        <HomeNav customClassName="homeButt" />
+        <div className="navCover">
+          <HomeNav />
+        </div>
 
         <h3>Trip to the Great wall of china</h3>
+        <img className="backImg" src={backgroundImage} alt="" />
       </div>
       <div className="userAndInfos">
         <div className="userAvatarAndName">
