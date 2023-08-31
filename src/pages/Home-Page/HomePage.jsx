@@ -2,6 +2,7 @@ import "./HomPage.css";
 import avatar from "../../assets/Avatar.svg";
 import UserTripsCard from "../../components/UserTripsCard/UserTripsCard";
 import ArticleCard from "../../components/ArticleCards/ArticleCard";
+import NavBar from "../../components/Nav Component/NavBar"
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -58,7 +59,9 @@ function HomePage() {
       <div className="articleCards">
         <ArticleCard />
       </div>
+      <NavBar />
     </div>
+
   );
 }
 

@@ -5,15 +5,24 @@ import EditTrip from "../../components/popUps/EditTrip/EditTrip";
 import backImage from "../../assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg";
 import Avatar from "../../assets/dummy-img/Avatar.svg";
 import PlacesToVisit from "./PlacesToVisit";
+import ListItinerary from "../../components/ListItinerary/ListItinerary/ListItinerary";
 
 const OverviewPage = () => {
 
   const [editTripPopUp, setEditTripPopUp] = useState(false);
+  const [showItinerary, setShowItinerary] = useState(true);
 
 
   const toggleEditTrip = () => {
     setEditTripPopUp(!editTripPopUp);
   };
+
+  const handleItinerary =()=> {
+    setShowItinerary(false)
+  }
+  const handleOverview =()=> {
+    setShowItinerary(true)
+  }
 
   return (
     <>
@@ -71,16 +80,23 @@ const OverviewPage = () => {
         </div>
 
         <div className="categories-btn-container">
-          <button className="overview-btn-categories">Overview</button>
-          <Link to="/trip/itinerary"><button className="itinerary-btn-categories">Itinerary</button></Link>
+          <button onClick={handleOverview} className={ showItinerary ?
+           "overview-btn-categories-active" 
+            :
+            "overview-btn-categories-disable"}>
+          Overview
+          </button>
+          <button onClick={handleItinerary} className={
+            showItinerary ? 
+            "itinerary-btn-categories-disable"
+            :
+             "itinerary-btn-categories-active"
+          }>Itinerary</button>
+
         </div>
-        {/*-------- PLACES TO VISIT -------------*/}
-            <PlacesToVisit/>
-        <div className="places-to-visit-container"></div>
-        {/*-------- RECOMMENDED PLACES -------------*/}
-        <div>
-          <p className="recommended-places-overview">Recommended Places</p>
-        </div>
+
+          { showItinerary ? <PlacesToVisit/> : <ListItinerary/> }
+
       </article>
     </>
   );

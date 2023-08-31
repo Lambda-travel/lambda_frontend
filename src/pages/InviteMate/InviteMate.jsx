@@ -1,15 +1,18 @@
 import "./InviteMate.css";
 import homeIcon from "../../assets/homeicon_forheader.png";
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 function InviteMate() {
   return (
     <>
       <header className="header">
+        <Link className="btn-home-travelmate" to="/home">
         <button className="homeBtn">
           <img src={homeIcon} />
           Home{" "}
         </button>
+        </Link>
       </header>
       <div className="pageTitle">
         <h2>Invite your travelmate</h2>
