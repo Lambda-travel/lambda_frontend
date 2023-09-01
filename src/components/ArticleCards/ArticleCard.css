@@ -5,10 +5,11 @@ body {
 /* Image and Guide button */
 .articleImage {
   width: 100%;
-  height: 200px;
+  height: 100px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
 }
 .articleImage img{
   height: 100%;
