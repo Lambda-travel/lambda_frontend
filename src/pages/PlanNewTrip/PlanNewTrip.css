@@ -82,6 +82,7 @@ label {
 .required{
     color:#ff676c;
     font-size: 0.7rem;
+    font-weight: bold;
     margin: 0 10px;
 }
 
