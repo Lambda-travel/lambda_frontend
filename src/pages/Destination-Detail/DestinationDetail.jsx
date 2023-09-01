@@ -42,7 +42,7 @@ const DestinationDetail =()=> {
                 </Swiper>
                 </div>
 
-            <Link to="/trip/itinerary"><button className="btn-destination-detail">Back to Trip Itinerary</button></Link>
+            <Link to="/trip/overview"><button className="btn-destination-detail">Back to Trip Itinerary</button></Link>
 
 
         </div>

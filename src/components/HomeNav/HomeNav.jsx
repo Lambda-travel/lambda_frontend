@@ -1,4 +1,4 @@
-import homeIcon from "../../assets/homeicon_forheader.png";
+// import homeIcon from "../../assets/homeicon_forheader.png";
 import "./HomeNav.css";
 import { Link } from "react-router-dom";
 
@@ -28,7 +28,7 @@ import { Link } from "react-router-dom";
         </div> */
 }
 
-function HomeNav({ customClassName }) {
+function HomeNav() {
   return (
     <div>
       <Link to="/home">

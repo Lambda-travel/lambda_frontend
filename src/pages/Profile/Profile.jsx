@@ -9,6 +9,13 @@ import HomeNav from "../../components/HomeNav/HomeNav";
 import { Link } from "react-router-dom";
 
 import { useState } from "react";
+<<<<<<< HEAD
+=======
+import { Link } from "react-router-dom";
+import NavBar from "../../components/Nav Component/NavBar"
+
+
+>>>>>>> 7be44b042119703d44a0c09fdd4c76e003d05360
 
 function Profile() {
   /* COUNT OF ITEMS IN TRIP PLANS*/
@@ -43,12 +50,28 @@ function Profile() {
             <div className="guides">Guides</div>
           </div>
           <div className="bottomLine"></div>
+<<<<<<< HEAD
 
           <div className="tripPlansContent">
             {lengthItems > 0 ? (
               <Link className="link-in-card-profile" to="/trip/overview">
                 <div className="tripPlansContent">
                   <div className="tripsImagesLocation">
+=======
+
+          {/* <div className="tripPlansContent"> */}
+
+
+          { lengthItems > 0 ?
+          <Link className="link-in-card-profile" to="/trip/overview"><div className="tripPlansContent">
+
+            <div className="tripsImagesLocation">
+              <img src={tripImage} alt="trip image" className="tripImage" />
+              <div className="titleDateMate ">
+                <h3 className="trip-title-profile">Trip to indonesia</h3>
+                <div className="tripDateAndMates">
+                  <div className="matesAvatar">
+>>>>>>> 7be44b042119703d44a0c09fdd4c76e003d05360
                     <img
                       src={tripImage}
                       alt="trip image"
@@ -89,8 +112,22 @@ function Profile() {
               </div>
             )}
           </div>
+<<<<<<< HEAD
+=======
+          </Link>
+          :
+          <div className="container-start-planning-trip">
+            <p className="text-trip-plans-profile">You haven`t planned any trips yet.</p>
+            <button className="customButton" onClick={showList}>Start planning a trip</button>
+          </div>
+
+            }
+
+
+>>>>>>> 7be44b042119703d44a0c09fdd4c76e003d05360
         </div>
       </div>
+      <NavBar/>
     </div>
   );
 }
