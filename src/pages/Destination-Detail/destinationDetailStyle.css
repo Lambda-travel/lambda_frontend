@@ -1,12 +1,11 @@
+
 .container-destination-detail {
-
+    margin-bottom: 6rem;
 }
-
 /* ---------- BACKGROUND IMAGE -----------*/
-.container-background-destination {
-}
+
 .destination-background {
-    height: 30rem;
+    height: auto;
     width: 100%;
 }
 
@@ -34,6 +33,10 @@
     padding: 0 0 1rem 1rem;
 
 }
+.description-container-destination {
+    display: flex;
+    flex-direction: column;
+}
 .description-title-destination{
     font-weight: 600;
     margin: 0 0 1rem 1rem;
@@ -48,7 +51,7 @@
 /* ----------- BUTTON ------------------------*/
 
 .btn-destination-detail {
-    margin:1rem 0 0 5%;
+    margin:0 0 0 5%;
     border-radius: 9px;
     color: white;
     cursor: pointer;
@@ -59,23 +62,38 @@
 }
 
 /*---------------- CARDS IMAGES -------------------------*/
-.test-container {
-    margin-top: 2rem;
+
+.images-carousel-container {
+    margin: 3rem 0;
     width: 100%;
-
-
 }
 
 .img {
+    display: block;
     border-radius: 10px;
-    width: 50%;
-
-}
-
-/*
-.img-desc-destination {
-    border-radius: 9px;
     width: 100%;
+    height: auto;
 }
 
-*/
+
+@media screen and (min-width:768px) {
+    .img {
+        max-width: 100%;
+    }
+}
+
+/*-----------  LAPTOP VERSION ------------*/
+
+@media screen and (min-width:1024px) {
+    .card-description-destination {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .description-container-destination {
+        justify-content: center;
+        align-items: center;
+    }
+}
+

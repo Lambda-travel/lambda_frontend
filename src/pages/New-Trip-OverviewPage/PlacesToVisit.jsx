@@ -45,7 +45,7 @@ const PlacesToVisit =()=>{
                      All the islands are low-lying, none rising to more than 6 feet (1.8 metres)
                     </p>
                     <div className="container-btn-view-detail-place">
-                    <Link to="/trip/destination-detail"><button className="view-details-places">View Details</button></Link>
+                    <Link to="/trip/overview/destination-detail"><button className="view-details-places">View Details</button></Link>
                     </div>
                 </div>
                 : null

@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
 
-
-
-
-import "swiper/css";
 import "./destinationDetailStyle.css"
+import "swiper/css";
+
 
 
 const DestinationDetail =()=> {
+
     return (
         <div className="container-destination-detail">
             <div className="container-background-destination">
@@ -18,17 +17,19 @@ const DestinationDetail =()=> {
                 <h1 className="title-destination"> Maldives </h1>
                 <h3 className="sub-title-destination"> Caribes</h3>
             </div>
+            <div className="description-container-destination">
             <h4 className="description-title-destination">Description</h4>
             <p className="description-text-destination" >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, nam. Voluptate 
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, nam. Voluptate lor
             </p>
-
-            <div className="test-container">
+            </div>
+            <div className="images-carousel-container">
                 <Swiper 
-                spaceBetween={-190}
-                slidesPerView={"auto"}
+                spaceBetween={24}
+                slidesPerView={"1.5"}
                 grabCursor={true}
                 centeredSlides={true}
+
                 >
                     <SwiperSlide>
                         <img className="img" src={"/src/assets/dummy-img/pexels-asad-photo-maldives-1287460.jpg"} alt="" />
