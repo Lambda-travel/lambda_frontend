@@ -1,28 +1,35 @@
 import { Link } from "react-router-dom";
 import "./overViewPage.css";
 import { useState } from "react";
-import AddPlace from "../../components/popUps/Add Place/AddPlace";
 import EditTrip from "../../components/popUps/EditTrip/EditTrip";
 import backImage from "../../assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg";
 import Avatar from "../../assets/dummy-img/Avatar.svg";
+import PlacesToVisit from "./PlacesToVisit";
+import ListItinerary from "../../components/ListItinerary/ListItinerary/ListItinerary";
 
 const OverviewPage = () => {
-  const [addPopUp, setAddPopUp] = useState(false);
-  const [editTripPopUp, setEditTripPopUp] = useState(false);
 
-  const toggleAdd = () => {
-    setAddPopUp(!addPopUp);
-  };
+  const [editTripPopUp, setEditTripPopUp] = useState(false);
+  const [showItinerary, setShowItinerary] = useState(true);
+
+
   const toggleEditTrip = () => {
     setEditTripPopUp(!editTripPopUp);
   };
+
+  const handleItinerary =()=> {
+    setShowItinerary(false)
+  }
+  const handleOverview =()=> {
+    setShowItinerary(true)
+  }
 
   return (
     <>
       <article>
         {/*-------- H E A D E R -------------*/}
         <div className="header-container">
-          <Link to="/">
+          <Link to="/home">
             <button className="header-btn-home">
               <svg
                 style={{ width: "1.5rem" }}
@@ -73,41 +80,23 @@ const OverviewPage = () => {
         </div>
 
         <div className="categories-btn-container">
-          <button className="overview-btn-categories">Overview</button>
-          <Link to="/trip/itinerary"><button className="itinerary-btn-categories">Itinerary</button></Link>
-        </div>
-        {/*-------- PLACES TO VISIT -------------*/}
-        <div className="places-to-visit-container">
-          <button className="places-to-visit-handler-btn">
-            <svg
-              style={{ width: "1.4rem" }}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-            Places to Visit
+          <button onClick={handleOverview} className={ showItinerary ?
+           "overview-btn-categories-active" 
+            :
+            "overview-btn-categories-disable"}>
+          Overview
           </button>
+          <button onClick={handleItinerary} className={
+            showItinerary ? 
+            "itinerary-btn-categories-disable"
+            :
+             "itinerary-btn-categories-active"
+          }>Itinerary</button>
 
-          <button onClick={toggleAdd} className="add-place-to-visit-btn">
-            {" "}
-            <p>+</p>
-          </button>
+        </div>
 
-          {addPopUp && <AddPlace toggleAdd={toggleAdd} />}
-        </div>
-        {/*-------- RECOMMENDED PLACES -------------*/}
-        <div>
-          <p className="recommended-places-overview">Recommended Places</p>
-        </div>
+          { showItinerary ? <PlacesToVisit/> : <ListItinerary/> }
+
       </article>
     </>
   );

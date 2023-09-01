@@ -31,9 +31,6 @@
 
 /*  ------------HEADER ------------*/
 
-.header-container {
-
-}
 .header-img {
     width: 100%;
 
@@ -53,6 +50,10 @@
 }
 
 /*------------ USER INFO'S   ---------------------*/
+.edit-trip-btn {
+    border: none;
+    background-color:transparent;
+}
 .info-user-container{
     display: flex;
     flex-direction: column;
@@ -65,14 +66,27 @@
     justify-content: space-between;
 }
 
+.name-of-trip {
+    color: #353535;
+    font-weight: 400;
+}
+
 
 
 .date-of-trip-itinerary {
     color: #6b7280;
     margin: 1rem 0;
 }
+.date-of-trip {
+    color: #6b7280;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
 
 .profile-icon-itinerary {
+    width: 2.7rem;
+}
+.profile-icon {
     width: 2.7rem;
 }
 
@@ -80,29 +94,44 @@
 /*--------------------  PLACES TO VISIT ----------------------------*/
 
 .places-to-visit-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 6rem;
+
     border-bottom: 1px solid #cfcfcf ;
     padding-bottom: 2rem;
     margin-bottom: 1rem;
 }
 
 .categories-btn-container {
-    background-color: #F9FAFB;
+    background-color: #e5e7eb36;
     display: flex;
     gap: 2rem;
     padding: 2rem;
 }
 
-.overview-btn-categories {
+.overview-btn-categories-active {
     border: none;
     background-color: transparent;
     font-size: 1rem;
     color:#ff676C ;
     border-bottom:2px solid #ff676C;
 }
-.itinerary-btn-categories {
+.overview-btn-categories-disable {
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color:#6b7280 ;
+    border:none;
+}
+
+
+.itinerary-btn-categories-active {
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color:#ff676C ;
+    border-bottom:2px solid #ff676C;
+
+}
+.itinerary-btn-categories-disable {
     border: none;
     color: #6b7280;
     background-color: transparent;
@@ -121,16 +150,6 @@
     margin-top: 1.5rem;
 }
 
-.add-place-to-visit-btn {
-    align-self: flex-end;
-    background-color: #ff676C;
-    color: white;
-    font-size: 2rem;
-    border: none;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 0.5rem;
-}
 
 .recommended-places-overview {
     color: #6b7280;

@@ -32,11 +32,13 @@ body {
   color: gray;
 }
 /* Input fields */
-.form {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  margin: 5px auto;
+
+.planNewTripForm{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 5px auto;
+
 }
 .inputField {
   height: 30px;
@@ -75,3 +77,25 @@ label {
   bottom: 15%;
   left: 20%;
 }
+
+
+.required{
+    color:#ff676c;
+    font-size: 0.7rem;
+    margin: 0 10px;
+}
+
+@media only screen and (min-width: 700px){
+    .planNewTripForm{
+        width: 40%;
+        margin: 7rem auto;
+    }
+
+    .startCancelBtn{
+        margin: 0 auto;
+        width: 40%;
+        left: 30%;
+    }
+}
+
+

@@ -1,5 +1,5 @@
 
-.background-popUp-Edit, .overlay-edit-popUp {
+.background-popUp-addDestination, .overlay-addDestination-popUp {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -9,11 +9,11 @@
     position: fixed;
 
 }
-.overlay-edit-popUp {
-    background: #c7c7c79c;
+.overlay-addDestination-popUp {
+    background: #c7c7c7a6;
 }
 
-.popUp-edit-trip {
+.popUp-addDestination-trip {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -29,29 +29,28 @@
     min-width: 20rem;
 }
 
-.title-edit-trip-popup {
-    color: #4A4A4A;
-    font-weight: 400;
-}
-.form-popUp-edit {
+.form-popUp-addDestination {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
 }
 
-.container-buttons-popUp-edit {
+.container-buttons-popUp-addDestination {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
 }
 
-.inputs-popUp-edit {
+.inputs-popUp-addDestination {
     height: 2.3rem;
     border: 1px solid rgba(0, 0, 0, 0.644);
     border-radius: 6px;
 }
-
-.uploadImage-popUp-edit {
+.textarea-addDestination {
+    border-radius: 9px;
+    height: 7rem;
+}
+.uploadImage-popUp-addDestination {
     margin-top: 1rem;
     display: flex;
     align-items: center;
@@ -62,3 +61,17 @@
     border-radius: 7px;
     border: 1px solid rgba(0, 0, 0, 0.486);
 }
+.text-uploadImage {
+    font-weight: 400;
+}
+label {
+    font-size: 1rem;
+}
+.save-destination{    margin-top: 3rem;
+font-size: 0.8rem;
+font-weight: 600;
+border-radius: 8px;
+color: #f1f1f1;
+height: 3rem;
+border: none;
+background-color:#ff676C ;}

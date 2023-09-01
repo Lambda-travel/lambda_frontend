@@ -18,6 +18,9 @@ body{
     font-size: large;
     background-color: #f9fafb;
 }
+.btn-home-travelmate {
+    text-decoration: none;
+}
 .homeBtn img{
     margin-right: 10px;
 }
