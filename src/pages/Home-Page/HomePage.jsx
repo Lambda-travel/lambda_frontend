@@ -5,6 +5,7 @@ import ArticleCard from "../../components/ArticleCards/ArticleCard";
 import NavBar from "../../components/Nav Component/NavBar"
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -57,7 +58,9 @@ function HomePage() {
         <UserTripsCard />
       </div>
       <div className="articleCards">
-        <ArticleCard />
+        <Link to="/article">
+          <ArticleCard />
+        </Link>
       </div>
       <NavBar />
     </div>

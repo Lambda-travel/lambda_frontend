@@ -1,9 +1,13 @@
 import "./PlanNewTrip.css";
-import homeIcon from "../../assets/homeicon_forheader.png";
+
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
+
+import HomeNav from "../../components/HomeNav/HomeNav";
+
 import api from "../../api/api";
 import { useForm } from "react-hook-form";
+
 
 function PlanNewTrip() {
   const {
@@ -24,10 +28,9 @@ function PlanNewTrip() {
   return (
     <>
       <header className="header">
-        <button className="homeBtn">
-          <img src={homeIcon} />
-          Home{" "}
-        </button>
+        <Link to="/home">
+          <HomeNav customClassName="homeBtn" />
+        </Link>
       </header>
       <div className="pageTitle">
         <h2>Plan a new trip</h2>
