@@ -4,24 +4,18 @@ import ellipse1 from "../../assets/Ellipse 2.svg";
 import ellipse2 from "../../assets/Ellipse 3.svg";
 import editIcon from "../../assets/Group 1689.svg";
 import tripImage from "../../assets/Rectangle 705.png";
-
 import HomeNav from "../../components/HomeNav/HomeNav";
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import NavBar from "../../components/Nav Component/NavBar"
-
-
+import NavBar from "../../components/Nav Component/NavBar";
 
 function Profile() {
-
   /* COUNT OF ITEMS IN TRIP PLANS*/
-  const [lengthItems,setLengthItems] = useState(0)
+  const [lengthItems, setLengthItems] = useState(0);
 
-  const showList =()=>{
-    setLengthItems(lengthItems + 1)
-  }
+  const showList = () => {
+    setLengthItems(lengthItems + 1);
+  };
 
   return (
     <div className="bigContainer">
@@ -50,47 +44,53 @@ function Profile() {
           <div className="bottomLine"></div>
 
           <div className="tripPlansContent">
-
-
-          { lengthItems > 0 ?
-          <Link className="link-in-card-profile" to="/trip/overview"><div className="tripPlansContent">
-
-            <div className="tripsImagesLocation">
-              <img src={tripImage} alt="trip image" className="tripImage" />
-              <div className="titleDateMate ">
-                <h3 className="trip-title-profile">Trip to indonesia</h3>
-                <div className="tripDateAndMates">
-                  <div className="matesAvatar">
+            {lengthItems > 0 ? (
+              <Link className="link-in-card-profile" to="/trip/overview">
+                <div className="tripPlansContent">
+                  <div className="tripsImagesLocation">
                     <img
-                      src={ellipse1}
-                      alt="mates"
-                      className="travelMate1 mates"
+                      src={tripImage}
+                      alt="trip image"
+                      className="tripImage"
                     />
-                    <img
-                      src={ellipse2}
-                      alt="mates"
-                      className="travelMate2 mates"
-                    />
+                    <div className="titleDateMate ">
+                      <h3 className="trip-title-profile">Trip to indonesia</h3>
+                      <div className="tripDateAndMates">
+                        <div className="matesAvatar">
+                          <img
+                            src={ellipse1}
+                            alt="mates"
+                            className="travelMate1 mates"
+                          />
+                          <img
+                            src={ellipse2}
+                            alt="mates"
+                            className="travelMate2 mates"
+                          />
+                        </div>
+
+                        <p className="date-trip-profile">
+                          Aug 26-28,2022-11 Places
+                        </p>
+                      </div>
+                    </div>
                   </div>
-
-                  <p className="date-trip-profile">Aug 26-28,2022-11 Places</p>
                 </div>
+              </Link>
+            ) : (
+              <div className="container-start-planning-trip">
+                <p className="text-trip-plans-profile">
+                  You haven`t planned any trips yet.
+                </p>
+                <button className="customButton" onClick={showList}>
+                  Start planning a trip
+                </button>
               </div>
-            </div>
+            )}
           </div>
-          </Link>
-          :
-          <div className="container-start-planning-trip">
-            <p className="text-trip-plans-profile">You haven`t planned any trips yet.</p>
-            <button className="customButton" onClick={showList}>Start planning a trip</button>
-          </div>
-
-            }
-
-
         </div>
+        <NavBar />
       </div>
-      <NavBar/>
     </div>
   );
 }

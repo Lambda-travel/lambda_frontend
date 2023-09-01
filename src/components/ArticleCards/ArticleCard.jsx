@@ -1,5 +1,5 @@
 import "./ArticleCard.css";
-import ellipse1 from "../../assets/ellipse 1.svg";
+// import ellipse1 from "../../assets/ellipse 1.svg";
 import saveButton from "../../assets/save-button.svg";
 import { useState, useEffect } from "react";
 import api from "../../api/api";
@@ -33,10 +33,10 @@ function ArticleCard() {
               <p>{article.description}</p>
             </div>
             <div className="articleCreatorAndSaveButton">
-              <div className="articleCreator">
+              {/* <div className="articleCreator">
                 <img src={ellipse1} alt="" />
                 <p>Marc</p>
-              </div>
+              </div> */}
               <img src={saveButton} alt="" className="saveButton" />
             </div>
           </div>
