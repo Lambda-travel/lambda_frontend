@@ -59,16 +59,23 @@
 }
 
 /*---------------- CARDS IMAGES -------------------------*/
-.container-images-desc-destination {
-    display: flex;
-    
-}
-.description-images-destination {
-    padding: 1rem;
-    width: 50rem;
+.test-container {
+    margin-top: 2rem;
+    width: 100%;
+
+
 }
 
+.img {
+    border-radius: 10px;
+    width: 50%;
+
+}
+
+/*
 .img-desc-destination {
     border-radius: 9px;
     width: 100%;
 }
+
+*/

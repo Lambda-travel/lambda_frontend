@@ -1,0 +1,65 @@
+.container-places-to-visit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 1rem 0 1rem;
+}
+.btn-and-title {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.description-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 0 1rem;
+}
+.places-to-visit {
+    font-weight: 400;
+}
+.title-description-place {
+    font-weight: 600;
+}
+.description-place {
+    color: #6B7280 ;
+    margin-top: 0.5rem;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+.add-place-to-visit-btn {
+    cursor: pointer;
+    background-color: #ff676C;
+    color: white;
+    font-size: 2rem;
+    border: none;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 0.5rem;
+}
+.add-place-to-visit-btn2 {
+    cursor: pointer;
+    background-color: #ff676C;
+    color: white;
+    font-size: 2rem;
+    border: none;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 0.5rem;
+    margin: 25% 0 -10% 85% ;
+}
+.none {
+display: none;
+}
+
+.plus-icon-btn {
+    font-size: 2rem;
+    font-weight: 200;
+}
+.view-details-places {
+    border:none;
+    background-color: transparent;
+    color: #ff676C;
+}
+.container-btn-view-detail-place {
+    margin: 1rem 0 1rem 0rem;
+}

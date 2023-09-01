@@ -12,9 +12,9 @@ const AddPlace = ({toggleAdd})=> {
             </div>
                 <div className="modal-content">
 
-                    <h1> Place To Visit</h1>
+                    <h1 className="title-popUp-add"> Place To Visit</h1>
                         <form className="form-add-place">
-                            <label>Place to Visit: </label>
+                            <label >Place to Visit: </label>
                             <input className="input-place-visit" type="text" ></input>
 
                             <label>Description: </label>

@@ -12,7 +12,7 @@ const EditTrip = ({toggleEditTrip})=> {
 
             </div>
                 <div className="popUp-edit-trip">
-                    <h1>Edit Trip</h1>
+                    <h1 className="title-edit-trip-popup">Edit Trip</h1>
                     <form className="form-popUp-edit">
                         <label>Trip Name: </label>
                         <input className="inputs-popUp-edit" type="text"></input>
