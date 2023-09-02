@@ -1,7 +1,6 @@
 /*------------------- LIST OF CARDS -------------------------*/
 
 .list-card-itinerary {
-    cursor: pointer;
     flex-wrap: wrap;
     background-color: white;
     display: flex;

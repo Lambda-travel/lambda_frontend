@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
+import  { Autoplay , Navigation} from "swiper/modules";
 
 import "./destinationDetailStyle.css"
-import "swiper/css";
+import "swiper/css"
+import 'swiper/css/navigation';
+
+
 
 
 
@@ -29,7 +33,11 @@ const DestinationDetail =()=> {
                 slidesPerView={"1.5"}
                 grabCursor={true}
                 centeredSlides={true}
-
+                modules={[Autoplay,Navigation]}
+                autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false
+                }}
                 >
                     <SwiperSlide>
                         <img className="img" src={"/src/assets/dummy-img/pexels-asad-photo-maldives-1287460.jpg"} alt="" />
