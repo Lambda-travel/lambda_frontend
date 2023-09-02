@@ -21,6 +21,9 @@
     border: none;
     background-color: transparent;
 }
+.viewMore-card-itinerary:hover {
+    border-bottom: 1px solid #FF5A5F;
+}
 .number-desc-card {
     color: #FF5A5F;
     margin-right: 0.9rem;

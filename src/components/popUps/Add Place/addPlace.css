@@ -88,18 +88,31 @@
 }
 
 .add-place-visit {
+    cursor: pointer;
     font-weight: bold;
     border-radius: 8px;
     color: #f1f1f1;
     height: 2.5rem;
     border: none;
-    background-color:#ff676C ;
+    background-color:#ff676C;
+    transition: 0.8s;
+}
+.add-place-visit:hover {
+    background-color: white;
+    color: #ff676C;
+    border: 1px solid #ff676C;
 }
 .cancel-add-place{
+    cursor: pointer;
     font-weight: bold;
     border-radius: 8px;
     color: #ff676C;
     height: 2.5rem;
     border: none;
     background-color:#ffffff ;
+    transition: 0.8s;
+}
+.cancel-add-place:hover {
+    background-color: #ff676C;
+    color: #f1f1f1;
 }

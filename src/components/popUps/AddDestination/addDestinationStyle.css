@@ -67,11 +67,20 @@
 label {
     font-size: 1rem;
 }
-.save-destination{    margin-top: 3rem;
-font-size: 0.8rem;
-font-weight: 600;
-border-radius: 8px;
-color: #f1f1f1;
-height: 3rem;
-border: none;
-background-color:#ff676C ;}
+.save-destination{ 
+    cursor: pointer;
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 8px;
+    color: #f1f1f1;
+    height: 3rem;
+    border: none;
+    background-color:#ff676C;
+    transition: 0.9s;
+}
+.save-destination:hover {
+    background-color: #f1f1f1;
+    color: #ff676C;
+    border: 1px solid #ff676C;
+}

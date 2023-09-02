@@ -17,7 +17,6 @@ function ArticleCard() {
   useEffect(() => {
     getArticles();
   }, []);
-  console.log(articles);
   return (
     <div className="articleContainer">
       {articles.map((article) => (

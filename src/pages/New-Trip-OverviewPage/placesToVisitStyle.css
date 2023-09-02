@@ -35,6 +35,12 @@
     height: 3rem;
     width: 3rem;
     border-radius: 0.5rem;
+    transition: 0.5s;
+}
+.add-place-to-visit-btn:hover {
+    background-color: #ffffff;
+    color: #ff676C;
+    border: 1.7px solid #ff676c8f;
 }
 .add-place-to-visit-btn2 {
     cursor: pointer;
@@ -46,6 +52,12 @@
     width: 3rem;
     border-radius: 0.5rem;
     margin: 25% 0 -10% 85% ;
+    transition: 0.7s;
+}
+.add-place-to-visit-btn2:hover {
+background-color: #ffffff;
+color: #ff676C;
+border: 1.7px solid #ff676c8f;
 }
 .none {
 display: none;
@@ -56,9 +68,13 @@ display: none;
     font-weight: 200;
 }
 .view-details-places {
+    cursor: pointer;
     border:none;
     background-color: transparent;
     color: #ff676C;
+}
+.view-details-places:hover {
+    border-bottom: 1px solid #ff676C;
 }
 .container-btn-view-detail-place {
     margin: 1rem 0 1rem 0rem;
