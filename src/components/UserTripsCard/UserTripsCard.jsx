@@ -6,7 +6,7 @@ import ellipse2 from "../../assets/Ellipse 3.svg";
 function UserTripsCard() {
   return (
     <div className="cardContainer">
-      <div className="tripsLocationAndOption">
+      <div className="tripsLocationAndOption ">
         <h3>Trip to Indonesia</h3>
         <img src={optionIcon} alt="" />
       </div>
