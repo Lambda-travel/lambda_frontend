@@ -1,13 +1,31 @@
 import { Link } from "react-router-dom";
 import "./overViewPage.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditTrip from "../../components/popUps/EditTrip/EditTrip";
 import backImage from "../../assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg";
 import Avatar from "../../assets/dummy-img/Avatar.svg";
 import PlacesToVisit from "./PlacesToVisit";
 import ListItinerary from "../../components/ListItinerary/ListItinerary/ListItinerary";
+import api from "../../api/api";
 
 const OverviewPage = () => {
+
+  const [allDays,setAllDays] = useState([])
+
+  const getAllDays =(id)=> {
+    api
+    .get(`/trip/${id}`)
+    .then((response)=> setAllDays(response.data))
+    .catch((error)=> console.log(error))
+  }
+
+  useEffect(()=>{
+    getAllDays(2)
+  },[])
+
+
+/*-------------  PAGE INFO -----------*/
+
 
   const [editTripPopUp, setEditTripPopUp] = useState(false);
   const [showItinerary, setShowItinerary] = useState(true);
@@ -95,7 +113,7 @@ const OverviewPage = () => {
 
         </div>
 
-          { showItinerary ? <PlacesToVisit/> : <ListItinerary/> }
+          { showItinerary ? <PlacesToVisit/> : <ListItinerary allDays={allDays}/> }
 
       </article>
     </>

@@ -2,14 +2,11 @@
 import "./addDestinationStyle.css"
 
 const AddDestination = ({toggleAddDestination})=> {
-
-
     return (
         <div className="background-popUp-addDestination">
             <div
             onClick={toggleAddDestination} 
             className="overlay-addDestination-popUp">
-
             </div>
                 <div className="popUp-addDestination-trip">
                     <form className="form-popUp-addDestination">
