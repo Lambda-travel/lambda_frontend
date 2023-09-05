@@ -8,7 +8,6 @@ function ArticleCard() {
   const [articles, setArticles] = useState([]);
 
   const getArticles = (data) => {
-    console.log(data);
     api
       .get("/articles", data)
       .then((response) => setArticles(response.data))

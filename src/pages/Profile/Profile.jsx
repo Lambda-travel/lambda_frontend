@@ -1,23 +1,39 @@
-import "./Profile.css";
-import avatar from "../../assets/Avatar.svg";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 // import ellipse1 from "../../assets/Ellipse 2.svg";
 // import ellipse2 from "../../assets/Ellipse 3.svg";
 // import tripImage from "../../assets/Rectangle 705.png";
-import editIcon from "../../assets/Group 1689.svg";
 import HomeNav from "../../components/HomeNav/HomeNav";
-import { Link } from "react-router-dom";
-import { useState } from "react";
 import NavBar from "../../components/Nav Component/NavBar";
-// import UserTripsCard from "../../components/UserTripsCard/UserTripsCard";
 import ProfileUserCards from "../../components/profileUserCards/ProfileUserCards";
+import avatar from "../../assets/Avatar.svg";
+import editIcon from "../../assets/Group 1689.svg";
+// import UserTripsCard from "../../components/UserTripsCard/UserTripsCard";
+import api from "../../api/api";
+import "./Profile.css";
 
 function Profile() {
   /* COUNT OF ITEMS IN TRIP PLANS*/
-  const [lengthItems, setLengthItems] = useState(0);
+  // const [lengthItems, setLengthItems] = useState(0);
+  const [tripsInfo, setTripsInfo] = useState();
 
-  const showList = () => {
-    setLengthItems(lengthItems + 1);
+  const navigate = useNavigate();
+
+  const goToCreateNewTrip = () => {
+    navigate("/newtrip");
   };
+
+  const getTrips = () => {
+    //! SEND TOKEN as config
+
+    api.get("/trip").then((res) => {
+      console.log(res);
+      setTripsInfo(res.data);
+    });
+  };
+  useEffect(() => {
+    getTrips();
+  }, []);
 
   return (
     <div className="bigContainer">
@@ -46,10 +62,12 @@ function Profile() {
           <div className="bottomLine"></div>
 
           <div className="tripPlansContent">
-            {lengthItems > 0 ? (
+            {tripsInfo ? (
               <Link className="link-in-card-profile" to="/trip/overview">
                 <div className="tripPlansContent">
-                  <ProfileUserCards />
+                  {tripsInfo.map((trip) => (
+                    <ProfileUserCards key={trip.id} trip={trip} />
+                  ))}
                 </div>
               </Link>
             ) : (
@@ -57,7 +75,7 @@ function Profile() {
                 <p className="text-trip-plans-profile">
                   You haven`t planned any trips yet.
                 </p>
-                <button className="customButton" onClick={showList}>
+                <button className="customButton" onClick={goToCreateNewTrip}>
                   Start planning a trip
                 </button>
               </div>
