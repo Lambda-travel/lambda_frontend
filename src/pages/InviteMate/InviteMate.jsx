@@ -8,10 +8,10 @@ function InviteMate() {
     <>
       <header className="header">
         <Link className="btn-home-travelmate" to="/home">
-        <button className="homeBtn">
-          <img src={homeIcon} />
-          Home{" "}
-        </button>
+          <button className="homeBtn">
+            <img src={homeIcon} />
+            Home{" "}
+          </button>
         </Link>
       </header>
       <div className="pageTitle">
