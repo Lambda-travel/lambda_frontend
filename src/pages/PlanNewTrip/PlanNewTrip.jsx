@@ -2,12 +2,10 @@ import "./PlanNewTrip.css";
 
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
-
 import HomeNav from "../../components/HomeNav/HomeNav";
-
 import api from "../../api/api";
 import { useForm } from "react-hook-form";
-
+import { useNavigate } from "react-router-dom";
 
 function PlanNewTrip() {
   const {
@@ -16,12 +14,25 @@ function PlanNewTrip() {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const createNewTrip = (data) => {
+    const startDate = new Date(data.start_date);
+    const endDate = new Date(data.end_date);
+    if (endDate < startDate) {
+      <span id="displayError"></span>;
+      alert("End date should not be earlier that the Start date");
+      return;
+    }
     data.user_id = 1; //!alter for the user_id because this line is just to simulate the id
     console.log(data);
     api
       .post("/trip", data)
-      .then((response) => console.log(response))
+      .then((response) => {
+        if (response.status === 201) {
+          navigate("/travelmate");
+        }
+      }) //.then((response) => console.log(response))
       .catch((error) => console.log(error));
   };
 
@@ -89,12 +100,12 @@ function PlanNewTrip() {
         {errors.end_date && (
           <p className="required">{errors.end_date?.message}</p>
         )}
-        {/* <Link to="/travelmate"> */}
         <div className="startCancelBtn">
           <Button text="Start Planning" newClassName="customButton" />
-          <Button text="Cancel" newClassName="cancelButton" />
+          <Link to="/home">
+            <Button text="Cancel" newClassName="cancelButton" />
+          </Link>
         </div>
-        {/* </Link> */}
       </form>
     </>
   );
