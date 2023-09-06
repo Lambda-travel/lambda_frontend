@@ -16,7 +16,7 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<StartJourney />} /> */}
         <Route path="/home" element={<HomePage />} />
-        <Route path="/trip/overview" element={<OverviewPage />} />
+        <Route path="/trip/overview/:id" element={<OverviewPage />} />
         <Route
           path="/trip/overview/destination-detail"
           element={<DestinationDetail />}

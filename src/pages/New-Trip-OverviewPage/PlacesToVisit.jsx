@@ -4,6 +4,7 @@ import AddPlace from "../../components/popUps/Add Place/AddPlace";
 import { Link } from "react-router-dom";
 
 const PlacesToVisit = () => {
+  
   const [addPopUp, setAddPopUp] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
 
@@ -54,22 +55,9 @@ const PlacesToVisit = () => {
         {/*-------- RECOMMENDED PLACES -------------*/}
         <div>
           <p className="recommended-places-overview">Recommended Places</p>
-
         </div>
-      ) : null}
-      <button
-        onClick={toggleAdd}
-        className={showDetail ? "none" : "add-place-to-visit-btn2"}
-      >
-        <p className="plus-icon-btn">+</p>
-      </button>
 
-      {addPopUp && <AddPlace toggleAdd={toggleAdd} />}
-      <div className="places-to-visit-container"></div>
-      {/*-------- RECOMMENDED PLACES -------------*/}
-      <div>
-        <p className="recommended-places-overview">Recommended Places</p>
-      </div>
+
     </article>
   );
 };
