@@ -145,7 +145,7 @@ const OverviewPage = () => {
 
       </div>
 
-        { showItinerary ? <PlacesToVisit/> : <ListItinerary allDays={allDays}/> }
+        { showItinerary ? <PlacesToVisit id={trip.id}/> : <ListItinerary allDays={allDays}/> }
 
     </article>
 

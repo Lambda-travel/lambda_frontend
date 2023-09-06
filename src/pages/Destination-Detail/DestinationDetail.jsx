@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
 import  { Autoplay , Navigation} from "swiper/modules";
 
@@ -11,6 +11,8 @@ import 'swiper/css/navigation';
 
 
 const DestinationDetail =()=> {
+
+   const id =  Number(useParams().id)
 
     return (
         <div className="container-destination-detail">
@@ -51,7 +53,7 @@ const DestinationDetail =()=> {
                 </Swiper>
                 </div>
 
-            <Link to="/trip/overview"><button className="btn-destination-detail">Back to Trip Itinerary</button></Link>
+            <Link to={`/trip/overview/${id}`}><button className="btn-destination-detail">Back to Trip Itinerary</button></Link>
 
 
         </div>
