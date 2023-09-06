@@ -2,7 +2,29 @@ import ellipse1 from "../../assets/Ellipse 2.svg";
 import ellipse2 from "../../assets/Ellipse 3.svg";
 import tripImage from "../../assets/Rectangle 705.png";
 
-function ProfileUserCards({ trip }) {
+function formatDate(inputDate) {
+  const date = new Date(inputDate);
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const day = date.getDate();
+  const month = monthNames[date.getMonth()];
+  const formattedDate = `${day} ${month}`;
+  return formattedDate;
+}
+// eslint-disable-next-line react/prop-types
+function ProfileUserCards({ trip, totalPlace }) {
   return (
     <div>
       <div className="tripsImagesLocation">
@@ -14,14 +36,12 @@ function ProfileUserCards({ trip }) {
               <img src={ellipse1} alt="mates" className="travelMate1 mates" />
               <img src={ellipse2} alt="mates" className="travelMate2 mates" />
             </div>
-            <p>{`
-             ${trip.start_date.split("T")[0].split("-").reverse().join("-")} -
-              ${trip.end_date
-                .split("T")[0]
-                .split("-")
-                .reverse()
-                .join("-")}`}</p>
-            <p className="date-trip-profile"> 11 Places</p>
+            <p>{`${formatDate(trip.start_date)}-${formatDate(
+              trip.end_date
+            )}`}</p>
+            <p className="date-trip-profile">
+              {totalPlace[0] ? `${totalPlace[0]} places` : ""}
+            </p>
           </div>
         </div>
       </div>

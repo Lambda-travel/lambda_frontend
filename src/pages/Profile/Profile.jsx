@@ -16,6 +16,7 @@ function Profile() {
   /* COUNT OF ITEMS IN TRIP PLANS*/
   // const [lengthItems, setLengthItems] = useState(0);
   const [tripsInfo, setTripsInfo] = useState();
+  const [totalPlace, setTotalPlace] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,12 +28,19 @@ function Profile() {
     //! SEND TOKEN as config
 
     api.get("/trip").then((res) => {
-      console.log(res);
       setTripsInfo(res.data);
     });
   };
+
+  const getTotalPlace = () => {
+    api.get("/trip/place").then((res) => {
+      setTotalPlace(res.data);
+    });
+  };
+
   useEffect(() => {
     getTrips();
+    getTotalPlace();
   }, []);
 
   return (
@@ -66,7 +74,11 @@ function Profile() {
               <Link className="link-in-card-profile" to="/trip/overview">
                 <div className="tripPlansContent">
                   {tripsInfo.map((trip) => (
-                    <ProfileUserCards key={trip.id} trip={trip} />
+                    <ProfileUserCards
+                      key={trip.id}
+                      trip={trip}
+                      totalPlace={totalPlace.map((value) => value.total_places)}
+                    />
                   ))}
                 </div>
               </Link>
