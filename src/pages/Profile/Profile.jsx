@@ -46,9 +46,7 @@ function Profile() {
   return (
     <div className="bigContainer">
       <div className="homeButton">
-        <Link to="/home">
-          <HomeNav customClassName="homeBtn" />
-        </Link>
+          <HomeNav />
       </div>
 
       <div className="container-profile">
@@ -94,8 +92,8 @@ function Profile() {
             )}
           </div>
         </div>
-        <NavBar />
       </div>
+        <NavBar />
     </div>
   );
 }

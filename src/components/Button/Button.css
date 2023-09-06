@@ -4,6 +4,7 @@
 
 /* Principal button */
 .customButton{
+    cursor: pointer;
     width: 90%;
     height: 50px;
     background-color:  #ff676c; ;

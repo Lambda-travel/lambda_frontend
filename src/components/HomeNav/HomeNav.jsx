@@ -1,6 +1,8 @@
-// import homeIcon from "../../assets/homeicon_forheader.png";
+
+
 import "./HomeNav.css";
 import { Link } from "react-router-dom";
+
 
 function HomeNav() {
   return (

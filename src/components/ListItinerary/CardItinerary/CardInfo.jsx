@@ -3,6 +3,7 @@ import "./cardInfoStyle.css"
 
 
 const CardInfo =()=> {
+
     return (
         <div>
             <img className="img-card-itinerary" 

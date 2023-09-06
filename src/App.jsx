@@ -4,7 +4,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile/Profile";
 import PlanNewTrip from "./pages/PlanNewTrip/PlanNewTrip";
-import StartJourney from "./pages/StartJourney/StartJourney";
+//import StartJourney from "./pages/StartJourney/StartJourney";
 import InviteMate from "./pages/InviteMate/InviteMate";
 import DestinationDetail from "./pages/Destination-Detail/DestinationDetail";
 import HomePage from "./pages/Home-Page/HomePage";

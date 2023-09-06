@@ -8,6 +8,7 @@ function ArticleCard() {
   const [articles, setArticles] = useState([]);
 
   const getArticles = (data) => {
+
     api
       .get("/articles", data)
       .then((response) => setArticles(response.data))
@@ -16,7 +17,6 @@ function ArticleCard() {
   useEffect(() => {
     getArticles();
   }, []);
-  console.log(articles);
   return (
     <div className="articleContainer">
       {articles.map((article) => (
