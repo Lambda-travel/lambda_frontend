@@ -30,9 +30,10 @@ function PlanNewTrip() {
       .post("/trip", data)
       .then((response) => {
         if (response.status === 201) {
+          localStorage.setItem("tripIdInviteTravelmate", response.data.tripId);
           navigate("/travelmate");
         }
-      }) //.then((response) => console.log(response))
+      })
       .catch((error) => console.log(error));
   };
 
