@@ -80,8 +80,8 @@ useEffect(()=>{
     </article>
   );
 };
-/*
 
 
-*/
+
+
 export default PlacesToVisit;

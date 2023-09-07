@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
 import  { Autoplay , Navigation} from "swiper/modules";
+import { useState,useEffect } from "react";
+import api from "../../api/api";
 
 import "./destinationDetailStyle.css"
 import "swiper/css"
@@ -11,22 +13,41 @@ import 'swiper/css/navigation';
 
 
 const DestinationDetail =()=> {
+    
+const id =  Number(useParams().id)
 
-   const id =  Number(useParams().id)
+const [destinationDetails,setDestinationDetails] = useState([])
+
+const destinationDetail =(id)=> {
+  api
+  .get(`/destination/detail/${id}`)
+  .then((response)=> setDestinationDetails(response.data))
+  .catch((error)=> console.log(error))
+}
+
+
+
+useEffect(()=>{
+    destinationDetail(id)
+},[])
+
 
     return (
-        <div className="container-destination-detail">
+
+        destinationDetails.map((details)=>(
+
+            <div key={details.id} className="container-destination-detail">
             <div className="container-background-destination">
-                <img className="destination-background" src="/src/assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg"></img>
+                <img className="destination-background" src={details.image_url}></img>
             </div>
             <div className="card-description-destination">
-                <h1 className="title-destination"> Maldives </h1>
-                <h3 className="sub-title-destination"> Caribes</h3>
+                <h1 className="title-destination">{details.place_to_visit}</h1>
+                <h3 className="sub-title-destination">{details.location}</h3>
             </div>
             <div className="description-container-destination">
             <h4 className="description-title-destination">Description</h4>
             <p className="description-text-destination" >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, nam. Voluptate lor
+                {details.description}
             </p>
             </div>
             <div className="images-carousel-container">
@@ -53,13 +74,23 @@ const DestinationDetail =()=> {
                 </Swiper>
                 </div>
 
-            <Link to={`/trip/overview/${id}`}><button className="btn-destination-detail">Back to Trip Itinerary</button></Link>
+            <Link to={`/profile`}><button className="btn-destination-detail">Back to Trip Itinerary</button></Link>
 
 
         </div>
+
+
+        ))
+
     )
 }
 
+/*
+
+
+
+
+*/
 
 
 export default DestinationDetail

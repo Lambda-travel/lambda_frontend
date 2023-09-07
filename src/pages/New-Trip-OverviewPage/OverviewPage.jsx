@@ -22,8 +22,9 @@ function formatDate(inputDate) {
 
 
 const OverviewPage = () => {
-
   const id = Number(useParams().id)
+ 
+  
 
   // ------------  GET ALL DAYS
   const [allDays,setAllDays] = useState([])
@@ -154,9 +155,5 @@ const OverviewPage = () => {
     </>
   );
 };
-
-/*
-
-*/
 
 export default OverviewPage;

@@ -38,6 +38,7 @@ const toggleAddDestination = () => {
     setAddDestinationPopUp(!addDestinationPopUp);
   };   
 
+
     return (
         <div>
 
@@ -58,14 +59,16 @@ const toggleAddDestination = () => {
                     </div>
                     <button onClick={toggleAddDestination} className="btn-add-destination">Add Destination</button>
                     {addDestinationPopUp ? <AddDestination toggleAddDestination={toggleAddDestination} /> : null}
-                    { showCard ? <CardInfo/> : null}
+                    { showCard ? <CardInfo dayID={days.id} /> : null}
                 </div>
             ))}
             
         </div>
     )
 }
-/*
- 
-*/
+
+
+
+
+
 export default ListItinerary;
