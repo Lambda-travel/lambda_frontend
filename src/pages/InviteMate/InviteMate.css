@@ -99,6 +99,12 @@ label{
         width: 40%;
         left: 30%;
     }
+    .pageTitle h2{
+        font-size: 40px;
+    }
+    .pageTitle p{
+        font-size: 25px;
+    }
 }
 
 

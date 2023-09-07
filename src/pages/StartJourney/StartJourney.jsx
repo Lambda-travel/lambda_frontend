@@ -1,6 +1,7 @@
+import "./StartJourney.css";
+import { Link } from "react-router-dom";
 import logoImg from "../../assets/logo.png";
 import Button from "../../components/Button/Button";
-import "./StartJourney.css";
 function StartJourney() {
   return (
     <div className="container">
@@ -16,7 +17,9 @@ function StartJourney() {
       </div>
       <div className="loginRegisterBtn">
         <Button text="Login" newClassName="loginButton" />
-        <Button text="Register" newClassName="registerButton" />
+        <Link to="/register" className="registerLink">
+          <Button text="Register" newClassName="registerButton" />
+        </Link>
       </div>
     </div>
   );
