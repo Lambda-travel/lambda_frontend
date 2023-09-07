@@ -2,8 +2,33 @@ import "./InviteMate.css";
 import homeIcon from "../../assets/homeicon_forheader.png";
 import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import api from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 function InviteMate() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const navigate = useNavigate();
+
+  const inviteTravelmate = (data) => {
+    const tripId = localStorage.getItem("tripIdInviteTravelmate");
+    data.trip_id = tripId;
+    console.log(tripId);
+    api
+      .post("/travelmate", data)
+      .then((response) => {
+        if (response.status === 201) {
+          navigate("/profile");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <>
       <header className="header">
@@ -21,21 +46,31 @@ function InviteMate() {
           everyone in the loop{" "}
         </p>
       </div>
-      <form className="form">
+      <form
+        className="inviteMateForm"
+        onSubmit={handleSubmit(inviteTravelmate)}
+      >
         <div className="divInput">
-          <label htmlFor="destination">Travelmate</label>
+          <label htmlFor="value">Travelmate</label>
           <input
-            name="destination"
+            {...register("value", {
+              required: "An email or user name is required",
+            })}
+            aria-invalid={errors.value ? "true" : "false"}
+            name="value"
             className="inputField"
             type="text"
             placeholder="Search by name or email"
           />
         </div>
+        {errors.value && <p className="required">{errors.value?.message}</p>}
+        <div className="inviteAndMaybeBtn">
+          <Button text="Invite Travelmate" newClassName="customButton" />
+          <Link to="/profile">
+            <Button text="Maybe later" newClassName="cancelButton" />
+          </Link>
+        </div>
       </form>
-      <div className="inviteAndMaybeBtn">
-        <Button text="Invite Travelmate" newClassName="customButton" />
-        <Button text="Maybe later" newClassName="cancelButton" />
-      </div>
     </>
   );
 }
