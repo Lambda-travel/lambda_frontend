@@ -25,7 +25,22 @@ p{
 }
 
 .loginRegisterBtn{
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     width: 60%;
 }
+ .registerLink button{
+    width: 100%;
+}
+
+@media only screen and (min-width: 700px){
+
+    .loginRegisterBtn{
+        margin: 0 auto;
+        width: 20%;
+        left: 30%;
+    }
+   
+}
+
