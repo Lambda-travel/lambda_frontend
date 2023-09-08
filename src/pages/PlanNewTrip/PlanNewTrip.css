@@ -73,7 +73,7 @@ label {
   align-items: center;
   width: 60%;
   margin: 0 auto;
-  position: absolute;
+  position:absolute;
   bottom: 15%;
   left: 20%;
 }
@@ -94,8 +94,10 @@ label {
 
     .startCancelBtn{
         margin: 0 auto;
-        width: 40%;
+        width: 60%;
         left: 30%;
+        position:unset;
+        bottom: 15%;
     }
 
     .pageTitle h2{
