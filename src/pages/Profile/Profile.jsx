@@ -13,9 +13,11 @@ function Profile() {
 
   const [tripsInfo, setTripsInfo] = useState();
   const [totalPlace, setTotalPlace] = useState([]);
+  const [categoryStyle, setCategoryStyle] = useState(true);
 
   const navigate = useNavigate();
 
+  // * All methods
   const goToCreateNewTrip = () => {
     navigate("/newtrip");
   };
@@ -33,6 +35,12 @@ function Profile() {
       setTotalPlace(res.data);
     });
   };
+  const handleGuideCategoryStyle = () => {
+    setCategoryStyle(false);
+  };
+  const handleTripCategoryStyle = () => {
+    setCategoryStyle(true);
+  };
 
   useEffect(() => {
     getTrips();
@@ -42,7 +50,7 @@ function Profile() {
   return (
     <div className="bigContainer">
       <div className="homeButton">
-          <HomeNav />
+        <HomeNav />
       </div>
 
       <div className="container-profile">
@@ -58,23 +66,57 @@ function Profile() {
         </div>
         <div className="tripsAndGuidesContainer">
           <div className="tripsPlusGuides">
-            <div className="tripPlans">Trip plans</div>
-            <div className="guides">Guides</div>
+            <button
+              onClick={handleTripCategoryStyle}
+              className={`tripPlans 
+                ${categoryStyle ? "trip__And__Active" : "trip__And__Disabled"}
+              `}
+            >
+              Trip plans
+            </button>
+            <button
+              onClick={handleGuideCategoryStyle}
+              className={
+                categoryStyle ? "trip__And__Disabled" : "trip__And__Active"
+              }
+            >
+              Guides
+            </button>
           </div>
           <div className="bottomLine"></div>
 
           <div className="tripPlansContent">
             {tripsInfo ? (
               <div className="tripPlansContent">
-                  {tripsInfo.map((trip) => (
-                  <Link key={trip.id} className="link-in-card-profile" to={`/trip/overview/${trip.id}`}>
-                    <ProfileUserCards
-                      trip={trip}
-                      totalPlace={totalPlace.map((value) => value.total_places)}
-                    />
-                  </Link>
-                  ))}
-                </div>
+                {categoryStyle ? (
+                  tripsInfo.map((trip) => (
+                    <Link
+                      key={trip.id}
+                      className="link-in-card-profile"
+                      to={`/trip/overview/${trip.id}`}
+                    >
+                      <ProfileUserCards
+                        trip={trip}
+                        totalPlace={totalPlace.map(
+                          (value) => value.total_places
+                        )}
+                      />
+                    </Link>
+                  ))
+                ) : (
+                  <div className="container-start-planning-trip">
+                    <p className="text-trip-plans-profile">
+                      You haven`t written any guide yet.
+                    </p>
+                    <button
+                      className="customButton"
+                      onClick={goToCreateNewTrip}
+                    >
+                      Create a Guide
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <div className="container-start-planning-trip">
                 <p className="text-trip-plans-profile">
@@ -88,7 +130,7 @@ function Profile() {
           </div>
         </div>
       </div>
-        <NavBar />
+      <NavBar />
     </div>
   );
 }

@@ -59,4 +59,7 @@ body {
   .navcontainer--1 a:focus {
     color: #ff5a5f;
   }
+  .navcontainer--1 a:active {
+    color: #ff5a5f;
+  }
 }
