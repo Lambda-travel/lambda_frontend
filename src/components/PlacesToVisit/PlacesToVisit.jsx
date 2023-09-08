@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import "./placesToVisitStyle.css";
-import AddPlace from "../../components/popUps/Add Place/AddPlace";
-import { Link } from "react-router-dom";
+import AddPlace from "../popUps/Add Place/AddPlace";
+import { useParams } from "react-router-dom";
 import api from "../../api/api";
 
-const PlacesToVisit = ({id}) => {
-
+const PlacesToVisit = () => {
+  const id = useParams().id
   const [placesInfo,setPlacesInfo] = useState([])
 
 
@@ -21,7 +21,7 @@ useEffect(()=>{
   placesInfoHandle(id)
 },[])
 
-  
+
   const [addPopUp, setAddPopUp] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
 
@@ -59,7 +59,7 @@ useEffect(()=>{
                   <h4 className="title-description-place">{places.name}</h4>
                   <p className="description-place">{places.description}</p>
                   <div className="container-btn-view-detail-place">
-                  <Link to={`/overview/destination-detail/${places.trip_id}`}><button className="view-details-places">View Details</button></Link>
+                  <button className="view-details-places">View More</button>
                   </div>
               </div>
 

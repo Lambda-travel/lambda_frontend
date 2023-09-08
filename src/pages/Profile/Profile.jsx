@@ -67,7 +67,7 @@ function Profile() {
             {tripsInfo ? (
               <div className="tripPlansContent">
                   {tripsInfo.map((trip) => (
-                  <Link key={trip.id} className="link-in-card-profile" to={`/trip/overview/${trip.id}`}>
+                  <Link key={trip.id} className="link-in-card-profile" to={`/trip/${trip.id}/overview/`}>
                     <ProfileUserCards
                       trip={trip}
                       totalPlace={totalPlace.map((value) => value.total_places)}

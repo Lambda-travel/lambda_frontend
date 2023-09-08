@@ -26,9 +26,8 @@ useEffect(()=>{
 
 
     return (
-
+        
         destination.map((destination)=>(
-
             <div key={destination.id}>
             <img className="img-card-itinerary" 
             src="/src/assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg">

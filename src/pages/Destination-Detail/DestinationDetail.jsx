@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
 import  { Autoplay , Navigation} from "swiper/modules";
 import { useState,useEffect } from "react";
@@ -11,12 +11,23 @@ import 'swiper/css/navigation';
 
 
 
-
 const DestinationDetail =()=> {
-    
-const id =  Number(useParams().id)
+    const id =  Number(useParams().id)
+    const allDays = JSON.parse(localStorage.getItem("allDays"))
+    const backPage = useNavigate()
+    const tripID = allDays.map((tripID)=> id == tripID.trip_id)[0]
+
+
+    const previousPage =()=>{
+        if(tripID){
+            backPage(-1)
+        }else {
+            backPage('/home')
+        }
+    }
 
 const [destinationDetails,setDestinationDetails] = useState([])
+
 
 const destinationDetail =(id)=> {
   api
@@ -74,7 +85,7 @@ useEffect(()=>{
                 </Swiper>
                 </div>
 
-            <Link to={`/profile`}><button className="btn-destination-detail">Back to Trip Itinerary</button></Link>
+            <button onClick={previousPage} className="btn-destination-detail">Back to Trip Itinerary</button>
 
 
         </div>
@@ -84,13 +95,6 @@ useEffect(()=>{
 
     )
 }
-
-/*
-
-
-
-
-*/
 
 
 export default DestinationDetail

@@ -1,3 +1,4 @@
+
 /*------------------- LIST OF CARDS -------------------------*/
 
 .list-card-itinerary {
@@ -42,4 +43,8 @@
     border: none;
     background-color: transparent;
     color: #FF5A5F;
+}
+.svg-btn {
+    border: none;
+    background-color: transparent;
 }
