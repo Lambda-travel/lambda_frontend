@@ -5,7 +5,8 @@ import addIcon from "../../assets/Line 13.svg";
 import "./NavBarstyle.css";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+// eslint-disable-next-line react/prop-types
+function NavBar({ color }) {
   return (
     <div>
       <div className="navcontainer--1">
@@ -13,14 +14,14 @@ function NavBar() {
           <ul>
             <Link to="/home">
               {" "}
-              <li className="navHome">Home</li>
+              <li className={`navHome ${color}`}>Home</li>
             </Link>
             <Link to="/newtrip">
-              <li className="navAdd">Add</li>
+              <li className={`navAdd ${color}`}>Add</li>
             </Link>
             <Link to="/profile">
               {" "}
-              <li className="navProfile">Profile</li>
+              <li className={`navProfile ${color}`}>Profile</li>
             </Link>
           </ul>
         </nav>

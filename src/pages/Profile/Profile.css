@@ -63,8 +63,6 @@ body {
 }
 .tripPlans {
   margin-right: 50px;
-  border-bottom: 2px solid #ff5a5f;
-  color: #ff5a5f;
 }
 .travelMate2 {
   margin-left: -8px;
@@ -80,7 +78,7 @@ body {
 }
 .tripDateAndMates {
   display: flex;
-  margin-top: 0.2rem;
+  margin-top: -10px;
   align-items: center;
   margin-right: -6rem;
 }
@@ -123,6 +121,25 @@ body {
   text-decoration: none;
 }
 
+.trip__And__Active {
+  border: none;
+  font-size: 1rem;
+  color: #ff5a5f;
+  background-color: transparent;
+  border-bottom: 2px solid #ff5a5f;
+}
+.trip__And__Disabled {
+  border: none;
+  font-size: 1rem;
+  border-bottom: none;
+  color: #333;
+  background-color: transparent;
+}
+.datePlace {
+  display: flex;
+  margin-left: 5px;
+}
+
 @media only screen and (min-width: 900px) {
   .tripsImagesLocation {
     width: 100vw;
@@ -143,8 +160,8 @@ body {
   }
   .tripDateAndMates {
     flex-direction: column-reverse;
-    margin-right: -30px;
-    margin-top: -1rem;
+    margin-right: -10px;
+    margin-top: -15px;
   }
   .titleDateMate h3 {
     font-weight: 500;
@@ -157,5 +174,14 @@ body {
   }
   .titleDateMate {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .datePlace {
+    display: flex;
+    margin-left: 108px;
+    margin-bottom: -25px;
   }
 }

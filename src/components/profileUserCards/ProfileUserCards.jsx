@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ellipse1 from "../../assets/Ellipse 2.svg";
 import ellipse2 from "../../assets/Ellipse 3.svg";
 import tripImage from "../../assets/Rectangle 705.png";
@@ -36,12 +37,14 @@ function ProfileUserCards({ trip, totalPlace }) {
               <img src={ellipse1} alt="mates" className="travelMate1 mates" />
               <img src={ellipse2} alt="mates" className="travelMate2 mates" />
             </div>
-            <p>{`${formatDate(trip.start_date)}-${formatDate(
-              trip.end_date
-            )}`}</p>
-            <p className="date-trip-profile">
-              {totalPlace[0] ? `${totalPlace[0]} places` : ""}
-            </p>
+            <div className="datePlace">
+              <p>{`${formatDate(trip.start_date)}-${formatDate(
+                trip.end_date
+              )}`}</p>
+              <p className="date-trip-profile">
+                {totalPlace[0] ? `${totalPlace[0]} places` : ""}
+              </p>
+            </div>
           </div>
         </div>
       </div>
