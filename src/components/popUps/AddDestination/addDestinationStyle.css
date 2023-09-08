@@ -1,4 +1,7 @@
 
+body.active-modal {
+    overflow-y: hidden;
+}
 .background-popUp-addDestination, .overlay-addDestination-popUp {
     width: 100vw;
     height: 100vh;
@@ -7,7 +10,6 @@
     right: 0;
     bottom: 0;
     position: fixed;
-
 }
 .overlay-addDestination-popUp {
     background: #c7c7c7a6;
@@ -83,4 +85,10 @@ label {
     background-color: #f1f1f1;
     color: #ff676C;
     border: 1px solid #ff676C;
+}
+
+.style-error-form {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: red;
 }

@@ -28,7 +28,9 @@
 
 
 
-
+body.active-modal-edit {
+    overflow-y: hidden;
+}
 /*  ------------HEADER ------------*/
 
 .header-img {
@@ -90,6 +92,27 @@
     width: 2.7rem;
 }
 
+.travel-mate-overview-page {
+    cursor: pointer;
+    border: none;
+    background-color:#ff676C ;
+    color: white;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 8px;
+    transition: 0.9s;
+
+}
+.travel-mate-overview-page:hover {
+    background-color: #FFFFFF;
+    color: #ff676C;
+    border: 1px solid #ff676C;
+}
+.container-avatar-and-button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
 
 /*--------------------  PLACES TO VISIT ----------------------------*/
 

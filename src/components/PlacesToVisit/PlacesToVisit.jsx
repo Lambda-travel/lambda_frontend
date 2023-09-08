@@ -1,10 +1,27 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import "./placesToVisitStyle.css";
-import AddPlace from "../../components/popUps/Add Place/AddPlace";
-import { Link } from "react-router-dom";
+import AddPlace from "../popUps/Add Place/AddPlace";
+import { useParams } from "react-router-dom";
+import api from "../../api/api";
 
 const PlacesToVisit = () => {
-  
+  const id = useParams().id
+  const [placesInfo,setPlacesInfo] = useState([])
+
+
+  const placesInfoHandle =(id)=> {
+    api
+    .get(`/trip/place/${id}`)
+    .then((response)=> setPlacesInfo(response.data))
+    .catch((error)=> console.log(error))
+  }
+
+useEffect(()=>{
+  placesInfoHandle(id)
+},[])
+
+
   const [addPopUp, setAddPopUp] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
 
@@ -36,16 +53,18 @@ const PlacesToVisit = () => {
             </div>
             {
                 showDetail ?
-                 <div className="description-container">
-                    <h4 className="title-description-place"> Maldives</h4>
-                    <p className="description-place">
-                    The Maldive Islands are a series of coral atolls built up from the crowns of a submerged ancient volcanic mountain range.
-                     All the islands are low-lying, none rising to more than 6 feet (1.8 metres)
-                    </p>
-                    <div className="container-btn-view-detail-place">
-                    <Link to="/trip/overview/destination-detail"><button className="view-details-places">View Details</button></Link>
-                    </div>
-                </div>
+
+                placesInfo.map((places)=>(
+                  <div key={places.id} className="description-container">
+                  <h4 className="title-description-place">{places.name}</h4>
+                  <p className="description-place">{places.description}</p>
+                  <div className="container-btn-view-detail-place">
+                  <button className="view-details-places">View More</button>
+                  </div>
+              </div>
+
+                ))
+
                 : null
             }
             <button onClick={toggleAdd} className={showDetail ? "none" : "add-place-to-visit-btn2" }><p className="plus-icon-btn">+</p></button>
@@ -61,5 +80,8 @@ const PlacesToVisit = () => {
     </article>
   );
 };
+
+
+
 
 export default PlacesToVisit;
