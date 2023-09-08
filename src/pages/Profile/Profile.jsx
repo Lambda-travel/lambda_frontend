@@ -88,23 +88,12 @@ function Profile() {
           <div className="tripPlansContent">
             {tripsInfo ? (
               <div className="tripPlansContent">
-<<<<<<< HEAD
-                  {tripsInfo.map((trip) => (
-                  <Link key={trip.id} className="link-in-card-profile" to={`/trip/${trip.id}/overview/`}>
-                    <ProfileUserCards
-                      trip={trip}
-                      totalPlace={totalPlace.map((value) => value.total_places)}
-                    />
-                  </Link>
-                  ))}
-                </div>
-=======
                 {categoryStyle ? (
                   tripsInfo.map((trip) => (
                     <Link
                       key={trip.id}
                       className="link-in-card-profile"
-                      to={`/trip/overview/${trip.id}`}
+                      to={`/trip/${trip.id}/overview`}
                     >
                       <ProfileUserCards
                         trip={trip}
@@ -128,7 +117,6 @@ function Profile() {
                   </div>
                 )}
               </div>
->>>>>>> 0cc3dc15ffabeddbd457d45bb6ac066dd393c2b7
             ) : (
               <div className="container-start-planning-trip">
                 <p className="text-trip-plans-profile">
