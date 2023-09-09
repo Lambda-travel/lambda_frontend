@@ -6,7 +6,6 @@ import HomeNav from "../../components/HomeNav/HomeNav";
 import api from "../../api/api";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 function PlanNewTrip() {
   const {
@@ -17,20 +16,23 @@ function PlanNewTrip() {
 
   const navigate = useNavigate();
 
-  // const [startDate, setStartDate] = useState("");
-
-  // const getCurrentDate = () => {
-  //   const today = new Date();
-  //   const year = today.getFullYear();
-  //   const month = (today.getMonth() + 1).toString().padStart(2, "0");
-  //   const day = today.getDate().toString().padStart(2, "0");
-  //   return `${year}-${month}-${day}`;
-  // };
-  // const handleStartDateChange = (e) => {
-  //   setStartDate(e.target.value);
-  // };
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    const day = today.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
 
   const createNewTrip = (data) => {
+    const startDate = new Date(data.start_date);
+    const endDate = new Date(data.end_date);
+    if (endDate < startDate) {
+      <span id="displayError"></span>;
+      alert("End date should not be earlier that the Start date");
+      return;
+    }
+    // This snippet was for alert the user that he could not input a date after the start date
     data.user_id = 1; //!alter for the user_id because this line is just to simulate the id
     console.log(data);
     api
@@ -83,8 +85,7 @@ function PlanNewTrip() {
             className="inputField"
             type="text"
             placeholder="e.g. 10 Aug 2023 "
-            // min={getCurrentDate()}
-            // onChange={handleStartDateChange}
+            min={getCurrentDate()}
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
           />
@@ -103,7 +104,7 @@ function PlanNewTrip() {
             className="inputField"
             type="text"
             placeholder="e.g. 17 Aug 2023"
-            // min={startDate}
+            min={getCurrentDate()}
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
           />
@@ -131,3 +132,15 @@ export default PlanNewTrip;
 //   alert("End date should not be earlier that the Start date");
 //   return;
 // } This snippet was for alert the user that he could not input a date after the start date
+
+//Blocking date on end date input
+
+// import { useState } from "react";
+// const [startDate, setStartDate] = useState("");
+// const handleStartDateChange = (e) => {
+//   setStartDate(e.target.value);
+// }; This snippet was for blocking the dates of the end date input starting in the previous input of start date
+
+// onChange={handleStartDateChange}  This on start date
+
+// min={setStartDate} and this on end date
