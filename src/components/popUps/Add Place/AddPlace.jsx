@@ -53,7 +53,7 @@ const AddPlace = ({toggleAdd})=> {
                     })}
                     aria-invalid={errors.place_to_visit ? "true" : "false"}
                     />
-                    {errors.place_to_visit && <p className="style-error-form">{errors.place_to_visit?.message}</p>}
+                    {errors.name && <p className="style-error-place-to-visit">{errors.name?.message}</p>}
                     <label>Description: </label>
                     <input
                     placeholder="description"

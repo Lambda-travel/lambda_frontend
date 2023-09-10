@@ -27,6 +27,11 @@ useEffect(()=>{
 
   const toggleAdd = () => {
     setAddPopUp(!addPopUp);
+    if(!addPopUp){
+      document.body.classList.add('active-modal-place-to-visit')
+   }else {
+      document.body.classList.remove('active-modal-place-to-visit')
+   }
   };
 
   const toggleDetail = () => {
