@@ -24,7 +24,7 @@ const EditTrip = ({toggleEditTrip})=> {
                     </form>
                     <div className="container-buttons-popUp-edit">
                         <button className="add-place-visit">ADD</button>
-                        <button className="cancel-add-place">CANCEL</button>
+                        <button onClick={toggleEditTrip} className="cancel-add-place">CANCEL</button>
                     </div>
                 </div>
 

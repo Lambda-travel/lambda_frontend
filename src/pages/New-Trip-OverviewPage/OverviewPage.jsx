@@ -22,7 +22,6 @@ function formatDate(inputDate) {
 
 const OverviewPage = () => {
   const location = useLocation() 
-
   const id = Number(useParams().id)
  
   
@@ -37,6 +36,7 @@ const getAllDays =(id)=> {
     })
     .catch((error)=> console.log(error))
   }
+
 
   // -------------- GET INFO ONE TRIP BY ID
 
@@ -83,7 +83,7 @@ const getAllDays =(id)=> {
         <Link to="/home">
           <button className="header-btn-home">
             <svg
-              style={{ width: "1.5rem" }}
+              style={{ width: "1.5rem",cursor:"pointer" }}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -108,7 +108,7 @@ const getAllDays =(id)=> {
           <h1 className="name-of-trip">{trip.destination}</h1>
           <button className="edit-trip-btn" onClick={toggleEditTrip}>
             <svg
-              style={{ width: "1.2rem" }}
+              style={{ width: "1.2rem", cursor:"pointer" }}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

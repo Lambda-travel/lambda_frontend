@@ -7,22 +7,27 @@ import api from "../../../api/api";
 const CardInfo = ({ dayID }) => {
   const [destination, setDestination] = useState([]);
 
+
   const destinationDetail = (dayID) => {
     api
-      .get(`/destination/${dayID}`)
+      .get(`/destination/detail/${dayID}`)
       .then((response) => setDestination(response.data))
       .catch((error) => console.log(error));
   };
 
+
+
+
   useEffect(() => {
     destinationDetail(dayID);
   }, []);
+  
 
   return destination.map((destination) => (
     <div key={destination.id}>
       <img
         className="img-card-itinerary"
-        src="/src/assets/dummy-img/pexels-asad-photo-maldives-3601426.jpg"
+        src={destination.image_url}
       ></img>
       <div className="description-itinerary-card">
         <h3 className="title-card-itinerary">
