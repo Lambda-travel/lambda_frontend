@@ -1,30 +1,29 @@
+import "./Login.css";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import "./Register.css";
 import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
-function Register() {
+function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // navigate('/home')
 
-  const createNewUser = (data) => {
-    // console.log(data);
+  const logInUser = (data) => {
     api
-      .post("/users/register", data)
+      .post("/users/login", data)
       .then((response) => {
-        if (response.status === 201) {
+        if (response.status === 200) {
           console.log(response);
-          navigate("/login");
+          navigate("/home");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -49,42 +48,11 @@ function Register() {
           <p>Back</p>
         </button>
       </Link>
-
-      <div className="registerForm">
-        <div className="registerTitle">
-          <h2>Register</h2>
+      <div className="loginForm">
+        <div className="loginTitle">
+          <h2>Log In</h2>
         </div>
-        <form onSubmit={handleSubmit(createNewUser)}>
-          <input
-            {...register("first_name", { required: "A name is required" })}
-            aria-invalid={errors.first_name ? "true" : "false"}
-            type="text"
-            className="registerName"
-            placeholder="First Name"
-          />
-          {errors.first_name && (
-            <p className="required">{errors.first_name?.message}</p>
-          )}
-          <input
-            {...register("last_name", { required: "A last name is required" })}
-            aria-invalid={errors.last_name ? "true" : "false"}
-            type="text"
-            className="registerName"
-            placeholder="Last Name"
-          />
-          {errors.last_name && (
-            <p className="required">{errors.last_name?.message}</p>
-          )}
-          <input
-            {...register("user_name", { required: "A user name is required" })}
-            aria-invalid={errors.user_name ? "true" : "false"}
-            type="text"
-            className="registerName"
-            placeholder="User Name"
-          />
-          {errors.user_name && (
-            <p className="required">{errors.user_name?.message}</p>
-          )}
+        <form onSubmit={handleSubmit(logInUser)}>
           <input
             {...register("email", { required: "An email is required" })}
             aria-invalid={errors.email ? "true" : "false"}
@@ -103,8 +71,13 @@ function Register() {
           {errors.password && (
             <p className="required">{errors.password?.message}</p>
           )}
-          <div className="nextBtn">
-            <Button text="NEXT" newClassName="customButton" type="submit" />
+          <Link to="/resetpassword" className="forgetPass">
+            <div>
+              <button>Forget Password?</button>
+            </div>
+          </Link>
+          <div className="logInBtn">
+            <Button newClassName="customButton" text="LOG IN" />
           </div>
         </form>
       </div>
@@ -112,4 +85,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
