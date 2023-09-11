@@ -84,17 +84,4 @@ const AddPlace = ({toggleAdd})=> {
 }
 
 
-/*
-
-                        <form className="form-add-place">
-                            <label >Place to Visit: </label>
-                            <input className="input-place-visit" type="text" ></input>
-
-                            <label>Description: </label>
-                            <input className="input-description" type="text"></input>
-                        </form>
-
-
-*/
-
 export default AddPlace

@@ -36,7 +36,6 @@ const destinationDetail =(id)=> {
 }
 
 
-
 useEffect(()=>{
     destinationDetail(id)
 },[])
