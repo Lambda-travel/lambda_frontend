@@ -1,4 +1,3 @@
-
 import OverviewPage from "./pages/New-Trip-OverviewPage/OverviewPage";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
@@ -12,6 +11,7 @@ import ArticlePage from "./pages/ArticlePage/ArticlePage";
 import ListItinerary from "./components/ListItinerary/ListItinerary/ListItinerary";
 import PlacesToVisit from "./components/PlacesToVisit/PlacesToVisit";
 import Register from "./pages/Register/Register";
+import Login from "./pages/LogIn/Login";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
 
         <Route path="/trip/:id" element={<OverviewPage />}>
           <Route path="overview" element={<PlacesToVisit />} />
-          <Route path="itinerary" element={<ListItinerary/>} />
+          <Route path="itinerary" element={<ListItinerary />} />
         </Route>
 
         <Route
@@ -34,6 +34,7 @@ function App() {
         <Route path="/travelmate" element={<InviteMate />} />
         <Route path="/article" element={<ArticlePage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
