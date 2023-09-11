@@ -15,8 +15,7 @@ const DestinationDetail =()=> {
     const id =  Number(useParams().id)
     const allDays = JSON.parse(localStorage.getItem("allDays"))
     const backPage = useNavigate()
-    const tripID = allDays.map((tripID)=> id == tripID.trip_id)[0]
-
+    const tripID = allDays.map((tripID)=>tripID.trip_id)[0]
 
     const previousPage =()=>{
         if(tripID){
@@ -37,7 +36,6 @@ const destinationDetail =(id)=> {
 }
 
 
-
 useEffect(()=>{
     destinationDetail(id)
 },[])
@@ -49,7 +47,11 @@ useEffect(()=>{
 
             <div key={details.id} className="container-destination-detail">
             <div className="container-background-destination">
-                <img className="destination-background" src={details.image_url}></img>
+                <img className="destination-background" 
+                    src={details.image_url == null 
+                    ? "https://t4.ftcdn.net/jpg/04/70/29/97/240_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg" 
+                    : details.image_url }>
+                </img>
             </div>
             <div className="card-description-destination">
                 <h1 className="title-destination">{details.place_to_visit}</h1>
