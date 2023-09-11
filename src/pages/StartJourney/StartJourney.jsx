@@ -16,7 +16,9 @@ function StartJourney() {
         </p>
       </div>
       <div className="loginRegisterBtn">
-        <Button text="Login" newClassName="loginButton" />
+        <Link to="/login" className="registerLink">
+          <Button text="Login" newClassName="loginButton" />
+        </Link>
         <Link to="/register" className="registerLink">
           <Button text="Register" newClassName="registerButton" />
         </Link>
