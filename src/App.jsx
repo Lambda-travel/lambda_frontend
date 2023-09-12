@@ -12,30 +12,35 @@ import ListItinerary from "./components/ListItinerary/ListItinerary/ListItinerar
 import PlacesToVisit from "./components/PlacesToVisit/PlacesToVisit";
 import Register from "./pages/Register/Register";
 import Login from "./pages/LogIn/Login";
+import { UserContextProvider } from "./contexts/UserContext.jsx";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<StartJourney />} />
-        <Route path="/home" element={<HomePage />} />
+      <UserContextProvider>
+        <Routes>
+          <Route path="/" element={<StartJourney />} />
+          <Route path="/home" element={<HomePage />} />
 
-        <Route path="/trip/:id" element={<OverviewPage />}>
-          <Route path="overview" element={<PlacesToVisit />} />
-          <Route path="itinerary" element={<ListItinerary />} />
-        </Route>
+          <Route path="/trip/:id" element={<OverviewPage />}>
+            <Route path="overview" element={<PlacesToVisit />} />
+            <Route path="itinerary" element={<ListItinerary />} />
+          </Route>
 
-        <Route
-          path="/overview/destination-detail/:id"
-          element={<DestinationDetail />}
-        />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/newtrip" element={<PlanNewTrip />} />
-        <Route path="/travelmate" element={<InviteMate />} />
-        <Route path="/article" element={<ArticlePage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+          <Route
+            path="/overview/destination-detail/:id"
+            element={<DestinationDetail />}
+          />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/newtrip" element={<PlanNewTrip />} />
+          <Route path="/travelmate" element={<InviteMate />} />
+          <Route path="/article" element={<ArticlePage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/changepassword" element={<ChangePassword />} />
+        </Routes>
+      </UserContextProvider>
     </>
   );
 }

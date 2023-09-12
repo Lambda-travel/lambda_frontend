@@ -4,8 +4,12 @@ import Button from "../../components/Button/Button";
 import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 function Login() {
+  const { setUser } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -19,8 +23,21 @@ function Login() {
       .post("/users/login", data)
       .then((response) => {
         if (response.status === 200) {
-          console.log(response);
-          navigate("/home");
+          Cookies.set("user_token", response.data.token);
+          let config = {
+            headers: {
+              Authorization: "Bearer " + response.data.token,
+            },
+          };
+          api
+            .get("/users", config)
+            .then((response) => {
+              if (response.status === 200) {
+                setUser(response.data);
+                navigate("/home");
+              }
+            })
+            .catch((error) => console.error(error));
         }
       })
       .catch((error) => console.error(error));
