@@ -1,11 +1,11 @@
 import "./HomeNav.css";
 import { Link } from "react-router-dom";
 
-function HomeNav() {
+function HomeNav({ new_style_home }) {
   return (
     <div>
       <Link to="/home">
-        <button className="header-home">
+        <button className={`header_home ${new_style_home}`}>
           <svg
             style={{ width: "1.5rem" }}
             xmlns="http://www.w3.org/2000/svg"

@@ -17,20 +17,42 @@ import { useEffect, useState } from "react";
 // };
 function HomePage() {
   const [tripsDetail, setTripsDetail] = useState();
-  const [totalPlaceCount, setTotalPlaceCount] = useState();
+
+  const [users, setUsers] = useState();
+
+  const [articles, setArticles] = useState();
+
+  const getUsers = () => {
+    api
+      .get("/users/id")
+      .then((res) => {
+        setUsers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const getTrips = () => {
     api.get("/trip").then((res) => {
       setTripsDetail(res.data);
     });
   };
-  const getTotalPlaceCount = () => {
-    api.get("/trip/place").then((res) => {
-      setTotalPlaceCount(res.data);
-    });
+
+  const getArticles = (data) => {
+    api
+      .get("/articles", data)
+      .then((response) => {
+        console.log(response.data);
+        setArticles(response.data);
+      })
+      .catch((error) => console.log(error));
   };
+
   useEffect(() => {
     getTrips();
-    getTotalPlaceCount();
+    getArticles();
+    getUsers();
   }, []);
 
   return (
@@ -38,7 +60,42 @@ function HomePage() {
       {/* User Info  */}
       <div className="userInfo">
         <div className="nameAndMessageAndAvatar">
-          <div className="nameAndMessage">
+          {users ? (
+            users.map((user) => (
+              <div key={user.id} className="userProfileAndContent">
+                <div className="nameAndMessage">
+                  <h3>
+                    Hi, <span>{`${user.first_name} ${user.last_name}`}</span>
+                  </h3>
+                  <p>Explore beauty of journey</p>
+                </div>
+                <div className="avatarContainer">
+                  <img
+                    src={
+                      user.profile_image_url === "profile1.jpg"
+                        ? `${avatar}`
+                        : null
+                    }
+                    alt="Avatar"
+                    className="avatar"
+                  />
+                </div>
+              </div>
+            ))
+          ) : (
+            <>
+              <div className="nameAndMessage">
+                <h3>
+                  Hi, <span>Full Name</span>
+                </h3>
+                <p>Explore beauty of journey</p>
+              </div>
+              <div className="avatarContainer">
+                <img src={avatar} alt="Avatar" className="avatar" />
+              </div>
+            </>
+          )}
+          {/* <div className="nameAndMessage">
             <h3>
               Hi, <span>Kiera Watson</span>
             </h3>
@@ -46,7 +103,7 @@ function HomePage() {
           </div>
           <div className="avatarContainer">
             <img src={avatar} alt="Avatar" className="avatar" />
-          </div>
+          </div> */}
         </div>
         <div className="myTripAndPlanNew">
           <h4>My trips</h4>
@@ -63,12 +120,7 @@ function HomePage() {
             >
               <Swiper spaceBetween={300} slidesPerView={2}>
                 <SwiperSlide>
-                  <UserTripsCard
-                    trip={trip}
-                    totalPlace={totalPlaceCount.map(
-                      (value) => value.total_places
-                    )}
-                  />
+                  <UserTripsCard trip={trip} />
                 </SwiperSlide>
               </Swiper>
             </Link>
@@ -86,10 +138,7 @@ function HomePage() {
               to={`/trip/${trip.id}/overview `}
               className="link-to-userTrips"
             >
-              <UserTripsCard
-                trip={trip}
-                totalPlace={totalPlaceCount.map((value) => value.total_places)}
-              />
+              <UserTripsCard trip={trip} />
             </Link>
           ))
         ) : (
@@ -98,9 +147,19 @@ function HomePage() {
       </div>
 
       <div className="articleCards">
-        <Link to="/article" className="articleLinks">
-          <ArticleCard />
-        </Link>
+        {articles ? (
+          articles.map((article) => (
+            <Link
+              key={article.id}
+              to={`/article/${article.id}`}
+              className="articleLinks"
+            >
+              <ArticleCard article={article} />
+            </Link>
+          ))
+        ) : (
+          <h3>Loading...</h3>
+        )}
       </div>
       <NavBar color="navColor" />
     </div>

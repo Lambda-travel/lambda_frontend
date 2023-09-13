@@ -3,6 +3,8 @@ import "./UserTripscard.css";
 import optionIcon from "../../assets/more-horizontal.svg";
 import ellipse1 from "../../assets/Ellipse 2.svg";
 import ellipse2 from "../../assets/Ellipse 3.svg";
+import { useEffect, useState } from "react";
+import api from "../../api/api";
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -26,7 +28,19 @@ function formatDate(inputDate) {
   return formattedDate;
 }
 
-function UserTripsCard({ trip, totalPlace }) {
+function UserTripsCard({ trip }) {
+  const [totalPlaceCount, setTotalPlaceCount] = useState();
+
+  const getTotalPlaceCount = () => {
+    api.get(`/trip/${trip.id}/places`).then((res) => {
+      setTotalPlaceCount(res.data[0].total_places);
+    });
+  };
+
+  useEffect(() => {
+    getTotalPlaceCount();
+  }, []);
+
   return (
     <div className="cardContainer">
       <div className="tripsLocationAndOption ">
@@ -45,7 +59,7 @@ function UserTripsCard({ trip, totalPlace }) {
         </div>
         <p>
           {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
-          {totalPlace?.[0]} places
+          {totalPlaceCount ? totalPlaceCount : "The is no"} places
         </p>
       </div>
     </div>

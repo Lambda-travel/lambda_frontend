@@ -16,7 +16,7 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<StartJourney />} /> */}
         <Route path="/home" element={<HomePage />} />
-        <Route path="/trip/overview/:id" element={<OverviewPage />} />
+        <Route path="/trip/:id/overview" element={<OverviewPage />} />
         <Route
           path="/trip/overview/destination-detail"
           element={<DestinationDetail />}
@@ -24,7 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/newtrip" element={<PlanNewTrip />} />
         <Route path="/travelmate" element={<InviteMate />} />
-        <Route path="/article" element={<ArticlePage />} />
+        <Route path="/article/:id" element={<ArticlePage />} />
       </Routes>
     </>
   );
