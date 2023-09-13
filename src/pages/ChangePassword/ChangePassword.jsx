@@ -13,6 +13,7 @@ function ChangePassword() {
   } = useForm();
 
   const [error, setError] = useState("");
+  const [changesSaved, setChangesSaved] = useState(false);
 
   const changePassword = (data) => {
     // console.log(data);
@@ -28,8 +29,14 @@ function ChangePassword() {
 
       api
         .post("/users/change-password", data, config)
-        .then((response) => console.log(response))
-        .catch((error) => console.error(error));
+        .then((response) => {
+          console.log(response);
+          setChangesSaved(true);
+        })
+        .catch((error) => {
+          console.error(error);
+          setChangesSaved(false);
+        });
     } else {
       setError("This password is different from the new password");
     }
@@ -79,7 +86,14 @@ function ChangePassword() {
         )}
         {error !== "" ? <p className="required">{error}</p> : null}
         <div className="logInBtn">
-          <Button text="SAVE CHANGES" newClassName="customButton" />
+          {changesSaved ? (
+            <Button
+              text="CHANGES HAVE BEEN SAVED"
+              newClassName="changesSavedButton"
+            />
+          ) : (
+            <Button text="SAVE CHANGES" newClassName="customButton" />
+          )}
         </div>
       </form>
     </div>

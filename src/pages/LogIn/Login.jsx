@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import { useState } from "react";
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -15,6 +16,8 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [error, setError] = useState("");
 
   const navigate = useNavigate(); // navigate('/home')
 
@@ -33,14 +36,17 @@ function Login() {
             .get("/users", config)
             .then((response) => {
               if (response.status === 200) {
-                setUser(response.data);
+                setUser("");
                 navigate("/home");
               }
             })
             .catch((error) => console.error(error));
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(error.response.data);
+      });
   };
 
   return (
@@ -88,6 +94,7 @@ function Login() {
           {errors.password && (
             <p className="required">{errors.password?.message}</p>
           )}
+          {error !== "" ? <p className="required">{error}</p> : null}
           <Link to="/resetpassword" className="forgetPass">
             <div>
               <button>Forget Password?</button>
