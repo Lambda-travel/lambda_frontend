@@ -8,6 +8,7 @@ const defaultCover =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import Cookies from "js-cookie";
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -59,7 +60,26 @@ const OverviewPage = () => {
       .catch((error) => console.log(error));
   };
 
+  const [travelMates, setTravelMates] = useState();
+
+  const getTravelMates = () => {
+    const token = Cookies.get("user_token");
+    if (token) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+
+      api.get(`/trip/${id}/travelMates`, config).then((res) => {
+        // console.log(res.data);
+        setTravelMates(res.data);
+      });
+    }
+  };
+
   useEffect(() => {
+    getTravelMates();
     getAllDays(id);
     tripById(id);
   }, []);
@@ -138,14 +158,24 @@ const OverviewPage = () => {
               {formatDate(trip.start_date)} - {formatDate(trip.end_date)}
             </p>
             <div className="container-avatar-and-button">
-              <img className="profile-icon" src={Avatar} alt={""} />
-              <Link to="/profile">
-                <Avatar
-                  // className="avatar"
-                  className="profile-icon"
-                  src={user.profile_image_url ? user.profile_image_url : null}
-                />
-              </Link>
+              {/* <img className="profile-icon" src={Avatar} alt={""} /> */}
+              <Avatar
+                // className="avatar"
+                className="profile-icon"
+                src={user.profile_image_url ? user.profile_image_url : null}
+              />
+              {travelMates
+                ? travelMates.map((mate, index) => (
+                    <div className="container-travel-mate" key={index}>
+                      <Avatar
+                        className="avatar"
+                        src={mate.picture ? mate.picture : null}
+                        alt={mate.user_name}
+                      />
+                      <div className="mate-username">{mate.user_name}</div>
+                    </div>
+                  ))
+                : null}
               <Link to="/travelmate">
                 <button className="travel-mate-overview-page">+</button>
               </Link>

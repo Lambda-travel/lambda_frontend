@@ -8,12 +8,65 @@ body {
 }
 .avatarsProfileAndDates {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+  padding-left: 30px;
+}
+.container-travel-mate {
+  position: relative;
+  line-height: 20px;
+}
+
+.mate-username {
+  background-color: rgb(0, 0, 0, 0.5);
+  /*positioned relative to parent div (container) */
+  position: absolute;
+  /* bottom margin is 0 so that it
+    coincides with container's bottom margin*/
+  /* bottom: 0; */
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  /*invisible because opacity is 0*/
+  opacity: 0;
+  transition: 0.6s;
+  width: 70px;
+  font-size: 10px;
+  /* margin-top: 4px; */
+  z-index: -3;
+}
+
+.container-travel-mate:hover .mate-username {
+  /*becomes visible on hover*/
+  opacity: 1;
+  z-index: 3;
+
+}
+.number-places{
+  font-size: 12px;
+  font-weight: normal;
+  /* padding: 0 */
+
+}
+
+.avatarContainerCards {
+  background-color: white;
+  width: 54px;
+  height: 54px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 
 .cardContainer {
   width: 250px;
 
-  height: 130px;
+  height: 150px;
   background-color: #fff;
   border-radius: 5px;
   display: flex;

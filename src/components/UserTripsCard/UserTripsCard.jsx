@@ -3,8 +3,9 @@ import "./UserTripscard.css";
 import optionIcon from "../../assets/more-horizontal.svg";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+import Cookies from "js-cookie";
 
 import api from "../../api/api";
 
@@ -31,27 +32,34 @@ function formatDate(inputDate) {
 }
 
 function UserTripsCard({ trip }) {
-
   const { user } = useContext(UserContext);
-
 
   const [totalPlaceCount, setTotalPlaceCount] = useState();
 
   const getTotalPlaceCount = () => {
-    api.get(`/trip/${trip.id}/places`).then((res) => {
-      setTotalPlaceCount(res.data[0].total_places);
-    });
+      if(trip.id){
+        api.get(`/trip/${trip.id}/total-places`).then((res) => {
+          setTotalPlaceCount(res.data[0].total_places);
+        });
+      }
   };
 
   const [travelMates, setTravelMates] = useState();
 
   const getTravelMates = () => {
-    api.get(`/trip/${trip.id}/travelMates`)
-    .then((res) => {
-      console.log(res);
-      //! MISS VERIFICATION AFTER INVITE AN EXISTENT USER
-      // setTravelMates(res.data);
-    });
+    const token = Cookies.get("user_token");
+    if (token) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+
+      api.get(`/trip/${trip.id}/travelMates`, config).then((res) => {
+        // console.log(res.data);
+        setTravelMates(res.data);
+      });
+    }
   };
 
   useEffect(() => {
@@ -66,25 +74,36 @@ function UserTripsCard({ trip }) {
         <img src={optionIcon} alt="" />
       </div>
       <div className="currentTripAndBorder">
-        <p className="currentTripText">Current trip</p>
+        {/* <p className="currentTripText">Current trip</p> */}
         <div className="borderLine"></div>
       </div>
 
       <div className="avatarsProfileAndDates">
-        <div className="avatarsProfiles">
-        <Link to="/profile">
-                <Avatar
-                  // className="avatar"
-                  className="profile-icon"
-                  src={user.profile_image_url ? user.profile_image_url : null}
-                />
-              </Link>
+      <div className="avatarContainerCards">
+          {/* <Link to="/profile"> */}
+            <Avatar
+              className="avatar"
+              src={user.profile_image_url ? user.profile_image_url : null}
+            />
+          {/* </Link> */}
+          {travelMates
+                ? travelMates.map((mate, index) => (
+                    <div className="container-travel-mate" key={index}>
+                      <Avatar
+                        className="avatar"
+                        src={mate.picture ? mate.picture : null}
+                        alt={mate.user_name}
+                      />
+                      <div className="mate-username">{mate.user_name}</div>
+                    </div>
+                  ))
+                : null}
         </div>
-        <p>
-          {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
-          {totalPlaceCount ? totalPlaceCount : "The is no"} places
-        </p>
       </div>
+        <p className="number-places">
+          {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
+          {totalPlaceCount ? totalPlaceCount : "There is no"} places
+        </p>
     </div>
   );
 }

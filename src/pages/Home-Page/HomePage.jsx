@@ -18,24 +18,16 @@ function HomePage() {
 
   const [articles, setArticles] = useState();
 
-  // const getTrips = () => {
-  //   api.get("/trip").then((res) => {
-  //     setTripsDetail(res.data);
-  //   });
-  // };
-
   const getArticles = (data) => {
     api
       .get("/articles", data)
       .then((response) => {
-        console.log(response.data);
         setArticles(response.data);
       })
       .catch((error) => console.log(error));
   };
 
   useEffect(() => {
-    // getTrips();
     getArticles();
   }, []);
 
