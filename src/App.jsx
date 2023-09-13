@@ -14,6 +14,7 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/LogIn/Login";
 import { UserContextProvider } from "./contexts/UserContext.jsx";
 import ChangePassword from "./components/ChangePassword/ChangePassword";
+import EditProfile from "./pages/EditProfilePage/EditProfile";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/editPage" element={<EditProfile />} />
         </Routes>
       </UserContextProvider>
     </>
