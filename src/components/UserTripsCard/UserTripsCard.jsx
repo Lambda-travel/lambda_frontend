@@ -102,7 +102,7 @@ function UserTripsCard({ trip }) {
       </div>
         <p className="number-places">
           {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
-          {totalPlaceCount ? totalPlaceCount : "There is no"} places
+          {totalPlaceCount ? totalPlaceCount : "There is no"} places  
         </p>
     </div>
   );
