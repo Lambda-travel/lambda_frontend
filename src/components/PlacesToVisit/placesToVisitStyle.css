@@ -1,3 +1,7 @@
+body.active-modal-place-to-visit {
+    overflow-y: hidden;
+}
+
 .container-places-to-visit {
     display: flex;
     align-items: center;
@@ -78,4 +82,15 @@ display: none;
 }
 .container-btn-view-detail-place {
     margin: 1rem 0 1rem 0rem;
+}
+
+/********************** DESKTOPS WIDTH: 1440 ****************************/
+
+@media screen and (min-width: 1440px) {
+    .container-places-to-visit {
+        justify-content: space-around;
+    }
+    .description-container {
+        align-items: center;
+    }
 }

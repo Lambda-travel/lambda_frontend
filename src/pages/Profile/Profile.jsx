@@ -132,7 +132,7 @@ function Profile() {
                     <Link
                       key={trip.id}
                       className="link-in-card-profile"
-                      to={`/trip/overview/${trip.id}`}
+                      to={`/trip/${trip.id}/overview`}
                     >
                       <ProfileUserCards
                         trip={trip}

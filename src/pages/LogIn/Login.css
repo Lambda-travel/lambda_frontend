@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+    background-color: #f9fafb;
+  }
+
+.loginForm{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+.loginTitle{
+    width: 90%;
+    text-align: left;
+}
+.loginTitle h2{
+    font-weight: 500;
+    font-size: 30px;
+}
+.loginForm form{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-bottom: 5px;
+}
+.loginForm input{
+    margin: 5px 0;
+    height: 40px;
+    border: 0.5px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.forgetPass{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 50px ;
+    width: 100%;   
+}
+.forgetPass button{
+    border-style: none;
+    color: gray;
+    background-color: white;
+}
+.logInBtn{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+
+@media only screen and (min-width: 700px){
+    .loginForm{
+        width: 40%;
+        margin: 0 auto;
+        height: 100vh;
+    }
+    .logInBtn{
+        margin: 0 auto;
+        width: 60%;
+        margin-top: 30px;
+    }
+    .header-home2 {
+        margin-left: 4%;
+        gap: 0.2rem;
+        font-weight: bold;
+        margin-top: 15px;
+        color: rgb(80, 80, 80);
+        position: relative;
+        display: flex;
+        align-items: center;
+        border: none;
+        background-color: transparent;
+        z-index: 10;
+      }
+      a {
+        text-decoration: none;
+      }
+}

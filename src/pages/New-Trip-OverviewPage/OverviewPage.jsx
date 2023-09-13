@@ -1,11 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Outlet, useLocation } from "react-router-dom";
 import "./overViewPage.css";
 import { useState, useEffect } from "react";
 import EditTrip from "../../components/popUps/EditTrip/EditTrip";
 import Avatar from "../../assets/dummy-img/Avatar.svg";
-import PlacesToVisit from "./PlacesToVisit";
-import ListItinerary from "../../components/ListItinerary/ListItinerary/ListItinerary";
 import api from "../../api/api";
+
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -22,18 +21,22 @@ function formatDate(inputDate) {
 
 
 const OverviewPage = () => {
-
+  const location = useLocation() 
   const id = Number(useParams().id)
+ 
+  
 
   // ------------  GET ALL DAYS
-  const [allDays,setAllDays] = useState([])
 
-  const getAllDays =(id)=> {
+const getAllDays =(id)=> {
     api
     .get(`/trip/${id}`)
-    .then((response)=> setAllDays(response.data))
+    .then((response)=> {
+      localStorage.setItem("allDays", JSON.stringify(response.data))
+    })
     .catch((error)=> console.log(error))
   }
+
 
   // -------------- GET INFO ONE TRIP BY ID
 
@@ -53,24 +56,22 @@ const OverviewPage = () => {
     tripById(id)
   },[])
 
- 
+
 /*-------------  PAGE INFO -----------*/
 
-
   const [editTripPopUp, setEditTripPopUp] = useState(false);
-  const [showItinerary, setShowItinerary] = useState(true);
+  
+  if(editTripPopUp){
+    document.body.classList.add('active-modal-edit')
+ }else {
+    document.body.classList.remove('active-modal-edit')
+ }
 
 
   const toggleEditTrip = () => {
     setEditTripPopUp(!editTripPopUp);
   };
 
-  const handleItinerary =()=> {
-    setShowItinerary(false)
-  }
-  const handleOverview =()=> {
-    setShowItinerary(true)
-  }
 
   return (
     <>
@@ -82,7 +83,7 @@ const OverviewPage = () => {
         <Link to="/home">
           <button className="header-btn-home">
             <svg
-              style={{ width: "1.5rem" }}
+              style={{ width: "1.5rem",cursor:"pointer" }}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -107,7 +108,7 @@ const OverviewPage = () => {
           <h1 className="name-of-trip">{trip.destination}</h1>
           <button className="edit-trip-btn" onClick={toggleEditTrip}>
             <svg
-              style={{ width: "1.2rem" }}
+              style={{ width: "1.2rem", cursor:"pointer" }}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -126,26 +127,30 @@ const OverviewPage = () => {
           {editTripPopUp && <EditTrip toggleEditTrip={toggleEditTrip} />}
         </div>
         <p className="date-of-trip">{formatDate(trip.start_date)} - {formatDate(trip.end_date)}</p>
+        <div className="container-avatar-and-button">
         <img className="profile-icon" src={Avatar} alt={""} />
+        <Link to="/travelmate"><button className="travel-mate-overview-page">+</button></Link>
+        </div>
       </div>
 
       <div className="categories-btn-container">
-        <button onClick={handleOverview} className={ showItinerary ?
+      <Link className={location.pathname === `/trip/${id}/overview` ?
          "overview-btn-categories-active" 
           :
-          "overview-btn-categories-disable"}>
+          "overview-btn-categories-disable"} to={`/trip/${id}/overview`}>
+      
         Overview
-        </button>
-        <button onClick={handleItinerary} className={
-          showItinerary ? 
-          "itinerary-btn-categories-disable"
+        </Link>
+        <Link className={location.pathname === `/trip/${id}/itinerary` ?
+          "itinerary-btn-categories-active"
           :
-           "itinerary-btn-categories-active"
-        }>Itinerary</button>
-
+           "itinerary-btn-categories-disable"} to={`/trip/${id}/itinerary`}>
+       
+        Itinerary
+        </Link>
       </div>
-
-        { showItinerary ? <PlacesToVisit/> : <ListItinerary allDays={allDays}/> }
+        <Outlet />
+  
 
     </article>
 
@@ -154,9 +159,5 @@ const OverviewPage = () => {
     </>
   );
 };
-
-/*
-
-*/
 
 export default OverviewPage;
