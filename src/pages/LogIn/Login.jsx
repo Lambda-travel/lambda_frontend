@@ -1,15 +1,18 @@
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useForm } from "react-hook-form";
 import api from "../../api/api";
-import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import AuthContext from "../../contexts/AuthContext.jsx";
+
 
 function Login() {
   const { setUser } = useContext(UserContext);
+  const { setIsAuthenticated } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -22,18 +25,38 @@ function Login() {
     api
       .post("/users/login", data)
       .then((response) => {
+        // if (response.status === 200) {
+        //   Cookies.set("user_token", response.data.token);
+        //   let config = {
+        //     headers: {
+        //       Authorization: "Bearer " + response.data.token,
+        //     },
+        //   };
+        //   api
+        //     .get("/users", config)
+        //     .then((response) => {
+        //       if (response.status === 200) {
+        //         setUser(response.data);
+        //         navigate("/home");
+        //       }
+        //     })
+        //     .catch((error) => console.error(error));
+        // }
         if (response.status === 200) {
+          //! save token in cookies
           Cookies.set("user_token", response.data.token);
           let config = {
             headers: {
               Authorization: "Bearer " + response.data.token,
             },
           };
+
           api
             .get("/users", config)
             .then((response) => {
               if (response.status === 200) {
                 setUser(response.data);
+                setIsAuthenticated(true);
                 navigate("/home");
               }
             })

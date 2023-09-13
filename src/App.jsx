@@ -12,22 +12,36 @@ import ListItinerary from "./components/ListItinerary/ListItinerary/ListItinerar
 import PlacesToVisit from "./components/PlacesToVisit/PlacesToVisit";
 import Register from "./pages/Register/Register";
 import Login from "./pages/LogIn/Login";
-import { UserContextProvider } from "./contexts/UserContext.jsx";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import AuthContext from "./contexts/AuthContext";
+import UserContext from "./contexts/UserContext";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import { useContext } from "react";
 
 function App() {
+  const { user } = useContext(UserContext);
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <>
-      <UserContextProvider>
-        <Routes>
-          <Route path="/" element={<StartJourney />} />
-          <Route path="/home" element={<HomePage />} />
+      <Routes>
+        <Route path="/" element={<StartJourney />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
 
+        <Route
+          element={
+            <ProtectedRoute
+              redirectPath="/"
+              isAllowed={isAuthenticated && user}
+            />
+          }
+        >
+          <Route path="/home" element={<HomePage />} />
           <Route path="/trip/:id" element={<OverviewPage />}>
             <Route path="overview" element={<PlacesToVisit />} />
             <Route path="itinerary" element={<ListItinerary />} />
           </Route>
-
           <Route
             path="/overview/destination-detail/:id"
             element={<DestinationDetail />}
@@ -36,11 +50,10 @@ function App() {
           <Route path="/newtrip" element={<PlanNewTrip />} />
           <Route path="/travelmate" element={<InviteMate />} />
           <Route path="/article" element={<ArticlePage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/changepassword" element={<ChangePassword />} />
-        </Routes>
-      </UserContextProvider>
+        </Route>
+
+      </Routes>
     </>
   );
 }

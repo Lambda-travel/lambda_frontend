@@ -15,7 +15,6 @@ function Register() {
   const navigate = useNavigate();
 
   const createNewUser = (data) => {
-    // console.log(data);
     api
       .post("/users/register", data)
       .then((response) => {
