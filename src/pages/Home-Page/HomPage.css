@@ -90,8 +90,8 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 10, 1fr;
-    gap: 10px;
-    margin-right: 0px;
+
+    width: 400px;
   }
   .nameAndMessageAndAvatar {
     display: flex;
@@ -120,5 +120,6 @@ body {
   .articleCards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 }
