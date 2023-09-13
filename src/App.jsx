@@ -18,6 +18,7 @@ import ChangePassword from "./pages/ChangePassword/ChangePassword";
 function App() {
   return (
     <>
+
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<StartJourney />} />
@@ -36,11 +37,13 @@ function App() {
           <Route path="/newtrip" element={<PlanNewTrip />} />
           <Route path="/travelmate" element={<InviteMate />} />
           <Route path="/article" element={<ArticlePage />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/changepassword" element={<ChangePassword />} />
         </Routes>
       </UserContextProvider>
+
     </>
   );
 }

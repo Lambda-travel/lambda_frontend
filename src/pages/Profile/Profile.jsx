@@ -6,6 +6,7 @@ import ProfileUserCards from "../../components/profileUserCards/ProfileUserCards
 import avatar from "../../assets/Avatar.svg";
 import editIcon from "../../assets/Group 1689.svg";
 import api from "../../api/api";
+
 import "./Profile.css";
 
 function Profile() {
@@ -14,6 +15,7 @@ function Profile() {
   const [tripsInfo, setTripsInfo] = useState();
   const [totalPlace, setTotalPlace] = useState([]);
   const [categoryStyle, setCategoryStyle] = useState(true);
+  const [profileUsers, setProfileUsers] = useState();
 
   const navigate = useNavigate();
 
@@ -28,6 +30,15 @@ function Profile() {
     api.get("/trip").then((res) => {
       setTripsInfo(res.data);
     });
+  };
+
+  const getProfileUsers = () => {
+    api
+      .get("/users/id")
+      .then((res) => {
+        setProfileUsers(res.data);
+      })
+      .catch((err) => console.error(err));
   };
 
   const getTotalPlace = () => {
@@ -45,7 +56,10 @@ function Profile() {
   useEffect(() => {
     getTrips();
     getTotalPlace();
+    getProfileUsers();
   }, []);
+
+  console.log(profileUsers);
 
   return (
     <div className="bigContainer">
@@ -54,16 +68,41 @@ function Profile() {
       </div>
 
       <div className="container-profile">
-        <div className="profileInfo">
-          <div className="profileImage">
-            <img src={avatar} alt="" />
-            <img src={editIcon} alt="" className="editIcon" />
-          </div>
+        {profileUsers ? (
+          profileUsers.map((profile) => (
+            <div className="profileInfo" key={profile.id}>
+              <div className="profileImage">
+                <img
+                  src={
+                    profile.profile_image_url === "profile1.jpg"
+                      ? `${avatar}`
+                      : null
+                  }
+                  alt="profile avatar"
+                />
+                <img src={editIcon} alt="edit icon" className="editIcon" />
+              </div>
+              <div className="profileInfo">
+                <h1 className="profileName">{`${profile.first_name} ${profile.last_name}`}</h1>
+                <p className="userName">
+                  {profile.user_name ? `@${profile.user_name}` : "@username"}
+                </p>
+              </div>
+            </div>
+          ))
+        ) : (
           <div className="profileInfo">
-            <h1 className="profileName">Kiera Watson</h1>
-            <p className="userName">@kierawatson</p>
+            <div className="profileImage">
+              <img src={avatar} alt="" />
+              <img src={editIcon} alt="" className="editIcon" />
+            </div>
+            <div className="profileInfo">
+              <h1 className="profileName">User full name</h1>
+              <p className="userName">@username</p>
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="tripsAndGuidesContainer">
           <div className="tripsPlusGuides">
             <button

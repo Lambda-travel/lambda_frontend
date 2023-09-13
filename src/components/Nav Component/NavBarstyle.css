@@ -26,6 +26,11 @@ body {
 .navcontainer--1 {
   display: none;
 }
+
+.nav-Icon-Component-Container {
+  display: flex;
+  justify-content: space-around;
+}
 @media only screen and (min-width: 1200px) {
   .navContainer {
     display: none;
@@ -62,4 +67,13 @@ body {
   .navcontainer--1 a:active {
     color: #ff5a5f;
   }
+}
+
+.icon-color {
+  fill: #ff5a5f;
+  stroke: #ff5a5f;
+}
+.icon-color-disabled {
+  fill: #9ca3af;
+  stroke: #9ca3af;
 }
