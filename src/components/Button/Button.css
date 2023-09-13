@@ -54,3 +54,18 @@
     background-color: #ffffff;
     color: #ff676c;
 }
+
+.cancelChangesButton{
+    cursor: pointer;
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 13px;
+    background-color: #ffffff;
+    color: #ff676c;
+}
+
+.disabled{
+    background-color: #bfbfbf;
+  }

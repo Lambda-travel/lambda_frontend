@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 import "./UserTripscard.css";
 import optionIcon from "../../assets/more-horizontal.svg";
-import ellipse1 from "../../assets/Ellipse 2.svg";
-import ellipse2 from "../../assets/Ellipse 3.svg";
+import { useEffect, useState, useContext } from "react";
+import UserContext from "../../contexts/UserContext";
+import { Link} from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+
+import api from "../../api/api";
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -26,7 +30,35 @@ function formatDate(inputDate) {
   return formattedDate;
 }
 
-function UserTripsCard({ trip, totalPlace }) {
+function UserTripsCard({ trip }) {
+
+  const { user } = useContext(UserContext);
+
+
+  const [totalPlaceCount, setTotalPlaceCount] = useState();
+
+  const getTotalPlaceCount = () => {
+    api.get(`/trip/${trip.id}/places`).then((res) => {
+      setTotalPlaceCount(res.data[0].total_places);
+    });
+  };
+
+  const [travelMates, setTravelMates] = useState();
+
+  const getTravelMates = () => {
+    api.get(`/trip/${trip.id}/travelMates`)
+    .then((res) => {
+      console.log(res);
+      //! MISS VERIFICATION AFTER INVITE AN EXISTENT USER
+      // setTravelMates(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getTotalPlaceCount();
+    getTravelMates();
+  }, []);
+
   return (
     <div className="cardContainer">
       <div className="tripsLocationAndOption ">
@@ -40,12 +72,17 @@ function UserTripsCard({ trip, totalPlace }) {
 
       <div className="avatarsProfileAndDates">
         <div className="avatarsProfiles">
-          <img src={ellipse1} alt="avatar 1" className="avatar1" />
-          <img src={ellipse2} alt="avatar 2" className="avatar2" />
+        <Link to="/profile">
+                <Avatar
+                  // className="avatar"
+                  className="profile-icon"
+                  src={user.profile_image_url ? user.profile_image_url : null}
+                />
+              </Link>
         </div>
         <p>
           {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
-          {totalPlace?.[0]} places
+          {totalPlaceCount ? totalPlaceCount : "The is no"} places
         </p>
       </div>
     </div>

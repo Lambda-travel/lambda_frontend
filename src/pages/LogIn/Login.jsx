@@ -8,7 +8,6 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import AuthContext from "../../contexts/AuthContext.jsx";
 
-
 function Login() {
   const { setUser } = useContext(UserContext);
   const { setIsAuthenticated } = useContext(AuthContext);
@@ -111,11 +110,11 @@ function Login() {
           {errors.password && (
             <p className="required">{errors.password?.message}</p>
           )}
-          <Link to="/resetpassword" className="forgetPass">
-            <div>
-              <button>Forget Password?</button>
-            </div>
-          </Link>
+          <div>
+            <Link to="/resetpassword" className="forgetPass">
+              <button type="button">Forget Password?</button>
+            </Link>
+          </div>
           <div className="logInBtn">
             <Button newClassName="customButton" text="LOG IN" />
           </div>

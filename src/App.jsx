@@ -1,6 +1,6 @@
 import OverviewPage from "./pages/New-Trip-OverviewPage/OverviewPage";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Profile from "./pages/Profile/Profile";
 import PlanNewTrip from "./pages/PlanNewTrip/PlanNewTrip";
 import StartJourney from "./pages/StartJourney/StartJourney";
@@ -17,13 +17,19 @@ import AuthContext from "./contexts/AuthContext";
 import UserContext from "./contexts/UserContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { useContext } from "react";
+import NavBarMobile from "./components/NavBar/NavBarMobile";
+import NavbarDesktop from "./components/NavBar/NavBarDesktop";
 
 function App() {
   const { user } = useContext(UserContext);
   const { isAuthenticated } = useContext(AuthContext);
 
+  const location = useLocation()
+
   return (
     <>
+   { location.pathname === "/" || location.pathname === "/register" ||location.pathname === "/login" || location.pathname.includes("overview") || location.pathname.includes("itinerary") ? null  : <NavBarMobile />}
+   { location.pathname === "/" || location.pathname === "/register" ||location.pathname === "/login" || location.pathname.includes("overview") || location.pathname.includes("itinerary") ? null  : <NavbarDesktop />}
       <Routes>
         <Route path="/" element={<StartJourney />} />
         <Route path="/register" element={<Register />} />
@@ -49,8 +55,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/newtrip" element={<PlanNewTrip />} />
           <Route path="/travelmate" element={<InviteMate />} />
-          <Route path="/article" element={<ArticlePage />} />
-          <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/article/:id" element={<ArticlePage />} />
+          <Route path="/change-password" element={<ChangePassword />} />
         </Route>
 
       </Routes>

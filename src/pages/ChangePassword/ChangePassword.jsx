@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useState } from "react";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 function ChangePassword() {
   const {
@@ -23,21 +22,21 @@ function ChangePassword() {
     //! VALIDATION OF PASSWORDS USING YUP
 
     if (data.password !== data.newPassword) {
-      if(data.newPassword === data.repeatPassword){
+      if (data.newPassword === data.repeatPassword) {
         setError("");
         delete data.repeatPassword;
-  
+
         let config = {
           headers: {
             Authorization: "Bearer " + Cookies.get("user_token"),
           },
         };
-        
+
         api
           .post("/users/change-password", data, config)
           .then((response) => {
             if (response.status === 200) {
-              navigate("/profile")
+              navigate("/profile");
             }
           })
           .catch((error) => console.error(error));
@@ -52,9 +51,9 @@ function ChangePassword() {
 
   return (
     <div className="loginForm">
-       <div className="loginTitle">
-          <h2>Change Password</h2>
-        </div>
+      <div className="loginTitle">
+        <h2>Change Password</h2>
+      </div>
       <form onSubmit={handleSubmit(changePassword)}>
         <label>Current Password</label>
         <input
@@ -99,6 +98,11 @@ function ChangePassword() {
         <div className="logInBtn">
           <Button text="SAVE CHANGES" newClassName="customButton" />
         </div>
+        <Link to="/profile">
+          <div className="logInBtn">
+            <Button text="CANCEL CHANGES" newClassName="cancelChangesButton" />
+          </div>
+        </Link>
       </form>
     </div>
   );

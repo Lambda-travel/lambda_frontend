@@ -1,108 +1,151 @@
-import avatar from "../../assets/Avatar.svg";
+// import avatar from "../../assets/Avatar.svg";
 import UserTripsCard from "../../components/UserTripsCard/UserTripsCard";
 import ArticleCard from "../../components/ArticleCards/ArticleCard";
-import NavBar from "../../components/Nav Component/NavBar";
+// import NavBar from "../../components/Nav Component/NavBar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import api from "../../api/api";
 import "swiper/css";
 import "./HomPage.css";
-import { useEffect, useState } from "react";
-// const getTrips = () => {
-//   //! SEND TOKEN as config
+import { useEffect, useState, useContext } from "react";
+import UserContext from "../../contexts/UserContext";
+import TripsContext from "../../contexts/TripsContext";
+import Avatar from "@mui/material/Avatar";
 
-//   api.get("/trip").then((res) => {
-//     setTripsInfo(res.data);
-//   });
-// };
 function HomePage() {
-  const [tripsDetail, setTripsDetail] = useState();
-  const [totalPlaceCount, setTotalPlaceCount] = useState();
-  const getTrips = () => {
-    api.get("/trip").then((res) => {
-      setTripsDetail(res.data);
-    });
+  const { user } = useContext(UserContext);
+  const { trips } = useContext(TripsContext);
+
+  const [articles, setArticles] = useState();
+
+  // const getTrips = () => {
+  //   api.get("/trip").then((res) => {
+  //     setTripsDetail(res.data);
+  //   });
+  // };
+
+  const getArticles = (data) => {
+    api
+      .get("/articles", data)
+      .then((response) => {
+        console.log(response.data);
+        setArticles(response.data);
+      })
+      .catch((error) => console.log(error));
   };
-  const getTotalPlaceCount = () => {
-    api.get("/trip/place").then((res) => {
-      setTotalPlaceCount(res.data);
-    });
-  };
+
   useEffect(() => {
-    getTrips();
-    getTotalPlaceCount();
+    // getTrips();
+    getArticles();
   }, []);
 
   return (
-    <div>
+    <div className="main-container">
       {/* User Info  */}
       <div className="userInfo">
         <div className="nameAndMessageAndAvatar">
-          <div className="nameAndMessage">
-            <h3>
-              Hi, <span>Kiera Watson</span>
-            </h3>
-            <p>Explore beauty of journey</p>
-          </div>
-          <div className="avatarContainer">
-            <img src={avatar} alt="Avatar" className="avatar" />
-          </div>
-        </div>
-        <div className="myTripAndPlanNew">
-          <h4>My trips</h4>
-          <p>Plan new trip</p>
-        </div>
-      </div>
-      <div className="cardsAndTripInfosMobile">
-        {tripsDetail && tripsDetail.length > 0 ? (
-          tripsDetail.map((trip) => (
-            <Link
-              key={trip.id}
-              to={`/trip/${trip.id}/overview `}
-              className="link-tags"
-            >
-              <Swiper spaceBetween={300} slidesPerView={2}>
-                <SwiperSlide>
-                  <UserTripsCard
-                    trip={trip}
-                    totalPlace={totalPlaceCount.map(
-                      (value) => value.total_places
-                    )}
+          {user ? (
+            <div key={user.id} className="userProfileAndContent">
+              <div className="nameAndMessage">
+                <h3>
+                  Hi, <span>{`${user.first_name} ${user.last_name}`}</span>
+                </h3>
+                <p>Explore beauty of journey</p>
+              </div>
+              <div className="avatarContainer">
+                <Link to="/profile">
+                  <Avatar
+                    className="avatar"
+                    src={user.profile_image_url ? user.profile_image_url : null}
                   />
-                </SwiperSlide>
-              </Swiper>
-            </Link>
-          ))
-        ) : (
-          <p>Plan new trip</p>
-        )}
+                </Link>
+                {/* <img
+                  src={
+                    user.profile_image_url
+                      ? user.profile_image_url
+                      : `${avatar}`
+                  }
+                  alt="Avatar"
+                  className="avatar"
+                /> */}
+              </div>
+            </div>
+          ) : (
+            <>
+              <h3>Loading....</h3>
+            </>
+          )}
+      
+        </div>
+      <div className="myTripAndPlanNew">
+            <h4>My trips</h4>
+          </div>
       </div>
+      {trips && trips.length > 0 ? (
+        <>
+          <div className="cardsAndTripInfosMobile">
+            {trips.map((trip) => (
+              <Link
+                key={trip.id}
+                to={`/trip/${trip.id}/overview `}
+                className="link-tags"
+              >
+                <Swiper spaceBetween={300} slidesPerView={2}>
+                  <SwiperSlide>
+                    <UserTripsCard trip={trip} />
+                  </SwiperSlide>
+                </Swiper>
+              </Link>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div>
+          
+          <div className="NoTripAvailable-Mobile">
+          <p>No Trips available.{"  "}<Link to="/newtrip">Plan your trip.</Link></p>
+          </div>
+        </div>
+      )}
 
-      <div className="cardsAndTripInfoDesktop">
-        {tripsDetail && tripsDetail.length > 0 ? (
-          tripsDetail.map((trip) => (
-            <Link
-              key={trip.id}
-              to={`/trip/${trip.id}/overview `}
-              className="link-to-userTrips"
-            >
-              <UserTripsCard
-                trip={trip}
-                totalPlace={totalPlaceCount.map((value) => value.total_places)}
-              />
-            </Link>
-          ))
-        ) : (
-          <p>Plan new trip</p>
-        )}
-      </div>
+      {trips && trips.length > 0 ? (
+        <>
+          <div className="cardsAndTripInfoDesktop">
+            {trips.map((trip) => (
+              <Link
+                key={trip.id}
+                to={`/trip/${trip.id}/overview `}
+                className="link-to-userTrips"
+              >
+                <UserTripsCard trip={trip} />
+              </Link>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div >
+          
+          <div className="NoTripAvailable-Desktop">
+            <p>No Trips available.{"  "}<Link to="/newtrip">Plan your trip.</Link></p>
+          </div>
+        </div>
+      )}
 
       <div className="articleCards">
-        <Link to="/article" className="articleLinks">
-          <ArticleCard />
-        </Link>
+        {articles ? (
+          articles.map((article) => (
+            <Link
+              key={article.id}
+              to={`/article/${article.id}`}
+              className="articleLinks"
+            >
+              <ArticleCard article={article} />
+            </Link>
+          ))
+        ) : (
+          <h3>Loading...</h3>
+        )}
       </div>
-      <NavBar color="navColor" />
     </div>
   );
 }
