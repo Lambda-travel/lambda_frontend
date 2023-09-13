@@ -11,21 +11,36 @@
     text-align: center;
 }
 
-h1{
+.titleDesc h1{
     font-weight: 100;
     font-size: 36px;
     margin-bottom: 20px;
 }
-span{
+.titleDesc span{
     font-weight: 500;
 }
-p{
+.titleDesc p{
     font-weight: 100;
     font-size: 16px;
 }
 
 .loginRegisterBtn{
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     width: 60%;
 }
+ .registerLink button{
+    width: 100%;
+}
+
+@media only screen and (min-width: 700px){
+
+    .loginRegisterBtn{
+        margin: 0 auto;
+        width: 20%;
+        left: 30%;
+    }
+   
+}
+

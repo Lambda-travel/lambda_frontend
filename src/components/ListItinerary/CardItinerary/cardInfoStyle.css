@@ -28,3 +28,46 @@
     color: #FF5A5F;
     margin-right: 0.9rem;
 }
+
+/* ------------------------DESKTOP ( WIDTH 1440) ---------------------*/
+
+@media screen and ( min-width: 1440px) {
+    .img-card-itinerary {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+        border-radius: 1rem;
+        box-shadow: 7px 14px 47px -26px rgba(0,0,0,0.74);
+        margin-bottom: 2rem;
+    }
+
+    .list-card-itinerary {
+        background-color: white;
+        display: flex;
+        gap: 2rem;
+        padding: 1.5rem 0;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+    }
+    .btn-and-date-itinerary {
+     margin-left: 0;
+    }
+
+    .btn-add-destination {
+    margin-right: 0;
+    }
+    .description-itinerary-card {
+        margin: 0.5rem 1rem;
+        display: flex;
+        gap: 0.5rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-avatar-and-button {
+        align-self: center;
+    }
+}

@@ -105,6 +105,31 @@
 
 }
 
+/*---------------- DESKTOP VERSION ( WIDTH 1440)---------------*/
+
+@media screen and (min-width:1440px) {
+    .destination-background {
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+        max-width: 60%;
+    }
+    .card-description-destination {
+        background-color: #ffffffd5;
+    }
+    .description-container-destination {
+        margin-bottom: 3rem;
+    }
+    .images-carousel-container {
+        display: block;
+        margin: auto;
+        width: 65%;
+    }
+    .btn-destination-detail {
+        margin: 3rem 0 0 13%;
+        width: 75%;
+    }
+}
 /*---------------- DESKTOP VERSION ( WIDTH 1680)---------------*/
 
 @media screen and (min-width:1680px) {
@@ -112,7 +137,7 @@
         margin-right: auto;
         margin-left: auto;
         display: block;
-        max-width: 80%;
+        max-width: 55%;
     }
     .card-description-destination {
         background-color: #ffffffd5;

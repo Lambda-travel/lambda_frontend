@@ -1,7 +1,7 @@
 import HomeNav from "../../components/HomeNav/HomeNav";
 import elliseIcon from "../../assets/ellipse 1.svg";
 import arrowIcon from "../../assets/arrow-pointing-down.svg";
-import backgroundImage from "../../assets/Image.svg";
+
 import "./ArticlePage.css";
 import { useEffect, useState } from "react";
 import api from "../../api/api";
