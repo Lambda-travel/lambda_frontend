@@ -69,3 +69,7 @@
 .disabled{
     background-color: #bfbfbf;
   }
+
+.notShow{
+    display:none;
+}

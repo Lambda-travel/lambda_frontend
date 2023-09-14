@@ -111,7 +111,14 @@ function ChangePassword() {
         </div>
         <Link to="/profile">
           <div className="logInBtn">
-            <Button text="CANCEL CHANGES" newClassName="cancelChangesButton" />
+            {changesSaved ? (
+              <Button text="CANCEL CHANGES" newClassName="notShow" />
+            ) : (
+              <Button
+                text="CANCEL CHANGES"
+                newClassName="cancelChangesButton"
+              />
+            )}
           </div>
         </Link>
       </form>
