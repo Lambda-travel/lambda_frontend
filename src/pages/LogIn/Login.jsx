@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import Cookies from "js-cookie";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import AuthContext from "../../contexts/AuthContext.jsx";
 
@@ -17,6 +17,8 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [error, setError] = useState("");
 
   const navigate = useNavigate(); // navigate('/home')
 
@@ -62,7 +64,10 @@ function Login() {
             .catch((error) => console.error(error));
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(error.response.data);
+      });
   };
 
   return (
@@ -110,11 +115,12 @@ function Login() {
           {errors.password && (
             <p className="required">{errors.password?.message}</p>
           )}
-          <div>
-            <Link to="/resetpassword" className="forgetPass">
-              <button type="button">Forget Password?</button>
-            </Link>
-          </div>
+          {error !== "" ? <p className="required">{error}</p> : null}
+          <Link to="/resetpassword" className="forgetPass">
+            <div>
+              <button>Forget Password?</button>
+            </div>
+          </Link>
           <div className="logInBtn">
             <Button newClassName="customButton" text="LOG IN" />
           </div>

@@ -15,6 +15,7 @@ function ChangePassword() {
 
   const [error, setError] = useState("");
   const navigate = useNavigate(); // navigate('/home')
+  const [changesSaved, setChangesSaved] = useState(false);
 
   const changePassword = (data) => {
     // console.log(data);
@@ -36,7 +37,10 @@ function ChangePassword() {
           .post("/users/change-password", data, config)
           .then((response) => {
             if (response.status === 200) {
-              navigate("/profile");
+              setChangesSaved(true);
+              setTimeout(()=>{
+                navigate("/profile");
+              }, 3000)
             }
           })
           .catch((error) => console.error(error));
@@ -96,7 +100,14 @@ function ChangePassword() {
         )}
         {error !== "" ? <p className="required">{error}</p> : null}
         <div className="logInBtn">
-          <Button text="SAVE CHANGES" newClassName="customButton" />
+          {changesSaved ? (
+            <Button
+              text="CHANGES HAVE BEEN SAVED"
+              newClassName="changesSavedButton"
+            />
+          ) : (
+            <Button text="SAVE CHANGES" newClassName="customButton" />
+          )}
         </div>
         <Link to="/profile">
           <div className="logInBtn">

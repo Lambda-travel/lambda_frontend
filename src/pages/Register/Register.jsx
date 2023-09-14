@@ -4,6 +4,7 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Register() {
   const {
@@ -13,6 +14,7 @@ function Register() {
   } = useForm();
 
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const createNewUser = (data) => {
     api
@@ -20,10 +22,14 @@ function Register() {
       .then((response) => {
         if (response.status === 201) {
           console.log(response);
+          setError("");
           navigate("/login");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setError("This user name or email are already in use");
+      });
   };
 
   return (
@@ -102,6 +108,7 @@ function Register() {
           {errors.password && (
             <p className="required">{errors.password?.message}</p>
           )}
+          {error !== "" ? <p className="required">{error}</p> : null}
           <div className="nextBtn">
             <Button text="NEXT" newClassName="customButton" type="submit" />
           </div>
