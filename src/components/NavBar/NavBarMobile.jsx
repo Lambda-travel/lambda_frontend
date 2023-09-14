@@ -34,7 +34,7 @@ const NavBarMobile = () => {
                 ? createTripActive
                 : createTripInactive
             }
-            alt="button to go to courses page"
+            alt="button to create new trip"
           />
         </Link>
         <Link to="/profile">
@@ -44,7 +44,7 @@ const NavBarMobile = () => {
                 ? profileActive
                 : profileInactive
             }
-            alt="button to go to relaxing music page"
+            alt="button to go to profile"
           />
         </Link>
       </ul>
