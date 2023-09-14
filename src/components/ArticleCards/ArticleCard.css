@@ -16,7 +16,7 @@ body {
   width: 100%;
 }
 .articleContainer {
-  margin-top: 35px;
+  margin: 35px;
 }
 .guide {
   color: #fff;
@@ -71,8 +71,8 @@ body {
 
 @media only screen and (min-width: 900px) {
   .articleContainer {
-    margin-left: 20%;
-    width: 900px;
+    margin: 35px;
+    width: 400px;
   }
   .articleImage img {
     height: 100%;

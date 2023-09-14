@@ -1,4 +1,4 @@
-// import ellipse1 from "../../assets/ellipse 1.svg";
+/* eslint-disable react/prop-types */
 
 import saveButton from "../../assets/save-button.svg";
 import "./ArticleCard.css";

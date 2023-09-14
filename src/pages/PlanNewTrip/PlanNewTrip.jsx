@@ -2,10 +2,14 @@ import "./PlanNewTrip.css";
 
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import HomeNav from "../../components/HomeNav/HomeNav";
+// import HomeNav from "../../components/HomeNav/HomeNav";
 import api from "../../api/api";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
+import Cookies from "js-cookie";
 
 function PlanNewTrip() {
   const {
@@ -15,6 +19,9 @@ function PlanNewTrip() {
   } = useForm();
 
   const navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
+
 
   const getCurrentDate = () => {
     const today = new Date();
@@ -27,32 +34,40 @@ function PlanNewTrip() {
   const createNewTrip = (data) => {
     const startDate = new Date(data.start_date);
     const endDate = new Date(data.end_date);
-    if (endDate < startDate) {
-      <span id="displayError"></span>;
-      alert("End date should not be earlier that the Start date");
-      return;
-    }
-    // This snippet was for alert the user that he could not input a date after the start date
-    data.user_id = 1; //!alter for the user_id because this line is just to simulate the id
-    console.log(data);
-    api
-      .post("/trip", data)
-      .then((response) => {
-        if (response.status === 201) {
-          localStorage.setItem("tripIdInviteTravelmate", response.data.tripId);
-          navigate("/travelmate");
+    const token = Cookies.get("user_token");
+    if (token) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+        if (endDate < startDate) {
+          <span id="displayError"></span>;
+          alert("End date should not be earlier that the Start date");
+          return;
         }
-      })
-      .catch((error) => console.log(error));
+        // This snippet was for alert the user that he could not input a date after the start date
+        data.user_id = user.id; //!alter for the user_id because this line is just to simulate the id
+        console.log(data);
+        api
+        .post("/trip", data,config)
+        .then((response) => {
+          if (response.status === 201) {
+            localStorage.setItem("tripIdInviteTravelmate", response.data.tripId);
+            navigate("/travelmate");
+          }
+        })
+        .catch((error) => console.log(error))
+      }
   };
 
   return (
     <>
-      <header className="header">
+      {/* <header className="header">
         <Link to="/home">
           <HomeNav customClassName="homeBtn" />
         </Link>
-      </header>
+      </header> */}
       <div className="pageTitle">
         <h2>Plan a new trip</h2>
         <p>Build an itinerary and map your upcoming travel plans. </p>
