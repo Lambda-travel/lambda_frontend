@@ -6,11 +6,10 @@ import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 import api from "../../../api/api";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {  useState } from "react";
 
 
 const EditTrip = ({toggleEditTrip})=> {
-    const [controlValue,setControlValue] = useState("")
     const [loading,setLoading] = useState(false)
     const allDays = JSON.parse(localStorage.getItem("allDays"))
     const tripID = allDays.map((tripID)=>tripID.trip_id)[0]
@@ -21,9 +20,7 @@ const EditTrip = ({toggleEditTrip})=> {
         register,
         handleSubmit,
 
-      } = useForm({
-
-      });
+      } = useForm();
 
     const getCurrentDate = () => {
         const today = new Date();
@@ -33,10 +30,11 @@ const EditTrip = ({toggleEditTrip})=> {
         return `${year}-${month}-${day}`;
       };
 
-      
-      const editInfoTrip =(data)=>{
-        setLoading(true)
 
+  
+  
+      const editInfoTrip =(data)=>{
+            setLoading(true)
            if(data.destination == ""){
                  delete data.destination
              }if(data.end_date == ""){
@@ -104,7 +102,6 @@ const EditTrip = ({toggleEditTrip})=> {
                     name="destination"
                     className="inputs-popUp-edit"
                     type="text"
-                    onChange={ (e)=> setControlValue(e.target.value)}
                     placeholder="e.g., Japan, Paris, Indonesia"
                 />
 
@@ -116,7 +113,6 @@ const EditTrip = ({toggleEditTrip})=> {
             type="text"
             placeholder="e.g. 10 Aug 2023 "
             min={getCurrentDate()}
-            onChange={ (e)=> setControlValue(e.target.value)}
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
           />
@@ -128,7 +124,6 @@ const EditTrip = ({toggleEditTrip})=> {
             type="text"
             placeholder="e.g. 17 Aug 2023"
             min={getCurrentDate()}
-            onChange={ (e)=> setControlValue(e.target.value)}
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
           />
@@ -147,12 +142,7 @@ const EditTrip = ({toggleEditTrip})=> {
                     {...register("trip_image_url")}
                 />
                     <div className="container-buttons-popUp-edit">
-                      {controlValue != "" ? 
-                      <button type="submit" className="add-place-visit">ADD</button> : 
-                      <button disabled type="submit" className="add-place-visit-disabled">ADD</button>
-                      }
-                        
-                        
+                      <button type="submit" className="add-place-visit">ADD</button>
                         <button onClick={toggleEditTrip} className="cancel-add-place">CANCEL</button>
                     </div>
                     </form>
