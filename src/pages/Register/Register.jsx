@@ -17,7 +17,6 @@ function Register() {
   const [error, setError] = useState("");
 
   const createNewUser = (data) => {
-    // console.log(data);
     api
       .post("/users/register", data)
       .then((response) => {

@@ -1,7 +1,6 @@
-import HomeNav from "../../components/HomeNav/HomeNav";
+// import HomeNav from "../../components/HomeNav/HomeNav";
 import elliseIcon from "../../assets/ellipse 1.svg";
 import arrowIcon from "../../assets/arrow-pointing-down.svg";
-import backgroundImage from "../../assets/Image.svg";
 import "./ArticlePage.css";
 import { useEffect, useState } from "react";
 import api from "../../api/api";
@@ -26,9 +25,9 @@ function ArticlePage() {
       {article ? (
         <>
           <div className="ImageAndNav">
-            <div className="navCover">
+            {/* <div className="navCover">
               <HomeNav new_style_home="new_header_home" />
-            </div>
+            </div> */}
             <h3>{article.name}</h3>
             <img
               className="backImg"
