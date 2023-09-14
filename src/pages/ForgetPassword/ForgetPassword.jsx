@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ForgetPassword() {
   const {
@@ -11,7 +12,7 @@ function ForgetPassword() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const navigate = useNavigate();
   const [changesSaved, setChangesSaved] = useState(false);
   const [error, setError] = useState("");
 
@@ -22,6 +23,9 @@ function ForgetPassword() {
         if (response.status === 200) {
           setChangesSaved(true);
           setError("");
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
         }
       })
       .catch((error) => {
