@@ -116,9 +116,9 @@ function Login() {
             <p className="required">{errors.password?.message}</p>
           )}
           {error !== "" ? <p className="required">{error}</p> : null}
-          <Link to="/resetpassword" className="forgetPass">
+          <Link to="/forgot-password" className="forgetPass">
             <div>
-              <button>Forget Password?</button>
+              <button>Forgot Password?</button>
             </div>
           </Link>
           <div className="logInBtn">

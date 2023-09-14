@@ -38,9 +38,9 @@ function ChangePassword() {
           .then((response) => {
             if (response.status === 200) {
               setChangesSaved(true);
-              setTimeout(()=>{
+              setTimeout(() => {
                 navigate("/profile");
-              }, 3000)
+              }, 3000);
             }
           })
           .catch((error) => console.error(error));

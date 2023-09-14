@@ -13,6 +13,9 @@ import PlacesToVisit from "./components/PlacesToVisit/PlacesToVisit";
 import Register from "./pages/Register/Register";
 import Login from "./pages/LogIn/Login";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
+
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
+
 import AuthContext from "./contexts/AuthContext";
 import UserContext from "./contexts/UserContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -24,16 +27,30 @@ function App() {
   const { user } = useContext(UserContext);
   const { isAuthenticated } = useContext(AuthContext);
 
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <>
-   { location.pathname === "/" || location.pathname === "/register" ||location.pathname === "/login" || location.pathname.includes("overview") || location.pathname.includes("itinerary") ? null  : <NavBarMobile />}
-   { location.pathname === "/" || location.pathname === "/register" ||location.pathname === "/login" || location.pathname.includes("overview") || location.pathname.includes("itinerary") ? null  : <NavbarDesktop />}
+      {location.pathname === "/" ||
+      location.pathname === "/register" ||
+      location.pathname === "/login" ||
+      location.pathname.includes("overview") ||
+      location.pathname.includes("itinerary") ? null : (
+        <NavBarMobile />
+      )}
+      {location.pathname === "/" ||
+      location.pathname === "/register" ||
+      location.pathname === "/login" ||
+      location.pathname === "/forgot-password" ||
+      location.pathname.includes("overview") ||
+      location.pathname.includes("itinerary") ? null : (
+        <NavbarDesktop />
+      )}
       <Routes>
         <Route path="/" element={<StartJourney />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgetPassword />} />
 
         <Route
           element={
@@ -55,10 +72,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/newtrip" element={<PlanNewTrip />} />
           <Route path="/travelmate" element={<InviteMate />} />
+
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/change-password" element={<ChangePassword />} />
         </Route>
-
       </Routes>
     </>
   );
