@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import ellipse1 from "../../assets/Ellipse 2.svg";
 import ellipse2 from "../../assets/Ellipse 3.svg";
-import tripImage from "../../assets/Rectangle 705.png";
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -29,7 +28,13 @@ function ProfileUserCards({ trip, totalPlace }) {
   return (
     <div>
       <div className="tripsImagesLocation">
-        <img src={tripImage} alt="trip image" className="tripImage" />
+        <div className="tripImageDiv">
+          <img
+            src={trip.trip_image_url}
+            alt="trip image"
+            className="tripImage"
+          />
+        </div>
         <div className="titleDateMate ">
           <h3 className="trip-title-profile">{trip.destination}</h3>
           <div className="tripDateAndMates">

@@ -59,8 +59,6 @@ function Profile() {
     getProfileUsers();
   }, []);
 
-  console.log(profileUsers);
-
   return (
     <div className="bigContainer">
       <div className="homeButton">
@@ -79,6 +77,7 @@ function Profile() {
                       : null
                   }
                   alt="profile avatar"
+                  className="img"
                 />
                 <img src={editIcon} alt="edit icon" className="editIcon" />
               </div>

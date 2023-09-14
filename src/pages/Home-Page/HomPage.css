@@ -28,6 +28,7 @@ body {
 }
 .nameAndMessageAndAvatar {
   display: flex;
+
   justify-content: space-between;
   padding: 40px 20px;
 }
@@ -75,6 +76,14 @@ body {
 }
 .link-tags {
   color: #333;
+}
+.myTripAndPlanNew p {
+  display: none;
+}
+.userProfileAndContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 150px;
 }
 
 @media only screen and (min-width: 700px) {

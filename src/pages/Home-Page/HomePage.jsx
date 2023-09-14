@@ -43,7 +43,6 @@ function HomePage() {
     api
       .get("/articles", data)
       .then((response) => {
-        console.log(response.data);
         setArticles(response.data);
       })
       .catch((error) => console.log(error));
@@ -95,15 +94,6 @@ function HomePage() {
               </div>
             </>
           )}
-          {/* <div className="nameAndMessage">
-            <h3>
-              Hi, <span>Kiera Watson</span>
-            </h3>
-            <p>Explore beauty of journey</p>
-          </div>
-          <div className="avatarContainer">
-            <img src={avatar} alt="Avatar" className="avatar" />
-          </div> */}
         </div>
         <div className="myTripAndPlanNew">
           <h4>My trips</h4>
