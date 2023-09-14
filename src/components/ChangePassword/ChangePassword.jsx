@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 
 function ChangePassword() {
   const {
@@ -13,30 +14,50 @@ function ChangePassword() {
   } = useForm();
 
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // navigate('/home')
+  const [changesSaved, setChangesSaved] = useState(false);
 
   const changePassword = (data) => {
     // console.log(data);
-    if (data.newPassword === data.repeatPassword) {
-      setError("");
-      delete data.repeatPassword;
 
-      let config = {
-        headers: {
-          Authorization: "Bearer " + Cookies.get("user_token"),
-        },
-      };
+    //! VALIDATION OF PASSWORDS USING YUP
 
-      api
-        .post("/users/change-password", data, config)
-        .then((response) => console.log(response))
-        .catch((error) => console.error(error));
+    if (data.password !== data.newPassword) {
+      if (data.newPassword === data.repeatPassword) {
+        setError("");
+        delete data.repeatPassword;
+
+        let config = {
+          headers: {
+            Authorization: "Bearer " + Cookies.get("user_token"),
+          },
+        };
+
+        api
+          .post("/users/change-password", data, config)
+          .then((response) => {
+            if (response.status === 200) {
+              setChangesSaved(true);
+              setTimeout(() => {
+                navigate("/profile");
+              }, 3000);
+            }
+          })
+          .catch((error) => console.error(error));
+      } else {
+        setError("The repeated password should be the same of new password.");
+      }
     } else {
-      setError("This password is different from the new password");
+      console.log("SAME PASSWORD");
+      setError("The new password should be different of the current password.");
     }
   };
 
   return (
     <div className="loginForm">
+      <div className="loginTitle">
+        <h2>Change Password</h2>
+      </div>
       <form onSubmit={handleSubmit(changePassword)}>
         <label>Current Password</label>
         <input
@@ -79,8 +100,27 @@ function ChangePassword() {
         )}
         {error !== "" ? <p className="required">{error}</p> : null}
         <div className="logInBtn">
-          <Button text="SAVE CHANGES" newClassName="customButton" />
+          {changesSaved ? (
+            <Button
+              text="CHANGES HAVE BEEN SAVED"
+              newClassName="changesSavedButton"
+            />
+          ) : (
+            <Button text="SAVE CHANGES" newClassName="customButton" />
+          )}
         </div>
+        <Link to="/profile">
+          <div className="logInBtn">
+            {changesSaved ? (
+              <Button text="CANCEL CHANGES" newClassName="notShow" />
+            ) : (
+              <Button
+                text="CANCEL CHANGES"
+                newClassName="cancelChangesButton"
+              />
+            )}
+          </div>
+        </Link>
       </form>
       <Button text="CANCEL CHANGES" newClassName="abortBtn " />
     </div>

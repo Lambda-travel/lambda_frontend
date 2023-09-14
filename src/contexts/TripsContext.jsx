@@ -3,14 +3,15 @@ import { createContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import PropTypes from "prop-types";
 import api from "../api/api";
-import { useNavigate, useLocation } from "react-router-dom";
+// import { useNavigate, useLocation } from "react-router-dom";
 
-const UserContext = createContext();
+const TripsContext = createContext();
 
-const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
-  const navigate = useNavigate()
-  const location = useLocation()
+const TripsContextProvider = ({ children }) => {
+  const [trips, setTrips] = useState({});
+
+//   const navigate = useNavigate()
+//   const location = useLocation()
 
   useEffect(() => {
     const token = Cookies.get("user_token");
@@ -20,34 +21,28 @@ const UserContextProvider = ({ children }) => {
           Authorization: "Bearer " + token,
         },
       };
-
-      api
-        .get("/users", config)
+    api
+        .get("/trip", config)
         .then((response) => {
           if (response.status === 200) {
-            setUser(response.data);
-            if(location.pathname === "/"){
-              navigate("/home")
-            } else {
-              navigate(location.pathname)
-            }
+            setTrips(response.data);
           }
         })
         .catch((error) => console.error(error));
-    }
+    }  
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <TripsContext.Provider value={{ trips }}>
       {children}
-    </UserContext.Provider>
+    </TripsContext.Provider>
   );
 };
 
-UserContextProvider.propTypes = {
+TripsContextProvider.propTypes = {
   children: PropTypes.node.isRequired, // Validate that children is a node (React element)
 };
 
-export default UserContext;
+export default TripsContext;
 
-export { UserContextProvider };
+export { TripsContextProvider };

@@ -16,9 +16,9 @@ function NavBar({ color }) {
               {" "}
               <li className={`navHome ${color}`}>Home</li>
             </Link>
-            <Link to="/newtrip">
+            {/* <Link to="/newtrip">
               <li className={`navAdd ${color}`}>Add</li>
-            </Link>
+            </Link> */}
             <Link to="/profile">
               {" "}
               <li className={`navProfile ${color}`}>Profile</li>

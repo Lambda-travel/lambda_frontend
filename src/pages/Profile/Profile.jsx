@@ -1,44 +1,31 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import HomeNav from "../../components/HomeNav/HomeNav";
-import NavBar from "../../components/Nav Component/NavBar";
+// import HomeNav from "../../components/HomeNav/HomeNav";
+// import NavBar from "../../components/Nav Component/NavBar";
 import ProfileUserCards from "../../components/profileUserCards/ProfileUserCards";
-import avatar from "../../assets/Avatar.svg";
 import editIcon from "../../assets/Group 1689.svg";
 import api from "../../api/api";
+
+import { useEffect, useState, useContext } from "react";
+import UserContext from "../../contexts/UserContext";
+import Avatar from "@mui/material/Avatar";
+import TripsContext from "../../contexts/TripsContext";
 
 import "./Profile.css";
 
 function Profile() {
   /* COUNT OF ITEMS IN TRIP PLANS*/
+  const { user } = useContext(UserContext);
+  const { trips } = useContext(TripsContext);
 
-  const [tripsInfo, setTripsInfo] = useState();
   const [totalPlace, setTotalPlace] = useState([]);
   const [categoryStyle, setCategoryStyle] = useState(true);
-  const [profileUsers, setProfileUsers] = useState();
+  // const [profileUsers, setProfileUsers] = useState();
 
   const navigate = useNavigate();
 
   // * All methods
   const goToCreateNewTrip = () => {
     navigate("/newtrip");
-  };
-
-  const getTrips = () => {
-    //! SEND TOKEN as config
-
-    api.get("/trip").then((res) => {
-      setTripsInfo(res.data);
-    });
-  };
-
-  const getProfileUsers = () => {
-    api
-      .get("/users/id")
-      .then((res) => {
-        setProfileUsers(res.data);
-      })
-      .catch((err) => console.error(err));
   };
 
   const getTotalPlace = () => {
@@ -54,54 +41,36 @@ function Profile() {
   };
 
   useEffect(() => {
-    getTrips();
     getTotalPlace();
-    getProfileUsers();
   }, []);
 
   return (
     <div className="bigContainer">
-      <div className="homeButton">
+      {/* <div className="homeButton">
         <HomeNav />
-      </div>
+      </div> */}
 
       <div className="container-profile">
-        {profileUsers ? (
-          profileUsers.map((profile) => (
-            <div className="profileInfo" key={profile.id}>
-              <div className="profileImage">
-                <img
-                  src={
-                    profile.profile_image_url === "profile1.jpg"
-                      ? `${avatar}`
-                      : null
-                  }
-                  alt="profile avatar"
-                  className="img"
-                />
-                <Link to="/editpage">
-                  <img src={editIcon} alt="edit icon" className="editIcon" />
-                </Link>
-              </div>
-              <div className="profileInfo">
-                <h1 className="profileName">{`${profile.first_name} ${profile.last_name}`}</h1>
-                <p className="userName">
-                  {profile.user_name ? `@${profile.user_name}` : "@username"}
-                </p>
-              </div>
-            </div>
-          ))
-        ) : (
+        {user ? (
           <div className="profileInfo">
             <div className="profileImage">
-              <img src={avatar} alt="" />
-              <img src={editIcon} alt="" className="editIcon" />
+              <Avatar
+                sx={{ width: 100, height: 100 }}
+                src={user.profile_image_url ? user.profile_image_url : null}
+              />
+              <Link to="//editPage">
+                <img src={editIcon} alt="edit icon" className="editIcon" />
+              </Link>
             </div>
             <div className="profileInfo">
-              <h1 className="profileName">User full name</h1>
-              <p className="userName">@username</p>
+              <h1 className="profileName">
+                {user.first_name} {user.last_name}
+              </h1>
+              <p className="userName">{`@${user.user_name}`}</p>
             </div>
           </div>
+        ) : (
+          <h3>Loading...</h3>
         )}
 
         <div className="tripsAndGuidesContainer">
@@ -126,10 +95,10 @@ function Profile() {
           <div className="bottomLine"></div>
 
           <div className="tripPlansContent">
-            {tripsInfo ? (
+            {trips ? (
               <div className="tripPlansContent">
                 {categoryStyle ? (
-                  tripsInfo.map((trip) => (
+                  trips.map((trip) => (
                     <Link
                       key={trip.id}
                       className="link-in-card-profile"
@@ -146,11 +115,12 @@ function Profile() {
                 ) : (
                   <div className="container-start-planning-trip">
                     <p className="text-trip-plans-profile">
-                      You haven`t written any guide yet.
+                      {`You haven't written any guide yet.`}
                     </p>
                     <button
-                      className="customButton"
-                      onClick={goToCreateNewTrip}
+                      className="customButton disabled"
+                      // onClick={goToCreateNewTrip}
+                      disabled
                     >
                       Create a Guide
                     </button>
@@ -160,7 +130,7 @@ function Profile() {
             ) : (
               <div className="container-start-planning-trip">
                 <p className="text-trip-plans-profile">
-                  You haven`t planned any trips yet.
+                  {`You haven't written any trip yet.`}
                 </p>
                 <button className="customButton" onClick={goToCreateNewTrip}>
                   Start planning a trip
@@ -170,7 +140,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <NavBar />
+      {/* <NavBar /> */}
     </div>
   );
 }

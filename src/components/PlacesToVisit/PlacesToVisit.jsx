@@ -77,9 +77,9 @@ useEffect(()=>{
             {addPopUp && <AddPlace toggleAdd={toggleAdd}/>}
             <div className="places-to-visit-container"></div>
         {/*-------- RECOMMENDED PLACES -------------*/}
-        <div>
+        {/* <div>
           <p className="recommended-places-overview">Recommended Places</p>
-        </div>
+        </div> */}
 
 
     </article>
