@@ -14,11 +14,11 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/LogIn/Login";
 import { UserContextProvider } from "./contexts/UserContext.jsx";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
 function App() {
   return (
     <>
-
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<StartJourney />} />
@@ -37,13 +37,13 @@ function App() {
           <Route path="/newtrip" element={<PlanNewTrip />} />
           <Route path="/travelmate" element={<InviteMate />} />
           <Route path="/article" element={<ArticlePage />} />
-            <Route path="/article/:id" element={<ArticlePage />} />
+          <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/forgot-password" element={<ForgetPassword />} />
         </Routes>
       </UserContextProvider>
-
     </>
   );
 }

@@ -30,8 +30,9 @@ function ChangePassword() {
       api
         .post("/users/change-password", data, config)
         .then((response) => {
-          console.log(response);
-          setChangesSaved(true);
+          if (response.status === 200) {
+            setChangesSaved(true);
+          }
         })
         .catch((error) => {
           console.error(error);
