@@ -79,7 +79,9 @@ function Profile() {
                   alt="profile avatar"
                   className="img"
                 />
-                <img src={editIcon} alt="edit icon" className="editIcon" />
+                <Link to="/editpage">
+                  <img src={editIcon} alt="edit icon" className="editIcon" />
+                </Link>
               </div>
               <div className="profileInfo">
                 <h1 className="profileName">{`${profile.first_name} ${profile.last_name}`}</h1>

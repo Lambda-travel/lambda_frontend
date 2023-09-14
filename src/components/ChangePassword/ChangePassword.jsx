@@ -45,7 +45,7 @@ function ChangePassword() {
           })}
           aria-invalid={errors.password ? "true" : "false"}
           type="password"
-          className="registerPassword"
+          className="registerPassword inputs"
           placeholder="Current Password"
         />
         {errors.password && (
@@ -58,7 +58,7 @@ function ChangePassword() {
           })}
           aria-invalid={errors.newPassword ? "true" : "false"}
           type="password"
-          className="registerPassword"
+          className="registerPassword inputs"
           placeholder="New Password"
         />
         {errors.newPassword && (
@@ -71,7 +71,7 @@ function ChangePassword() {
           })}
           aria-invalid={errors.repeatPassword ? "true" : "false"}
           type="password"
-          className="registerPassword"
+          className="registerPassword inputs"
           placeholder="Repeat New Password"
         />
         {errors.repeatPassword && (
@@ -82,6 +82,7 @@ function ChangePassword() {
           <Button text="SAVE CHANGES" newClassName="customButton" />
         </div>
       </form>
+      <Button text="CANCEL CHANGES" newClassName="abortBtn " />
     </div>
   );
 }
