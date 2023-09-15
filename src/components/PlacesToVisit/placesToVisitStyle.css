@@ -25,10 +25,19 @@ body.active-modal-place-to-visit {
     font-weight: 600;
 }
 .description-place {
+    overflow-wrap: break-word;
+    text-overflow: ellipsis; 
     color: #6B7280 ;
     margin-top: 0.5rem;
     font-weight: 400;
     font-size: 0.9rem;
+    width: 24rem;
+}
+.test-comment {
+    height: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 .add-place-to-visit-btn {
     cursor: pointer;
@@ -92,5 +101,9 @@ display: none;
     }
     .description-container {
         align-items: center;
+    }
+    .description-place {
+        text-align: center;
+        width: 24rem;
     }
 }
