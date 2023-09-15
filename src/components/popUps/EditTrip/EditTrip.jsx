@@ -6,9 +6,11 @@ import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 import api from "../../../api/api";
 import { useNavigate } from "react-router-dom";
+import {  useState } from "react";
 
 
 const EditTrip = ({toggleEditTrip})=> {
+    const [loading,setLoading] = useState(false)
     const allDays = JSON.parse(localStorage.getItem("allDays"))
     const tripID = allDays.map((tripID)=>tripID.trip_id)[0]
 
@@ -17,6 +19,7 @@ const EditTrip = ({toggleEditTrip})=> {
     const {
         register,
         handleSubmit,
+
       } = useForm();
 
     const getCurrentDate = () => {
@@ -27,56 +30,61 @@ const EditTrip = ({toggleEditTrip})=> {
         return `${year}-${month}-${day}`;
       };
 
-      
+
+  
+  
       const editInfoTrip =(data)=>{
+            setLoading(true)
+           if(data.destination == ""){
+                 delete data.destination
+             }if(data.end_date == ""){
+                 delete data.end_date
+             }if(data.start_date == ""){
+                 delete data.start_date
+             }if (data.trip_image_url.length == 0){
+                 delete data.trip_image_url
+             }
 
-          if(data.destination == ""){
-                delete data.destination
-            }if(data.end_date == ""){
-                delete data.end_date
-            }if(data.start_date == ""){
-                delete data.start_date
-            }if (data.trip_image_url.length == 0){
-                delete data.trip_image_url
-            }
 
+         if(data.trip_image_url !== undefined && data.trip_image_url[0] ){
 
-        if(data.trip_image_url !== undefined && data.trip_image_url[0] ){
-
-          const destinationImage = data.trip_image_url[0]
-          const imageRef = ref(storage,`${uuid()}-trip-image`)
+           const destinationImage = data.trip_image_url[0]
+           const imageRef = ref(storage,`${uuid()}-trip-image`)
      
      
-          uploadBytes(imageRef, destinationImage)
-          .then(()=>{
-             getDownloadURL(imageRef)
-            .then((urlImage)=>{
-             data.trip_image_url = urlImage
+           uploadBytes(imageRef, destinationImage)
+           .then(()=>{
+              getDownloadURL(imageRef)
+             .then((urlImage)=>{
+              data.trip_image_url = urlImage
+              api
+              .put(`/trip/edit/${tripID}`,data)
+               .then((response)=> response)
+        
+        
+             })
+             .catch((error)=> console.error(error))
+           })
+            .catch((error)=>console.log(error) )
+         } else {
              api
              .put(`/trip/edit/${tripID}`,data)
-              .then((response)=> response)
-        
-        
-            })
-            .catch((error)=> console.error(error))
-          })
-           .catch((error)=>console.log(error) )
-        } else {
-            api
-            .put(`/trip/edit/${tripID}`,data)
-            .then((response)=> response)
-        }
+             .then((response)=> response)
+         }
 
-        toggleEditTrip()
-
-        setTimeout(() => {
-            reload(0)
-          }, 3000);
+         setTimeout(() => {
+         toggleEditTrip()
+             reload(0)
+           }, 3000);
     }
 
-
     return (
-
+          <>
+            {loading ? (
+             <div className="loader-container">
+              <div className="spinner"></div>
+            </div>
+            ):(
         <div className="background-popUp-Edit">
             <div
             onClick={toggleEditTrip} 
@@ -134,12 +142,14 @@ const EditTrip = ({toggleEditTrip})=> {
                     {...register("trip_image_url")}
                 />
                     <div className="container-buttons-popUp-edit">
-                        <button type="submit" className="add-place-visit">ADD</button>
+                      <button type="submit" className="add-place-visit">ADD</button>
                         <button onClick={toggleEditTrip} className="cancel-add-place">CANCEL</button>
                     </div>
                     </form>
                 </div>
-            </div>
+                
+            </div>)}
+            </>
         )
 }
 

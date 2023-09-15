@@ -16,7 +16,6 @@ const AddPlace = ({toggleAdd})=> {
     const submitPlaceToVisit = (data) => {
         const allDays = JSON.parse(localStorage.getItem("allDays"))
         const tripID = allDays.map((tripID)=>tripID.trip_id)[0]
-        console.log(data)
         api
         .post(`trip/place/${tripID}`,data)
         .then((response)=>response)
