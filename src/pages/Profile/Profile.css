@@ -6,7 +6,6 @@ body {
   box-sizing: border-box;
   font-family: "Poppins";
 }
-
 .bigContainer {
   margin-top: 60px;
   padding-top: 50px;
@@ -28,7 +27,6 @@ body {
   justify-content: flex-start;
   margin-left: -100px;
 }
-
 .tripsAndGuidesContainer {
   display: flex;
   flex-direction: column;
@@ -41,17 +39,14 @@ body {
   margin-left: -20px;
   z-index: 3;
 }
-
 .avatar-profile {
   width: 150px;
   height: 150px;
 }
-
 .profileImage {
   display: flex;
   margin-left: 20px;
 }
-
 .userName {
   color: #6b7280;
   font-weight: 400;
@@ -59,18 +54,15 @@ body {
 }
 .tripsImagesLocation {
   display: flex;
-
-  border-bottom: 1px solid rgb(234, 234, 234);
+  border-bottom: 1px solid rgb(214, 214, 214);
   padding: 10px 20px;
 }
-
 .tripImage {
-  width: 20%;
-  height: 20%;
+  width: 50%;
+  height: 50%;
   margin-top: 20px;
   margin-right: 20px;
 }
-
 .tripDateAndMates {
   display: flex;
   /* margin-top: -10px; */
@@ -104,12 +96,10 @@ body {
   font-size: 1.6rem;
   font-weight: 800;
 }
-
 .trip-title-profile {
   font-size: 1rem;
   margin: 2rem 0 1rem 0;
 }
-
 .date-trip-profile {
   font-weight: bolder;
   font-size: 0.8rem;
@@ -136,7 +126,6 @@ body {
   color: #0f0f0f;
   text-decoration: none;
 }
-
 .trip__And__Active {
   border: none;
   font-size: 1rem;
@@ -156,37 +145,12 @@ body {
   flex-direction: column;
   /* margin-left: 5px; */
 }
-
 .disabled {
   background-color: #bfbfbf;
 }
-
-/* .profileImage {
-  width: 160px;
-  height: 160px;
-
-  border-radius: 100px;
-  display: grid;
-  place-items: center;
-  align-items: center;
-  position: relative;
-} */
-/* .img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  z-index: -1;
-} */
-
 @media only screen and (min-width: 900px) {
   .tripsImagesLocation {
     width: 100vw;
-
     display: flex;
     justify-content: space-around;
     border: 1px solid rgb(196, 196, 196);
@@ -209,7 +173,6 @@ body {
   .titleDateMate h3 {
     font-weight: 500;
   }
-
   .titleDateMate p {
     font-weight: 100;
   }
@@ -229,13 +192,5 @@ body {
     flex-wrap: wrap;
     /* margin-left: 108px;
     margin-bottom: -25px; */
-  }
-  .tripImageDiv {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    margin-top: 20px;
-    margin-right: 20px;
-    border-radius: 14px;
   }
 }

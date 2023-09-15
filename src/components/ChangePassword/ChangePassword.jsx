@@ -55,9 +55,6 @@ function ChangePassword() {
 
   return (
     <div className="loginForm">
-      <div className="loginTitle">
-        <h2>Change Password</h2>
-      </div>
       <form onSubmit={handleSubmit(changePassword)}>
         <label>Current Password</label>
         <input
@@ -114,10 +111,7 @@ function ChangePassword() {
             {changesSaved ? (
               <Button text="CANCEL CHANGES" newClassName="notShow" />
             ) : (
-              <Button
-                text="CANCEL CHANGES"
-                newClassName="cancelChangesButton"
-              />
+              <Button text="CANCEL CHANGES" newClassName="abortChangesButton" />
             )}
           </div>
         </Link>
