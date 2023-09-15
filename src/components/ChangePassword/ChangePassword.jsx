@@ -122,7 +122,6 @@ function ChangePassword() {
           </div>
         </Link>
       </form>
-      <Button text="CANCEL CHANGES" newClassName="abortBtn " />
     </div>
   );
 }
