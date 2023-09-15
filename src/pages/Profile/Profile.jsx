@@ -44,8 +44,6 @@ function Profile() {
     getTotalPlace();
   }, []);
 
-  // console.log(profileUsers);
-
   return (
     <div className="bigContainer">
       {/* <div className="homeButton">
@@ -54,24 +52,26 @@ function Profile() {
 
       <div className="container-profile">
         {user ? (
-            <div className="profileInfo" >
-              <div className="profileImage">
-                  <Avatar
-                    sx={{ width: 100, height: 100 }}
-                    src={user.profile_image_url ? user.profile_image_url : null}
-                  />
-              <Link to="/edit-profile">
+          <div className="profileInfo">
+            <div className="profileImage">
+              <Avatar
+                sx={{ width: 100, height: 100 }}
+                src={user.profile_image_url ? user.profile_image_url : null}
+              />
+              <Link to="/editPage">
                 <img src={editIcon} alt="edit icon" className="editIcon" />
-                </Link>
-              </div>
-              <div className="profileInfo">
-                <h1 className="profileName">{user.first_name} {user.last_name}</h1>
-                <p className="userName">
-                  {`@${user.user_name}`}
-                </p>
-              </div>
+              </Link>
             </div>
-        ) : <h3>Loading...</h3>}
+            <div className="profileInfo">
+              <h1 className="profileName">
+                {user.first_name} {user.last_name}
+              </h1>
+              <p className="userName">{`@${user.user_name}`}</p>
+            </div>
+          </div>
+        ) : (
+          <h3>Loading...</h3>
+        )}
 
         <div className="tripsAndGuidesContainer">
           <div className="tripsPlusGuides">
@@ -130,7 +130,7 @@ function Profile() {
             ) : (
               <div className="container-start-planning-trip">
                 <p className="text-trip-plans-profile">
-                {`You haven't written any trip yet.`}
+                  {`You haven't written any trip yet.`}
                 </p>
                 <button className="customButton" onClick={goToCreateNewTrip}>
                   Start planning a trip

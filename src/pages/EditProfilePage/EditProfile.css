@@ -1,0 +1,51 @@
+.editContainer {
+  padding: 50px;
+}
+
+.btnActive {
+  background: transparent;
+  border: none;
+  color: #ff5a5f;
+  border-bottom: 2px solid #ff5a5f;
+}
+
+.btnDisabled {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+}
+
+.btn {
+  margin-right: 20px;
+}
+
+.buttonsContainer {
+  margin-top: 50px;
+}
+
+.line {
+  width: 100%;
+
+  height: 1px;
+  background-color: #bfbfbf;
+}
+
+.details_Container {
+  display: flex;
+  justify-content: center;
+}
+.editNavBtn {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+@media only screen and (min-width: 700px) {
+  .buttonsContainer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+}

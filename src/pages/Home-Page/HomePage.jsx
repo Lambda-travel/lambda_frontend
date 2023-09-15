@@ -67,11 +67,10 @@ function HomePage() {
               <h3>Loading....</h3>
             </>
           )}
-      
         </div>
-      <div className="myTripAndPlanNew">
-            <h4>My trips</h4>
-          </div>
+        <div className="myTripAndPlanNew">
+          <h4>My trips</h4>
+        </div>
       </div>
       {trips && trips.length > 0 ? (
         <>
@@ -93,9 +92,11 @@ function HomePage() {
         </>
       ) : (
         <div>
-          
           <div className="NoTripAvailable-Mobile">
-          <p>No Trips available.{"  "}<Link to="/newtrip">Plan your trip.</Link></p>
+            <p>
+              No Trips available.{"  "}
+              <Link to="/newtrip">Plan your trip.</Link>
+            </p>
           </div>
         </div>
       )}
@@ -115,10 +116,12 @@ function HomePage() {
           </div>
         </>
       ) : (
-        <div >
-          
+        <div>
           <div className="NoTripAvailable-Desktop">
-            <p>No Trips available.{"  "}<Link to="/newtrip">Plan your trip.</Link></p>
+            <p>
+              No Trips available.{"  "}
+              <Link to="/newtrip">Plan your trip.</Link>
+            </p>
           </div>
         </div>
       )}

@@ -6,7 +6,6 @@ body {
   box-sizing: border-box;
   font-family: "Poppins";
 }
-
 .bigContainer {
   margin-top: 60px;
   padding-top: 50px;
@@ -28,7 +27,6 @@ body {
   justify-content: flex-start;
   margin-left: -100px;
 }
-
 .tripsAndGuidesContainer {
   display: flex;
   flex-direction: column;
@@ -41,18 +39,14 @@ body {
   margin-left: -20px;
   z-index: 3;
 }
-
 .avatar-profile {
   width: 150px;
   height: 150px;
 }
-
-.profileImage{
+.profileImage {
   display: flex;
   margin-left: 20px;
-
 }
-
 .userName {
   color: #6b7280;
   font-weight: 400;
@@ -69,7 +63,6 @@ body {
   margin-top: 20px;
   margin-right: 20px;
 }
-
 .tripDateAndMates {
   display: flex;
   /* margin-top: -10px; */
@@ -103,16 +96,14 @@ body {
   font-size: 1.6rem;
   font-weight: 800;
 }
-
 .trip-title-profile {
   font-size: 1rem;
   margin: 2rem 0 1rem 0;
 }
-
 .date-trip-profile {
   font-weight: bolder;
   font-size: 0.8rem;
-  }
+}
 .titleDateMate h3 {
   font-weight: 500;
 }
@@ -135,7 +126,6 @@ body {
   color: #0f0f0f;
   text-decoration: none;
 }
-
 .trip__And__Active {
   border: none;
   font-size: 1rem;
@@ -155,15 +145,12 @@ body {
   flex-direction: column;
   /* margin-left: 5px; */
 }
-
-.disabled{
+.disabled {
   background-color: #bfbfbf;
 }
-
 @media only screen and (min-width: 900px) {
   .tripsImagesLocation {
     width: 100vw;
-
     display: flex;
     justify-content: space-around;
     border: 1px solid rgb(196, 196, 196);
@@ -186,7 +173,6 @@ body {
   .titleDateMate h3 {
     font-weight: 500;
   }
-
   .titleDateMate p {
     font-weight: 100;
   }
@@ -203,9 +189,8 @@ body {
   }
   .datePlace {
     display: flex;
-     flex-wrap: wrap;
+    flex-wrap: wrap;
     /* margin-left: 108px;
     margin-bottom: -25px; */
   }
 }
-

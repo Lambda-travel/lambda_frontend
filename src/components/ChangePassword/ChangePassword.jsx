@@ -1,5 +1,5 @@
 import "./ChangePassword.css";
-import Button from "../../components/Button/Button";
+import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useState } from "react";
@@ -55,9 +55,6 @@ function ChangePassword() {
 
   return (
     <div className="loginForm">
-      <div className="loginTitle">
-        <h2>Change Password</h2>
-      </div>
       <form onSubmit={handleSubmit(changePassword)}>
         <label>Current Password</label>
         <input
@@ -66,7 +63,7 @@ function ChangePassword() {
           })}
           aria-invalid={errors.password ? "true" : "false"}
           type="password"
-          className="registerPassword"
+          className="registerPassword inputs"
           placeholder="Current Password"
         />
         {errors.password && (
@@ -79,7 +76,7 @@ function ChangePassword() {
           })}
           aria-invalid={errors.newPassword ? "true" : "false"}
           type="password"
-          className="registerPassword"
+          className="registerPassword inputs"
           placeholder="New Password"
         />
         {errors.newPassword && (
@@ -92,7 +89,7 @@ function ChangePassword() {
           })}
           aria-invalid={errors.repeatPassword ? "true" : "false"}
           type="password"
-          className="registerPassword"
+          className="registerPassword inputs"
           placeholder="Repeat New Password"
         />
         {errors.repeatPassword && (
@@ -114,10 +111,7 @@ function ChangePassword() {
             {changesSaved ? (
               <Button text="CANCEL CHANGES" newClassName="notShow" />
             ) : (
-              <Button
-                text="CANCEL CHANGES"
-                newClassName="cancelChangesButton"
-              />
+              <Button text="CANCEL CHANGES" newClassName="abortChangesButton" />
             )}
           </div>
         </Link>

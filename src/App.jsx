@@ -12,7 +12,9 @@ import ListItinerary from "./components/ListItinerary/ListItinerary/ListItinerar
 import PlacesToVisit from "./components/PlacesToVisit/PlacesToVisit";
 import Register from "./pages/Register/Register";
 import Login from "./pages/LogIn/Login";
-import ChangePassword from "./pages/ChangePassword/ChangePassword";
+
+import ChangePassword from "./components/ChangePassword/ChangePassword";
+import EditProfile from "./pages/EditProfilePage/EditProfile";
 
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
@@ -75,6 +77,7 @@ function App() {
 
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/editPage" element={<EditProfile />} />
         </Route>
       </Routes>
     </>
