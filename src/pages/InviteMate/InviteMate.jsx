@@ -1,8 +1,8 @@
 import "./InviteMate.css";
-import homeIcon from "../../assets/homeicon_forheader.png";
 import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
@@ -15,30 +15,29 @@ function InviteMate() {
 
   const navigate = useNavigate();
 
+  const [error, setError] = useState("");
+
   const inviteTravelmate = (data) => {
     const tripId = localStorage.getItem("tripIdInviteTravelmate");
     data.trip_id = tripId;
-    console.log(tripId);
+    // console.log(tripId);
     api
       .post("/travelmate", data)
       .then((response) => {
+        console.log(response);
         if (response.status === 201) {
+          setError("");
           navigate("/profile");
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setError(err.response.data);
+      });
   };
 
   return (
     <>
-      <header className="header">
-        <Link className="btn-home-travelmate" to="/home">
-          <button className="homeBtn">
-            <img src={homeIcon} />
-            Home{" "}
-          </button>
-        </Link>
-      </header>
       <div className="pageTitle">
         <h2>Invite your travelmate</h2>
         <p>
@@ -64,6 +63,7 @@ function InviteMate() {
           />
         </div>
         {errors.value && <p className="required">{errors.value?.message}</p>}
+        {error !== "" ? <p className="required">{error}</p> : null}
         <div className="inviteAndMaybeBtn">
           <Button text="Invite Travelmate" newClassName="customButton" />
           <Link to="/profile">
