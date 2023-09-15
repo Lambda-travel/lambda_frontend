@@ -7,7 +7,6 @@ import api from "../../../api/api";
 const CardInfo = ({ dayID }) => {
   const [destination, setDestination] = useState([]);
 
-
   const destinationDetail = (dayID) => {
     api
       .get(`/destination/detail/${dayID}`)
@@ -35,7 +34,7 @@ const CardInfo = ({ dayID }) => {
           {destination.place_to_visit}
         </h3>
         <p className="description-card-itinerary">{destination.description}</p>
-        <Link to={`/overview/destination-detail/${destination.id}`}>
+        <Link to={`/overview/destination-detail/${destination.day_id}`}>
           <button className="viewMore-card-itinerary">View Details</button>
         </Link>
       </div>
