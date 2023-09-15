@@ -115,36 +115,6 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
   );
 };
 
-/*
 
-const submitDestination = (data) => {
-
-     if(data.image !== null){
-      for(let eachImage of data.image){
-       const destinationImage = eachImage
-       const imageRef = ref(storage,`${uuid()}-destination-image`)
-
-       uploadBytes(imageRef, destinationImage)
-       .then(()=>{
-          getDownloadURL(imageRef)
-         .then((urlImage)=>{
-          data.image = urlImage
-          api
-          .post(`/destination/${dayId}`,data)
-           .then((response)=> response)
-
-         })
-         .catch((error)=> console.error(error))
-       })
-        .catch((error)=>console.log(error) )
-     }
-      }
-
-
-
-    toggleAddDestination();
-   };
-
-*/
 
 export default AddDestination;
