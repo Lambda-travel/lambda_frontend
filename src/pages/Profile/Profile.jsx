@@ -30,6 +30,7 @@ function Profile() {
 
   const getTotalPlace = () => {
     api.get("/trip/place").then((res) => {
+      //! /trip/place ??????
       setTotalPlace(res.data);
     });
   };
@@ -96,7 +97,7 @@ function Profile() {
           <div className="bottomLine"></div>
 
           <div className="tripPlansContent">
-            {trips ? (
+            {trips && trips.length > 0 ? (
               <div className="tripPlansContent">
                 {categoryStyle ? (
                   trips.map((trip) => (
@@ -131,7 +132,7 @@ function Profile() {
             ) : (
               <div className="container-start-planning-trip">
                 <p className="text-trip-plans-profile">
-                  {`You haven't written any trip yet.`}
+                  {`You haven't created any trip yet.`}
                 </p>
                 <button className="customButton" onClick={goToCreateNewTrip}>
                   Start planning a trip

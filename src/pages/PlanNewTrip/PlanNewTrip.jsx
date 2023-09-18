@@ -22,7 +22,6 @@ function PlanNewTrip() {
 
   const { user } = useContext(UserContext);
 
-
   const getCurrentDate = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -40,25 +39,28 @@ function PlanNewTrip() {
         headers: {
           Authorization: "Bearer " + token,
         },
+      };
+      if (endDate < startDate) {
+        <span id="displayError"></span>;
+        alert("End date should not be earlier that the Start date");
+        return;
       }
-        if (endDate < startDate) {
-          <span id="displayError"></span>;
-          alert("End date should not be earlier that the Start date");
-          return;
-        }
-        // This snippet was for alert the user that he could not input a date after the start date
-        data.user_id = user.id; //!alter for the user_id because this line is just to simulate the id
-        console.log(data);
-        api
-        .post("/trip", data,config)
+      // This snippet was for alert the user that he could not input a date after the start date
+      data.user_id = user.id; //!alter for the user_id because this line is just to simulate the id
+      console.log(data);
+      api
+        .post("/trip", data, config)
         .then((response) => {
           if (response.status === 201) {
-            localStorage.setItem("tripIdInviteTravelmate", response.data.tripId);
+            localStorage.setItem(
+              "tripIdInviteTravelmate",
+              response.data.tripId
+            );
             navigate("/travelmate");
           }
         })
-        .catch((error) => console.log(error))
-      }
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
@@ -73,7 +75,7 @@ function PlanNewTrip() {
         <p>Build an itinerary and map your upcoming travel plans. </p>
       </div>
       <form className="planNewTripForm" onSubmit={handleSubmit(createNewTrip)}>
-        <div className="divInput">
+        <div className="divInput newTripTraMate">
           <label htmlFor="destination">Destination</label>
           <input
             {...register("destination", {
@@ -89,7 +91,7 @@ function PlanNewTrip() {
         {errors.destination && (
           <p className="required">{errors.destination?.message}</p>
         )}
-        <div className="divInput">
+        <div className="divInput newTripTraMate">
           <label htmlFor="start_date">Start Date</label>
           <input
             {...register("start_date", {
@@ -108,7 +110,7 @@ function PlanNewTrip() {
         {errors.start_date && (
           <p className="required">{errors.start_date?.message}</p>
         )}
-        <div className="divInput">
+        <div className="divInput newTripTraMate">
           <label htmlFor="end_date">End Date</label>
           <input
             {...register("end_date", {

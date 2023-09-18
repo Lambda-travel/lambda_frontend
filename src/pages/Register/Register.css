@@ -51,8 +51,9 @@ body {
     .registerForm{
         width: 40%;
         margin: 0 auto;
-        height: 100vh;
     }
+    
+    
 
     .nextBtn{
         margin: 0 auto;
