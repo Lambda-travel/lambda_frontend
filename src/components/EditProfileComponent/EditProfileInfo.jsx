@@ -5,11 +5,13 @@ import { storage } from "../../services/firebase";
 import { v4 as uuid } from "uuid";
 import "./EditProfileInfo.css";
 import api from "../../api/api";
+import { useContext, useEffect } from "react";
+import UserContext from "../../contexts/UserContext";
 
 function EditProfileInfo() {
-  // const getUser = () => {
-  //   api.get("/users/id").then();
-  // };
+  const { user } = useContext(UserContext);
+  const user_id = user.id;
+
   const {
     register,
     handleSubmit,
@@ -17,7 +19,6 @@ function EditProfileInfo() {
   } = useForm();
 
   const editUser = (data) => {
-    console.log(data);
     if (data.first_name == "") {
       delete data.first_name;
     }
@@ -35,16 +36,27 @@ function EditProfileInfo() {
       data.profile_image_url !== undefined &&
       data.profile_image_url[0].name
     ) {
-      const imagePath = data.profile_image_url[0].name;
-      const imageRef = ref(storage, `profile /${imagePath + uuid()}`);
-      console.log(`${imagePath + uuid()} `);
+      const imagePath = data.profile_image_url[0];
+      const imageRef = ref(storage, `${imagePath + uuid()}-profileimage`);
+
       uploadBytes(imageRef, imagePath).then(() => {
-        getDownloadURL(imageRef).then((url) => {
-          data.profile_image_url[0].name = url;
-        });
+        getDownloadURL(imageRef)
+          .then((url) => {
+            // data.profile_image_url[0].name = url;
+            api
+              .put(`/users/edit_user/${user_id}`, data)
+              .then((response) => response);
+            // console.log(url);
+            // console.log(data);
+          })
+          .catch((err) => console.error(err));
       });
     }
+    // else {
+    //   setUser((prevUser) => ({ ...prevUser, ...data }));
+    // }
   };
+
   return (
     <div>
       <div className="formContainer">
@@ -54,7 +66,7 @@ function EditProfileInfo() {
             <input
               id="firstname"
               type="text"
-              placeholder="First name"
+              placeholder={user.first_name}
               {...register("first_name")}
               className="inputs"
             />
@@ -64,7 +76,7 @@ function EditProfileInfo() {
             <input
               id="lastname"
               type="text"
-              placeholder="Last name"
+              placeholder={user.last_name}
               {...register("last_name")}
               className="inputs"
             />
@@ -74,7 +86,7 @@ function EditProfileInfo() {
             <input
               id="username"
               type="text"
-              placeholder="user name"
+              placeholder={user.user_name}
               {...register("user_name")}
               className="inputs"
             />
