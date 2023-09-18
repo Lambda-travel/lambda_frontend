@@ -4,7 +4,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../services/firebase";
 import { v4 as uuid } from "uuid";
 import "./EditProfileInfo.css";
-import api from "../../api/api";
 
 function EditProfileInfo() {
   // const getUser = () => {
@@ -13,7 +12,7 @@ function EditProfileInfo() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
 
   const editUser = (data) => {

@@ -58,8 +58,8 @@ body {
   padding: 10px 20px;
 }
 .tripImage {
-  width: 50%;
-  height: 50%;
+  width: 175px;
+  height: 135px;
   margin-top: 20px;
   margin-right: 20px;
 }
@@ -159,8 +159,8 @@ body {
     height: 40vh;
   }
   .tripImage {
-    width: 25%;
-    height: 25%;
+    width: 350px;
+    height: 250px;
     margin-left: -5rem;
     margin-top: 20px;
     margin-right: -600px;

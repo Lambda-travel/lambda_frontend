@@ -4,24 +4,34 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 // import HomeNav from "../../components/HomeNav/HomeNav";
 import api from "../../api/api";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import Cookies from "js-cookie";
+import Select from "react-select";
+import TripsContext from "../../contexts/TripsContext";
 
 function PlanNewTrip() {
   const {
     register,
+    control,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  const [error, setError] = useState();
 
   const navigate = useNavigate();
 
   const { user } = useContext(UserContext);
+  const { countries, selectedCountry, setSelectedCountry } = useContext(TripsContext);
 
+  const startDate = watch(["start_date"]);
+  const endDate = watch(["end_date"]);
 
   const getCurrentDate = () => {
     const today = new Date();
@@ -31,43 +41,49 @@ function PlanNewTrip() {
     return `${year}-${month}-${day}`;
   };
 
+  const defaultDestination = "Portugal";
+
+  useEffect(() => {
+    if (endDate && startDate) {
+      if (endDate[0]?.length > 0 && startDate[0]?.length > 0) {
+        if (endDate < startDate) {
+          setError("End date should not be earlier that the Start date");
+        } else {
+          setError(null);
+        }
+      }
+    }
+  }, [endDate, startDate]);
+
   const createNewTrip = (data) => {
-    const startDate = new Date(data.start_date);
-    const endDate = new Date(data.end_date);
+   
     const token = Cookies.get("user_token");
     if (token) {
       let config = {
         headers: {
           Authorization: "Bearer " + token,
         },
-      }
-        if (endDate < startDate) {
-          <span id="displayError"></span>;
-          alert("End date should not be earlier that the Start date");
-          return;
-        }
-        // This snippet was for alert the user that he could not input a date after the start date
-        data.user_id = user.id; //!alter for the user_id because this line is just to simulate the id
-        console.log(data);
-        api
-        .post("/trip", data,config)
+      };
+  
+      data.user_id = user.id; 
+      // console.log(data);
+      api
+        .post("/trip", data, config)
         .then((response) => {
           if (response.status === 201) {
-            localStorage.setItem("tripIdInviteTravelmate", response.data.tripId);
+            localStorage.setItem(
+              "tripIdInviteTravelmate",
+              response.data.tripId
+            );
             navigate("/travelmate");
           }
         })
-        .catch((error) => console.log(error))
-      }
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
     <>
-      {/* <header className="header">
-        <Link to="/home">
-          <HomeNav customClassName="homeBtn" />
-        </Link>
-      </header> */}
       <div className="pageTitle">
         <h2>Plan a new trip</h2>
         <p>Build an itinerary and map your upcoming travel plans. </p>
@@ -75,7 +91,26 @@ function PlanNewTrip() {
       <form className="planNewTripForm" onSubmit={handleSubmit(createNewTrip)}>
         <div className="divInput">
           <label htmlFor="destination">Destination</label>
-          <input
+          <Controller
+            className="inputField"
+            name="destination"
+            control={control}
+            defaultValue={defaultDestination}
+            placeholder="e.g., Japan, Paris, Indonesia"
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={countries}
+                onChange={(value) => {
+                  // console.log(value);
+                  setSelectedCountry(value);
+                  setValue("destination", value.label);
+                }}
+                value={selectedCountry}
+              />
+            )}
+          />
+          {/* <input
             {...register("destination", {
               required: "A destination is required!",
             })}
@@ -84,11 +119,11 @@ function PlanNewTrip() {
             className="inputField"
             type="text"
             placeholder="e.g., Japan, Paris, Indonesia"
-          />
+          /> */}
         </div>
-        {errors.destination && (
+        {/* {errors.destination && (
           <p className="required">{errors.destination?.message}</p>
-        )}
+        )} */}
         <div className="divInput">
           <label htmlFor="start_date">Start Date</label>
           <input
@@ -119,7 +154,8 @@ function PlanNewTrip() {
             className="inputField"
             type="text"
             placeholder="e.g. 17 Aug 2023"
-            min={getCurrentDate()}
+            // min={getCurrentDate()}
+            min={startDate[0] ? startDate[0] : getCurrentDate()}
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
           />
@@ -127,6 +163,7 @@ function PlanNewTrip() {
         {errors.end_date && (
           <p className="required">{errors.end_date?.message}</p>
         )}
+        {error && error.length > 0 ? <p className="required">{error}</p> : null}
         <div className="startCancelBtn">
           <Button text="Start Planning" newClassName="customButton" />
           <Link to="/home">
@@ -139,23 +176,3 @@ function PlanNewTrip() {
 }
 
 export default PlanNewTrip;
-
-// const startDate = new Date(data.start_date);
-// const endDate = new Date(data.end_date);
-// if (endDate < startDate) {
-//   <span id="displayError"></span>;
-//   alert("End date should not be earlier that the Start date");
-//   return;
-// } This snippet was for alert the user that he could not input a date after the start date
-
-//Blocking date on end date input
-
-// import { useState } from "react";
-// const [startDate, setStartDate] = useState("");
-// const handleStartDateChange = (e) => {
-//   setStartDate(e.target.value);
-// }; This snippet was for blocking the dates of the end date input starting in the previous input of start date
-
-// onChange={handleStartDateChange}  This on start date
-
-// min={setStartDate} and this on end date

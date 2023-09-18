@@ -3,7 +3,7 @@ import "./UserTripscard.css";
 import optionIcon from "../../assets/more-horizontal.svg";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Cookies from "js-cookie";
 
@@ -101,8 +101,8 @@ function UserTripsCard({ trip }) {
         </div>
       </div>
         <p className="number-places">
-          {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
-          {totalPlaceCount ? totalPlaceCount : "There is no"} places  
+          {`${formatDate(trip?.start_date)} - ${formatDate(trip?.end_date)} -> `} 
+          {totalPlaceCount ? totalPlaceCount : "There is no "} place(s)  
         </p>
     </div>
   );

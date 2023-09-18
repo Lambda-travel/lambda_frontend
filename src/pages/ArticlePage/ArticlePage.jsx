@@ -21,7 +21,7 @@ function ArticlePage() {
   }, []);
 
   return (
-    <div>
+    <div className="main-container">
       {article ? (
         <>
           <div className="ImageAndNav">
