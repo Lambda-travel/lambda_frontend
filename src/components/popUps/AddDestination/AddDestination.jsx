@@ -19,21 +19,28 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
   } = useForm();
 
   const [cities, setCities] = useState();
-  const [selectedCity, setSelectedCity] = useState("City");
+  const [loading, setLoading] = useState(false);
+  const [selectedCity, setSelectedCity] = useState();
 
   const getCitiesByCountry = () => {
+    setLoading(true);
     const country = localStorage.getItem("lambda_country_trip");
-    let data = {
-      country: country,
-    };
-    axios
-      .post("https://countriesnow.space/api/v0.1/countries/cities", data)
-      .then((response) => {
-        if (response.data.error === false) {
-          setCities(response.data.data.map((city) => ({ value: city, label: city })))
-        }
-      })
-      .catch((err) => console.error(err));
+    if (country) {
+      let data = {
+        country: country,
+      };
+      axios
+        .post("https://countriesnow.space/api/v0.1/countries/cities", data)
+        .then((response) => {
+          if (response.data.error === false) {
+            setCities(
+              response.data.data.map((city) => ({ value: city, label: city }))
+            );
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -41,25 +48,28 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
   }, []);
 
   const submitDestination = (data) => {
+    // console.log(data);
     if (data.image[0] !== null) {
       const destinationImage = data.image[0];
       const imageRef = ref(storage, `${uuid()}-destination-image`);
-
-      uploadBytes(imageRef, destinationImage)
-        .then(() => {
-          getDownloadURL(imageRef)
-            .then((urlImage) => {
-              data.image = urlImage;
-              api
-                .post(`/destination/${dayId}`, data)
-                .then((response) => response);
-            })
-            .catch((error) => console.error(error));
-        })
-        .catch((error) => console.log(error));
+      console.log(destinationImage);
+      console.log(imageRef);
+      console.log(dayId);
+      // uploadBytes(imageRef, destinationImage)
+      //   .then(() => {
+      //     getDownloadURL(imageRef)
+      //       .then((urlImage) => {
+      //         data.image = urlImage;
+      //         api
+      //           .post(`/destination/${dayId}`, data)
+      //           .then((response) => response);
+      //       })
+      //       .catch((error) => console.error(error));
+      //   })
+      //   .catch((error) => console.log(error));
     }
 
-    toggleAddDestination();
+    // toggleAddDestination();
   };
 
   return (
@@ -84,23 +94,31 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             <p className="style-error-form">{errors.place_to_visit?.message}</p>
           )}
           <label>Location: </label>
-          <Controller
-            className="inputs-popUp-addDestination"
-            name="location"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={cities}
-                onChange={(value) => {
-                  console.log(value);
-                  setSelectedCity(value);
-                  setValue("location", value);
-                }}
-                value={selectedCity}
-              />
-            )}
-          />
+          {loading ? (
+            <input
+              className="inputs-popUp-addDestination"
+              placeholder="Loading Cities..."
+              readOnly
+            />
+          ) : (
+            <Controller
+              className="inputs-popUp-addDestination"
+              name="location"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={cities}
+                  onChange={(value) => {
+                    // console.log(value);
+                    setSelectedCity(value);
+                    setValue("location", value);
+                  }}
+                  value={selectedCity}
+                />
+              )}
+            />
+          )}
           {/* <input
             placeholder="location"
             type="text"

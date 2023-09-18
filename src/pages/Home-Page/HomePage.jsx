@@ -16,6 +16,7 @@ function HomePage() {
   const { user } = useContext(UserContext);
   const { trips } = useContext(TripsContext);
 
+
   const [articles, setArticles] = useState();
 
   const today = new Date();
@@ -32,6 +33,7 @@ function HomePage() {
   useEffect(() => {
     getArticles();
   }, []);
+
 
   return (
     <div className="main-container">
@@ -65,18 +67,19 @@ function HomePage() {
           <h4>My trips</h4>
         </div>
       </div>
-      {trips && trips.length > 0 ? (
+      {trips && trips?.length > 0 ? (
         <div className="cardsAndTripInfosMobile">
           <Swiper spaceBetween={250} slidesPerView={1}>
             {trips
               .filter((trip) => new Date(trip.start_date) > today)
               .map((trip) => (
-                <SwiperSlide key={trip.id}>
-                  <Link to={`/trip/${trip.id}/overview `} className="link-tags">
-                    <UserTripsCard trip={trip} />
-                  </Link>
-                </SwiperSlide>
-              ))}
+                  <SwiperSlide key={trip.id}>
+                    <Link to={`/trip/${trip.id}/overview `} className="link-tags">
+                      <UserTripsCard trip={trip} />
+                    </Link>
+                  </SwiperSlide> 
+              )
+              )}
           </Swiper>
         </div>
       ) : (

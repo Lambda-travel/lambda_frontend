@@ -29,7 +29,7 @@ function formatDate(inputDate) {
   return formattedDate;
 }
 
-function ProfileUserCards({ trip, totalPlace }) {
+function ProfileUserCards({ trip, index, totalPlace }) {
   const { user } = useContext(UserContext);
 
   const [travelMates, setTravelMates] = useState();
@@ -72,7 +72,7 @@ function ProfileUserCards({ trip, totalPlace }) {
           className="tripImage"
         />
         <div className="titleDateMate ">
-          <h3 className="trip-title-profile">{trip.destination}</h3>
+          <h3 className="trip-title-profile">{index} - {trip.destination}</h3>
           <div className="tripDateAndMates">
             <div className="avatarContainerCards">
               <Avatar

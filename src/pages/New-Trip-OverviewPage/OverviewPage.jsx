@@ -9,6 +9,7 @@ const defaultCover =
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import Cookies from "js-cookie";
+import TripsContext from "../../contexts/TripsContext";
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -38,6 +39,7 @@ const OverviewPage = () => {
   const id = Number(useParams().id);
 
   const { user } = useContext(UserContext);
+  const { trips } = useContext(TripsContext);
 
   // ------------  GET ALL DAYS
 
@@ -107,6 +109,7 @@ const OverviewPage = () => {
     localStorage.setItem("tripIdInviteTravelmate", id)
   }
 
+  console.log();
 
   return (
     <>
@@ -143,7 +146,7 @@ const OverviewPage = () => {
           {/*-------- INFO USER -------------*/}
           <div className="info-user-container">
             <div className="name-and-edit">
-              <h1 className="name-of-trip">{tripInfo.destination}</h1>
+              <h1 className="name-of-trip">{trips.indexOf(trips.filter(trip => trip.destination === tripInfo.destination)[0])+1} - {tripInfo.destination}</h1>
               <button className="edit-trip-btn" onClick={toggleEditTrip}>
                 <svg
                   style={{ width: "1.2rem", cursor: "pointer" }}

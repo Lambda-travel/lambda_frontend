@@ -106,7 +106,7 @@ function Profile() {
             {trips && trips.length > 0 ? (
               <div className="tripPlansContent">
                 {categoryStyle ? (
-                  trips.map((trip) => (
+                  trips.map((trip, index) => (
                     <Link
                       key={trip.id}
                       className="link-in-card-profile"
@@ -114,6 +114,7 @@ function Profile() {
                     >
                       <ProfileUserCards
                         trip={trip}
+                        index={index+1}
                         totalPlace={null}
                       />
                     </Link>
