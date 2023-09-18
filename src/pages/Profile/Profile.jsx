@@ -33,6 +33,7 @@ function Profile() {
       setTotalPlace(res.data);
     });
   };
+  
   const handleGuideCategoryStyle = () => {
     setCategoryStyle(false);
   };

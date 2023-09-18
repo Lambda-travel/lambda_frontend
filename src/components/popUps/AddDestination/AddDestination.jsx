@@ -23,7 +23,6 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
      
        const destinationImage = data.image[0]
        const imageRef = ref(storage,`${uuid()}-destination-image`)
-
        uploadBytes(imageRef, destinationImage)
        .then(()=>{
           getDownloadURL(imageRef)
