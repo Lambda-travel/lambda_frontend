@@ -5,7 +5,7 @@ import api from "../../../api/api";
 
 // eslint-disable-next-line react/prop-types
 const CardInfo = ({ dayID }) => {
-  const [destination, setDestination] = useState([]);
+  const [destinations, setDestination] = useState([]);
 
   const destinationDetail = (dayID) => {
     api
@@ -15,14 +15,17 @@ const CardInfo = ({ dayID }) => {
   };
 
 
-
-
   useEffect(() => {
     destinationDetail(dayID);
-  }, []);
-  
+  }, [dayID]);
 
-  return destination.map((destination) => (
+
+  function getIndex(id){
+    const index = destinations.map((idx)=> idx.id).indexOf(id)+1
+    return index
+  }
+  
+  return destinations.map((destination) => (
     <div key={destination.id}>
       <img
         className="img-card-itinerary"
@@ -30,7 +33,7 @@ const CardInfo = ({ dayID }) => {
       ></img>
       <div className="description-itinerary-card">
         <h3 className="title-card-itinerary">
-          <span className="number-desc-card">{destination.id}.</span>
+          <span className="number-desc-card">{getIndex(destination.id)}.</span>
           {destination.place_to_visit}
         </h3>
         <p className="description-card-itinerary">{destination.description}</p>

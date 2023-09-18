@@ -8,6 +8,7 @@ import api from "../../api/api";
 const PlacesToVisit = () => {
   const id = useParams().id
   const [placesInfo,setPlacesInfo] = useState([])
+  const [showMore, setShowMore] = useState({});
 
 
   const placesInfoHandle =(id)=> {
@@ -19,11 +20,11 @@ const PlacesToVisit = () => {
 
 useEffect(()=>{
   placesInfoHandle(id)
-},[])
+},[placesInfo])
 
 
   const [addPopUp, setAddPopUp] = useState(false);
-  const [showDetail, setShowDetail] = useState(false);
+  const [showDetail, setShowDetail] = useState(true);
 
   const toggleAdd = () => {
     setAddPopUp(!addPopUp);
@@ -36,6 +37,13 @@ useEffect(()=>{
 
   const toggleDetail = () => {
     setShowDetail(!showDetail);
+  };
+
+  const toggleViewMore = (placeID) => {
+    setShowMore((prevState) => ({
+      ...prevState,
+      [placeID]: !prevState[placeID] || false, 
+    }));
   };
 
   return (
@@ -62,9 +70,11 @@ useEffect(()=>{
                 placesInfo.map((places)=>(
                   <div key={places.id} className="description-container">
                   <h4 className="title-description-place">{places.name}</h4>
-                  <p className="description-place">{places.description}</p>
+                  <p className="description-place">
+                    { showMore[places.id] ? places.description : `${places.description.substring(0,50)}...` }
+                  </p>
                   <div className="container-btn-view-detail-place">
-                  <button className="view-details-places">View More</button>
+                  <button onClick={()=> toggleViewMore(places.id)} className="view-details-places">{showMore[places.id] ? "View Less" : "View More"}</button>
                   </div>
               </div>
 
