@@ -137,7 +137,7 @@ function Profile() {
             ) : (
               <div className="container-start-planning-trip">
                 <p className="text-trip-plans-profile">
-                  {`You haven't written any trip yet.`}
+                  {`You haven't created any trip yet.`}
                 </p>
                 <button className="customButton" onClick={goToCreateNewTrip}>
                   Start planning a trip

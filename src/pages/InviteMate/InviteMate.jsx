@@ -41,7 +41,7 @@ function InviteMate() {
       <div className="pageTitle">
         <h2>Invite your travelmate</h2>
         <p>
-          Plan with your friends: Your changes sync in real-time, keeping
+          Plan with your friends, your changes sync in real-time keeping
           everyone in the loop{" "}
         </p>
       </div>
@@ -49,7 +49,7 @@ function InviteMate() {
         className="inviteMateForm"
         onSubmit={handleSubmit(inviteTravelmate)}
       >
-        <div className="divInput">
+        <div className="divInput newTripTraMate">
           <label htmlFor="value">Travelmate</label>
           <input
             {...register("value", {

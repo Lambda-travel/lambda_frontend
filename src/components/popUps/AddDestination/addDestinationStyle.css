@@ -53,6 +53,7 @@ body.active-modal {
     height: 7rem;
 }
 .uploadImage-popUp-addDestination {
+    cursor: pointer;
     margin-top: 1rem;
     display: flex;
     align-items: center;

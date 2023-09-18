@@ -89,7 +89,7 @@ function PlanNewTrip() {
         <p>Build an itinerary and map your upcoming travel plans. </p>
       </div>
       <form className="planNewTripForm" onSubmit={handleSubmit(createNewTrip)}>
-        <div className="divInput">
+        <div className="divInput newTripTraMate">
           <label htmlFor="destination">Destination</label>
           <Controller
             className="inputField"
@@ -124,7 +124,9 @@ function PlanNewTrip() {
         {/* {errors.destination && (
           <p className="required">{errors.destination?.message}</p>
         )} */}
-        <div className="divInput">
+        {/* <div className="divInput">
+        )} */}
+        <div className="divInput newTripTraMate">
           <label htmlFor="start_date">Start Date</label>
           <input
             {...register("start_date", {
@@ -143,7 +145,7 @@ function PlanNewTrip() {
         {errors.start_date && (
           <p className="required">{errors.start_date?.message}</p>
         )}
-        <div className="divInput">
+        <div className="divInput newTripTraMate">
           <label htmlFor="end_date">End Date</label>
           <input
             {...register("end_date", {

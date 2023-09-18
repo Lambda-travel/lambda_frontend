@@ -69,8 +69,31 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
       //   .catch((error) => console.log(error));
     }
 
-    // toggleAddDestination();
-  };
+     if(data.image[0] !== null){
+     
+       const destinationImage = data.image[0]
+       const imageRef = ref(storage,`${uuid()}-destination-image`)
+       uploadBytes(imageRef, destinationImage)
+       .then(()=>{
+          getDownloadURL(imageRef)
+         .then((urlImage)=>{
+          data.image = urlImage
+          api
+          .post(`/destination/${dayId}`,data)
+           .then((response)=> response)
+
+         })
+         .catch((error)=> console.error(error))
+       })
+        .catch((error)=>console.log(error) )
+
+      }
+
+
+
+    toggleAddDestination();
+   };
+
 
   return (
     <div className="background-popUp-addDestination">

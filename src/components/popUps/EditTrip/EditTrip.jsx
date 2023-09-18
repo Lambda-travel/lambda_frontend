@@ -18,6 +18,8 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
   const { countries, selectedCountry, setSelectedCountry } =
     useContext(TripsContext);
 
+  const [validation, setValidation] = useState("");
+
   const reload = useNavigate();
 
   useEffect(() => {
@@ -59,6 +61,16 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
 
   const editInfoTrip = (data) => {
     setLoading(true);
+    //! Prevent fetch API info if don't have values
+    if (
+      data.destination == "" &&
+      data.end_date == "" &&
+      data.start_date == "" &&
+      data.trip_image_url.length == 0
+    ) {
+      return alert("Don't have Updates");
+    }
+    setLoading(true);
     if (data.destination == "") {
       delete data.destination;
     }
@@ -71,6 +83,31 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
     if (data.trip_image_url.length == 0) {
       delete data.trip_image_url;
     }
+
+    if (data.trip_image_url !== undefined && data.trip_image_url[0]) {
+      const destinationImage = data.trip_image_url[0];
+      const imageRef = ref(storage, `${uuid()}-trip-image`);
+
+      uploadBytes(imageRef, destinationImage)
+        .then(() => {
+          getDownloadURL(imageRef)
+            .then((urlImage) => {
+              data.trip_image_url = urlImage;
+              api
+                .put(`/trip/edit/${tripID}`, data)
+                .then((response) => response);
+            })
+            .catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
+    } else {
+      api.put(`/trip/edit/${tripID}`, data).then((response) => response);
+    }
+
+    setTimeout(() => {
+      toggleEditTrip();
+      reload(0);
+    }, 3000);
 
     if (data.trip_image_url !== undefined && data.trip_image_url[0]) {
       const destinationImage = data.trip_image_url[0];
@@ -138,6 +175,7 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
               </div>
               {/* <input
                     {...register("destination")}
+                    onChange={handleChange}
                     name="destination"
                     className="inputs-popUp-edit"
                     type="text"
