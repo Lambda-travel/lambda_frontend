@@ -33,15 +33,16 @@ function formatDate(inputDate) {
 
 function UserTripsCard({ trip }) {
   const { user } = useContext(UserContext);
+  const [profileImgUrl, setProfileImgUrl] = useState("");
 
   const [totalPlaceCount, setTotalPlaceCount] = useState();
 
   const getTotalPlaceCount = () => {
-      if(trip.id){
-        api.get(`/trip/${trip.id}/total-places`).then((res) => {
-          setTotalPlaceCount(res.data[0].total_places);
-        });
-      }
+    if (trip.id) {
+      api.get(`/trip/${trip.id}/total-places`).then((res) => {
+        setTotalPlaceCount(res.data[0].total_places);
+      });
+    }
   };
 
   const [travelMates, setTravelMates] = useState();
@@ -66,6 +67,17 @@ function UserTripsCard({ trip }) {
     getTotalPlaceCount();
     getTravelMates();
   }, []);
+  useEffect(() => {
+    const storeProfileUrl = localStorage.getItem("profile_image_url");
+    console.log("Stored Profile URL:", storeProfileUrl);
+    if (storeProfileUrl) {
+      setProfileImgUrl(storeProfileUrl);
+    } else {
+      if (user && user.profile_image_url) {
+        setProfileImgUrl(user.profile_image_url);
+      }
+    }
+  }, [user]);
 
   return (
     <div className="cardContainer">
@@ -79,31 +91,31 @@ function UserTripsCard({ trip }) {
       </div>
 
       <div className="avatarsProfileAndDates">
-      <div className="avatarContainerCards">
+        <div className="avatarContainerCards">
           {/* <Link to="/profile"> */}
-            <Avatar
-              className="avatar"
-              src={user.profile_image_url ? user.profile_image_url : null}
-            />
+          <Avatar
+            className="avatar"
+            src={profileImgUrl ? profileImgUrl : null}
+          />
           {/* </Link> */}
           {travelMates
-                ? travelMates.map((mate, index) => (
-                    <div className="container-travel-mate" key={index}>
-                      <Avatar
-                        className="avatar"
-                        src={mate.picture ? mate.picture : null}
-                        alt={mate.user_name}
-                      />
-                      <div className="mate-username">{mate.user_name}</div>
-                    </div>
-                  ))
-                : null}
+            ? travelMates.map((mate, index) => (
+                <div className="container-travel-mate" key={index}>
+                  <Avatar
+                    className="avatar"
+                    src={mate.picture ? mate.picture : null}
+                    alt={mate.user_name}
+                  />
+                  <div className="mate-username">{mate.user_name}</div>
+                </div>
+              ))
+            : null}
         </div>
       </div>
-        <p className="number-places">
-          {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
-          {totalPlaceCount ? totalPlaceCount : "There is no"} places  
-        </p>
+      <p className="number-places">
+        {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
+        {totalPlaceCount ? totalPlaceCount : "There is no"} places
+      </p>
     </div>
   );
 }

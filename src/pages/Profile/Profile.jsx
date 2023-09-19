@@ -19,11 +19,14 @@ function Profile() {
 
   const [totalPlace, setTotalPlace] = useState([]);
   const [categoryStyle, setCategoryStyle] = useState(true);
-  // const [profileUsers, setProfileUsers] = useState();
+
+  //* Setting Profile
+  const [profileImgUrl, setProfileImgUrl] = useState("");
 
   const navigate = useNavigate();
 
   // * All methods
+
   const goToCreateNewTrip = () => {
     navigate("/newtrip");
   };
@@ -44,6 +47,18 @@ function Profile() {
     getTotalPlace();
   }, []);
 
+  useEffect(() => {
+    const storeProfileUrl = localStorage.getItem("profile_image_url");
+    console.log("Stored Profile URL:", storeProfileUrl);
+    if (storeProfileUrl) {
+      setProfileImgUrl(storeProfileUrl);
+    } else {
+      if (user && user.profile_image_url) {
+        setProfileImgUrl(user.profile_image_url);
+      }
+    }
+  }, [user]);
+
   return (
     <div className="bigContainer">
       {/* <div className="homeButton">
@@ -56,7 +71,7 @@ function Profile() {
             <div className="profileImage">
               <Avatar
                 sx={{ width: 100, height: 100 }}
-                src={user.profile_image_url ? user.profile_image_url : null}
+                src={profileImgUrl ? profileImgUrl : null}
               />
               <Link to="/editPage">
                 <img src={editIcon} alt="edit icon" className="editIcon" />

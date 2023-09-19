@@ -5,13 +5,16 @@ import { storage } from "../../services/firebase";
 import { v4 as uuid } from "uuid";
 import "./EditProfileInfo.css";
 import api from "../../api/api";
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 
 function EditProfileInfo() {
-  const { user } = useContext(UserContext);
+  const [buttonBackground, setButtonBackground] = useState(true);
+  const { user, setUser } = useContext(UserContext);
   const user_id = user.id;
-
+  const handleClick = () => {
+    setButtonBackground(false);
+  };
   const {
     register,
     handleSubmit,
@@ -42,12 +45,17 @@ function EditProfileInfo() {
       uploadBytes(imageRef, imagePath).then(() => {
         getDownloadURL(imageRef)
           .then((url) => {
-            // data.profile_image_url[0].name = url;
+            const newUserData = {
+              ...user,
+              profile_image_url: url,
+            };
+            setUser(newUserData);
+            localStorage.setItem("profile_image_url", url);
             api
               .put(`/users/edit_user/${user_id}`, data)
               .then((response) => response);
             // console.log(url);
-            // console.log(data);
+            console.log(data);
           })
           .catch((err) => console.error(err));
       });
@@ -108,6 +116,7 @@ function EditProfileInfo() {
           <Button
             type="submit"
             text="SAVE CHANGES"
+            onClick={handleClick}
             newClassName="editButton editBtn"
           />
         </form>

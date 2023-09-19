@@ -45,6 +45,11 @@ input[type="file"] {
   color: #fff;
 }
 
+.doneButton {
+  background-color: #c5c884;
+  color: #fff;
+}
+
 .cancelledButton {
   background-color: #ffffff;
   color: #ff5a5f;
