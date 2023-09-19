@@ -47,7 +47,7 @@ body.active-modal-edit {
     gap: 0.2rem;
     font-weight: bold;
     margin-top: 15%;
-    color: white;
+    color: rgba(49, 49, 49, 0.795);
     position: absolute;
     display: flex;
     align-items: center;

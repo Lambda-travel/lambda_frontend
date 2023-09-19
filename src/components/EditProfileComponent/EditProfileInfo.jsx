@@ -17,7 +17,8 @@ function EditProfileInfo() {
   } = useForm();
 
   const editUser = (data) => {
-    console.log(data);
+
+
     if (data.first_name == "") {
       delete data.first_name;
     }
@@ -35,12 +36,13 @@ function EditProfileInfo() {
       data.profile_image_url !== undefined &&
       data.profile_image_url[0].name
     ) {
-      const imagePath = data.profile_image_url[0].name;
-      const imageRef = ref(storage, `profile /${imagePath + uuid()}`);
-      console.log(`${imagePath + uuid()} `);
-      uploadBytes(imageRef, imagePath).then(() => {
-        getDownloadURL(imageRef).then((url) => {
-          data.profile_image_url[0].name = url;
+      const imagePath = data.profile_image_url[0];
+      const imageRef = ref(storage, `${uuid()}-profile-img`);
+      uploadBytes(imageRef, imagePath)
+      .then(() => {
+        getDownloadURL(imageRef)
+        .then((url) => {
+          console.log(url)
         });
       });
     }

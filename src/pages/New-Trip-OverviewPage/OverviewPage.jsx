@@ -72,7 +72,6 @@ const OverviewPage = () => {
       };
 
       api.get(`/trip/${id}/travelMates`, config).then((res) => {
-        // console.log(res.data);
         setTravelMates(res.data);
       });
     }
