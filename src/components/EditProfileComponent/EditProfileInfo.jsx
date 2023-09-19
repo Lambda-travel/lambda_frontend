@@ -7,14 +7,15 @@ import "./EditProfileInfo.css";
 import api from "../../api/api";
 import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function EditProfileInfo() {
-  const [buttonBackground, setButtonBackground] = useState(true);
+  const [changes, setChanges] = useState(true);
   const { user, setUser } = useContext(UserContext);
   const user_id = user.id;
-  const handleClick = () => {
-    setButtonBackground(false);
-  };
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -51,9 +52,14 @@ function EditProfileInfo() {
             };
             setUser(newUserData);
             localStorage.setItem("profile_image_url", url);
-            api
-              .put(`/users/edit_user/${user_id}`, data)
-              .then((response) => response);
+            api.put(`/users/edit_user/${user_id}`, data).then((response) => {
+              if (response.status === 200) {
+                setChanges(false);
+                setTimeout(() => {
+                  navigate("/profile");
+                }, 400);
+              }
+            });
             // console.log(url);
             console.log(data);
           })
@@ -112,15 +118,33 @@ function EditProfileInfo() {
               />
             </label>
           </div>
-
-          <Button
-            type="submit"
-            text="SAVE CHANGES"
-            onClick={handleClick}
-            newClassName="editButton editBtn"
-          />
+          {changes ? (
+            <Button
+              // type="submit"
+              text="SAVE CHANGES"
+              newClassName="editButton editBtn"
+            />
+          ) : (
+            <Button
+              // type="submit"
+              text="CHANGES SAVED"
+              newClassName="doneButton editBtn"
+            />
+          )}
         </form>
-        <Button text="CANCEL CHANGES" newClassName="cancelledButton editBtn" />
+        <Link to="/profile">
+          {changes ? (
+            <Button
+              text="CANCEL CHANGES"
+              newClassName="cancelledButton editBtn"
+            />
+          ) : (
+            <Button
+              text="CANCEL CHANGES"
+              newClassName="cancelledButtonExit editBtn"
+            />
+          )}
+        </Link>
       </div>
     </div>
   );
