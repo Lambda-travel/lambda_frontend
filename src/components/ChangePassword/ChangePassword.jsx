@@ -5,13 +5,17 @@ import api from "../../api/api";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import passwordSchema from "../../schemas/password-schema";
 
 function ChangePassword() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(passwordSchema),
+  });
 
   const [error, setError] = useState("");
   const navigate = useNavigate(); // navigate('/home')
@@ -43,7 +47,10 @@ function ChangePassword() {
               }, 3000);
             }
           })
-          .catch((error) => console.error(error));
+          .catch((error) => {
+            console.error(error);
+            setError("CURRENT PASSWORD is invalid");
+          });
       } else {
         setError("The repeated password should be the same of new password.");
       }
@@ -69,6 +76,9 @@ function ChangePassword() {
         {errors.password && (
           <p className="required">{errors.password?.message}</p>
         )}
+        {/* {error === "Current password is invalid" && (
+          <p className="required">{error}</p>
+        )} */}
         <label>New Password</label>
         <input
           {...register("newPassword", {

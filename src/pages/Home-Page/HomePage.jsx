@@ -11,10 +11,11 @@ import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import TripsContext from "../../contexts/TripsContext";
 import Avatar from "@mui/material/Avatar";
+import Cookies from "js-cookie";
 
 function HomePage() {
   const { user } = useContext(UserContext);
-  const { trips } = useContext(TripsContext);
+  const { trips, setTrips } = useContext(TripsContext);
   const [profileImgUrl, setProfileImgUrl] = useState("");
 
   const [articles, setArticles] = useState();
@@ -29,10 +30,34 @@ function HomePage() {
       })
       .catch((error) => console.log(error));
   };
+  const getAllTrips = () => {
+    const token = Cookies.get("user_token");
+    if (token) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+      api
+        .get("/trip", config)
+        .then((response) => {
+          if (response.status === 200) {
+            setTrips(response.data);
+          } else {
+            setTrips([]);
+          }
+        })
+        .catch((error) => console.error(error));
+    }
+  };
 
   useEffect(() => {
+    if (user) {
+      getAllTrips();
+    }
+
     getArticles();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const storeProfileUrl = localStorage.getItem("profile_image_url");

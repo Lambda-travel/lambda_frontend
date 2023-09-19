@@ -4,19 +4,20 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfileUserCards from "../../components/profileUserCards/ProfileUserCards";
 import editIcon from "../../assets/Group 1689.svg";
 import api from "../../api/api";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import Avatar from "@mui/material/Avatar";
 import TripsContext from "../../contexts/TripsContext";
 
 import "./Profile.css";
+import AuthContext from "../../contexts/AuthContext";
 
 function Profile() {
   /* COUNT OF ITEMS IN TRIP PLANS*/
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { trips, setTrips } = useContext(TripsContext);
-
+  const { setIsAuthenticated } = useContext(AuthContext);
   const [categoryStyle, setCategoryStyle] = useState(true);
 
   //* Setting Profile
@@ -38,21 +39,31 @@ function Profile() {
           Authorization: "Bearer " + token,
         },
       };
-    api
-    .get("/trip", config)
-    .then((response) => {
-      if (response.status === 200) {
-        setTrips(response.data);
-      }
-    })
-    .catch((error) => console.error(error));
-  }
-}
+      api
+        .get("/trip", config)
+        .then((response) => {
+          if (response.status === 200) {
+            setTrips(response.data);
+          }
+        })
+        .catch((error) => console.error(error));
+    }
+  };
   const handleGuideCategoryStyle = () => {
     setCategoryStyle(false);
   };
   const handleTripCategoryStyle = () => {
     setCategoryStyle(true);
+  };
+
+  const logOut = () => {
+    Cookies.remove("user_token");
+    setTrips([]);
+    setUser({});
+    setIsAuthenticated(false);
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
 
   useEffect(() => {
@@ -90,6 +101,11 @@ function Profile() {
                 {user.first_name} {user.last_name}
               </h1>
               <p className="userName">{`@${user.user_name}`}</p>
+            </div>
+            <div className="logOutButton">
+              <button onClick={logOut} className="cancelButton">
+                Log Out
+              </button>
             </div>
           </div>
         ) : (
@@ -129,7 +145,7 @@ function Profile() {
                     >
                       <ProfileUserCards
                         trip={trip}
-                        index={index+1}
+                        index={index + 1}
                         totalPlace={null}
                       />
                     </Link>
