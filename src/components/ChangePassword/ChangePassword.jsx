@@ -18,9 +18,6 @@ function ChangePassword() {
   const [changesSaved, setChangesSaved] = useState(false);
 
   const changePassword = (data) => {
-    // console.log(data);
-
-    //! VALIDATION OF PASSWORDS USING YUP
 
     if (data.password !== data.newPassword) {
       if (data.newPassword === data.repeatPassword) {
@@ -48,7 +45,6 @@ function ChangePassword() {
         setError("The repeated password should be the same of new password.");
       }
     } else {
-      console.log("SAME PASSWORD");
       setError("The new password should be different of the current password.");
     }
   };
@@ -56,7 +52,7 @@ function ChangePassword() {
   return (
     <div className="loginForm">
       <form onSubmit={handleSubmit(changePassword)}>
-        <label>Current Password</label>
+        <label htmlFor="password">Current Password</label>
         <input
           {...register("password", {
             required: "The current password is required",
@@ -69,7 +65,7 @@ function ChangePassword() {
         {errors.password && (
           <p className="required">{errors.password?.message}</p>
         )}
-        <label>New Password</label>
+        <label htmlFor="newPassword">New Password</label>
         <input
           {...register("newPassword", {
             required: "A new password is required",
@@ -82,7 +78,7 @@ function ChangePassword() {
         {errors.newPassword && (
           <p className="required">{errors.newPassword?.message}</p>
         )}
-        <label>Repeat New Password</label>
+        <label htmlFor="repeatPassword">Repeat New Password</label>
         <input
           {...register("repeatPassword", {
             required: "Repeat the new password is required",

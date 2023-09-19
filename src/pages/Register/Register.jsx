@@ -5,13 +5,17 @@ import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import userSchema from "../../schemas/user-schema";
 
 function Register() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(userSchema),
+  });
 
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -21,13 +25,12 @@ function Register() {
       .post("/users/register", data)
       .then((response) => {
         if (response.status === 201) {
-          console.log(response);
           setError("");
           navigate("/login");
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setError("This user name or email are already in use");
       });
   };

@@ -15,8 +15,7 @@ import Cookies from "js-cookie";
 
 function HomePage() {
   const { user } = useContext(UserContext);
-  const { trips, fetchTrips } = useContext(TripsContext);
-
+  const { trips, fetchTrips } = useContext(TripsContext)
 
   const [articles, setArticles] = useState();
 
@@ -28,7 +27,7 @@ function HomePage() {
       .then((response) => {
         setArticles(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {
@@ -45,7 +44,6 @@ function HomePage() {
     }
     getArticles();
   }, []);
-
 
   return (
     <div className="main-container">
@@ -66,7 +64,6 @@ function HomePage() {
                     src={user.profile_image_url ? user.profile_image_url : null}
                   />
                 </Link>
-            
               </div>
             </div>
           ) : (
@@ -85,13 +82,12 @@ function HomePage() {
             {trips
               .filter((trip) => new Date(trip.start_date) > today)
               .map((trip) => (
-                  <SwiperSlide key={trip.id}>
-                    <Link to={`/trip/${trip.id}/overview `} className="link-tags">
-                      <UserTripsCard trip={trip} />
-                    </Link>
-                  </SwiperSlide> 
-              )
-              )}
+                <SwiperSlide key={trip.id}>
+                  <Link to={`/trip/${trip.id}/overview `} className="link-tags">
+                    <UserTripsCard trip={trip} />
+                  </Link>
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
       ) : (

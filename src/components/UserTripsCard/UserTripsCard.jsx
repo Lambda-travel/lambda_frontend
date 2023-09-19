@@ -42,7 +42,7 @@ function UserTripsCard({ trip }) {
         .then((res) => {
           setTotalPlaceCount(res.data[0].total_places);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
     }
   };
 
@@ -62,7 +62,7 @@ function UserTripsCard({ trip }) {
         .then((res) => {
           setTravelMates(res.data);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
     }
   };
 
@@ -75,7 +75,7 @@ function UserTripsCard({ trip }) {
     <div className="cardContainer">
       <div className="tripsLocationAndOption ">
         <h3>
-          {trips.indexOf(trip)+1} - {trip?.destination}
+          {trips.indexOf(trip) + 1} - {trip?.destination}
         </h3>
         <img src={optionIcon} alt="" />
       </div>

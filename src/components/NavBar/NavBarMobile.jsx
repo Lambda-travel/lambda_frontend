@@ -37,7 +37,7 @@ const NavBarMobile = () => {
             alt="button to create new trip"
           />
         </Link>
-        <Link to="/profile">
+        <Link to="/profile/trip-plans">
           <img
             src={
               location.pathname.includes("/profile") ||  location.pathname === "/change-password"

@@ -47,11 +47,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
   const endDate = watch(["end_date"]);
   const imageUpload = watch(["trip_image_url"]);
 
-  console.log(imageUpload[0]);
-  console.log(
-    imageUpload[0] && imageUpload[0][0] ? imageUpload[0][0].name : "error"
-  );
-
   useEffect(() => {
     if (endDate && startDate) {
       if (endDate[0]?.length > 0 && startDate[0]?.length > 0) {
@@ -86,19 +81,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
       delete data.trip_image_url;
     }
 
-    console.log(data);
-
-    //! Prevent fetch API info if don't have values
-    // if (
-    //   data.destination == "" &&
-    //   data.end_date == "" &&
-    //   data.start_date == "" &&
-    //   data.trip_image_url.length == 0
-    // ) {
-    //   return alert("Don't have Updates");
-    // }
-    // setLoading(true);
-    console.log("before api", data);
     if (data.trip_image_url !== undefined && data.trip_image_url[0]) {
       const destinationImage = data.trip_image_url[0];
       const imageRef = ref(storage, `${uuid()}-trip-image`);
@@ -108,7 +90,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
           getDownloadURL(imageRef)
             .then((urlImage) => {
               data.trip_image_url = urlImage;
-              console.log("if image", data);
               api
                 .put(`/trip/edit/${tripID}`, data)
                 .then((response) => response)
@@ -118,7 +99,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
         })
         .catch((error) => console.error(error));
     } else {
-      console.log("else", data);
       api
         .put(`/trip/edit/${tripID}`, data)
         .then((response) => response)
@@ -131,31 +111,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
       toggleEditTrip();
       reload(0);
     }, 3000);
-
-    // if (data.trip_image_url !== undefined && data.trip_image_url[0]) {
-    //   const destinationImage = data.trip_image_url[0];
-    //   const imageRef = ref(storage, `${uuid()}-trip-image`);
-
-    //   uploadBytes(imageRef, destinationImage)
-    //     .then(() => {
-    //       getDownloadURL(imageRef)
-    //         .then((urlImage) => {
-    //           data.trip_image_url = urlImage;
-    //           api
-    //             .put(`/trip/edit/${tripID}`, data)
-    //             .then((response) => response);
-    //         })
-    //         .catch((error) => console.error(error));
-    //     })
-    //     .catch((error) => console.log(error));
-    // } else {
-    //   api.put(`/trip/edit/${tripID}`, data).then((response) => response);
-    // }
-
-    // setTimeout(() => {
-    //   toggleEditTrip();
-    //   reload(0);
-    // }, 3000);
   };
 
   return (
@@ -187,7 +142,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
                       {...field}
                       options={countries}
                       onChange={(value) => {
-                        // console.log(value);
                         setSelectedCountry(value);
                         setValue("destination", value.label);
                       }}

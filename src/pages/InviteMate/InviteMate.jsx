@@ -20,11 +20,9 @@ function InviteMate() {
   const inviteTravelmate = (data) => {
     const tripId = localStorage.getItem("tripIdInviteTravelmate");
     data.trip_id = tripId;
-    // console.log(tripId);
     api
       .post("/travelmate", data)
       .then((response) => {
-        console.log(response);
         if (response.status === 201) {
           setError("");
           navigate("/profile/trip-plans");

@@ -31,11 +31,10 @@ const DestinationDetail = () => {
     api
       .get(`/destination/details/${id}`)
       .then((response) => {
-        console.log(response.data);
         setDestinationImages(response.data.destinationImages);
         setDestinationDetails(response.data.destinationInfo);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {

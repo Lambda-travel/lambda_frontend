@@ -20,7 +20,7 @@ const PlacesToVisit = () => {
         }
 
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 useEffect(()=>{
   placesInfoHandle(id)

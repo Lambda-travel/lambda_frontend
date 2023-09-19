@@ -11,10 +11,9 @@ const CardInfo = ({ dayID }) => {
     api
       .get(`/destination/detailsCard/${dayID}`)
       .then((response) => {
-        console.log(response.data);
         setDestination(response.data)
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
 

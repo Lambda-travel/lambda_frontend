@@ -1,22 +1,26 @@
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Button from "../Button/Button";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../services/firebase";
 import { v4 as uuid } from "uuid";
+import api from "../../api/api";
+import UserContext from "../../contexts/UserContext";
 import "./EditProfileInfo.css";
 
 function EditProfileInfo() {
-  // const getUser = () => {
-  //   api.get("/users/id").then();
-  // };
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm();
+  const { user, setUser } = useContext(UserContext);
+
+  const [changes, setChanges] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const { register, handleSubmit } = useForm();
 
   const editUser = (data) => {
-    console.log(data);
+    setLoading(true);
     if (data.first_name == "") {
       delete data.first_name;
     }
@@ -30,20 +34,47 @@ function EditProfileInfo() {
       delete data.profile_image_url;
     }
 
-    if (
-      data.profile_image_url !== undefined &&
-      data.profile_image_url[0].name
-    ) {
-      const imagePath = data.profile_image_url[0].name;
-      const imageRef = ref(storage, `profile /${imagePath + uuid()}`);
-      console.log(`${imagePath + uuid()} `);
-      uploadBytes(imageRef, imagePath).then(() => {
-        getDownloadURL(imageRef).then((url) => {
-          data.profile_image_url[0].name = url;
-        });
-      });
+    if (Object.keys(data).length > 0) {
+      if (data.profile_image_url !== undefined && data.profile_image_url[0]) {
+        const destinationImage = data.profile_image_url[0];
+        const imageRef = ref(storage, `${uuid()}-trip-image`);
+
+        uploadBytes(imageRef, destinationImage)
+          .then(() => {
+            getDownloadURL(imageRef)
+              .then((urlImage) => {
+                data.profile_image_url = urlImage;
+                localStorage.setItem("profile_image_url", urlImage);
+                api
+                  .put(`/users/edit_user/${user.id}`, data)
+                  .then(() => {
+                    setChanges(true);
+                    setUser({ ...user, ...data });
+                    setLoading(false);
+                  })
+                  .catch((error) => console.error(error));
+              })
+              .catch((error) => console.error(error));
+          })
+          .catch((error) => console.error(error));
+      } else {
+        api
+          .put(`/users/edit_user/${user.id}`, data)
+          .then(() => {
+            setChanges(true);
+            setUser({ ...user, ...data });
+            setLoading(false);
+          })
+          .catch((error) => console.error(error));
+      }
     }
+
+    !loading &&
+      setTimeout(() => {
+        navigate("/profile/trip-plans");
+      }, 2000);
   };
+
   return (
     <div>
       <div className="formContainer">
@@ -53,7 +84,7 @@ function EditProfileInfo() {
             <input
               id="firstname"
               type="text"
-              placeholder="First name"
+              placeholder={user.first_name}
               {...register("first_name")}
               className="inputs"
             />
@@ -63,7 +94,7 @@ function EditProfileInfo() {
             <input
               id="lastname"
               type="text"
-              placeholder="Last name"
+              placeholder={user.last_name}
               {...register("last_name")}
               className="inputs"
             />
@@ -73,7 +104,7 @@ function EditProfileInfo() {
             <input
               id="username"
               type="text"
-              placeholder="user name"
+              placeholder={user.user_name}
               {...register("user_name")}
               className="inputs"
             />
@@ -91,14 +122,30 @@ function EditProfileInfo() {
               />
             </label>
           </div>
-
-          <Button
-            type="submit"
-            text="SAVE CHANGES"
-            newClassName="editButton editBtn"
-          />
+          {changes ? (
+            <Button
+              type="submit"
+              text="CHANGES HAVE BEEN SAVED"
+              newClassName="doneButton editBtn"
+            />
+          ) : (
+            <Button
+              type="submit"
+              text="SAVE CHANGES"
+              newClassName="editButton editBtn"
+            />
+          )}
         </form>
-        <Button text="CANCEL CHANGES" newClassName="cancelledButton editBtn" />
+        <Link to="/profile/trip-plans">
+          {changes ? (
+            <Button text="CANCEL CHANGES" newClassName="notShow" />
+          ) : (
+            <Button
+              text="CANCEL CHANGES"
+              newClassName="cancelledButton editBtn"
+            />
+          )}
+        </Link>
       </div>
     </div>
   );
