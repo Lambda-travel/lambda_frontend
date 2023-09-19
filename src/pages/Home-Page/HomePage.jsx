@@ -15,8 +15,11 @@ import Avatar from "@mui/material/Avatar";
 function HomePage() {
   const { user } = useContext(UserContext);
   const { trips } = useContext(TripsContext);
+  const [profileImgUrl, setProfileImgUrl] = useState("");
 
   const [articles, setArticles] = useState();
+
+  const today = new Date();
 
   const getArticles = (data) => {
     api
@@ -31,9 +34,20 @@ function HomePage() {
     getArticles();
   }, []);
 
+  useEffect(() => {
+    const storeProfileUrl = localStorage.getItem("profile_image_url");
+    console.log("Stored Profile URL:", storeProfileUrl);
+    if (storeProfileUrl) {
+      setProfileImgUrl(storeProfileUrl);
+    } else {
+      if (user && user.profile_image_url) {
+        setProfileImgUrl(user.profile_image_url);
+      }
+    }
+  }, [user]);
+
   return (
     <div className="main-container">
-      {/* User Info  */}
       <div className="userInfo">
         <div className="nameAndMessageAndAvatar">
           {user ? (
@@ -48,18 +62,9 @@ function HomePage() {
                 <Link to="/profile">
                   <Avatar
                     className="avatar"
-                    src={user.profile_image_url ? user.profile_image_url : null}
+                    src={profileImgUrl ? profileImgUrl : null}
                   />
                 </Link>
-                {/* <img
-                  src={
-                    user.profile_image_url
-                      ? user.profile_image_url
-                      : `${avatar}`
-                  }
-                  alt="Avatar"
-                  className="avatar"
-                /> */}
               </div>
             </div>
           ) : (
@@ -72,24 +77,20 @@ function HomePage() {
           <h4>My trips</h4>
         </div>
       </div>
-      {trips && trips.length > 0 ? (
-        <>
-          <div className="cardsAndTripInfosMobile">
-            {trips.map((trip) => (
-              <Link
-                key={trip.id}
-                to={`/trip/${trip.id}/overview `}
-                className="link-tags"
-              >
-                <Swiper spaceBetween={300} slidesPerView={2}>
-                  <SwiperSlide>
+      {trips && trips?.length > 0 ? (
+        <div className="cardsAndTripInfosMobile">
+          <Swiper spaceBetween={250} slidesPerView={1}>
+            {trips
+              .filter((trip) => new Date(trip.start_date) > today)
+              .map((trip) => (
+                <SwiperSlide key={trip.id}>
+                  <Link to={`/trip/${trip.id}/overview `} className="link-tags">
                     <UserTripsCard trip={trip} />
-                  </SwiperSlide>
-                </Swiper>
-              </Link>
-            ))}
-          </div>
-        </>
+                  </Link>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </div>
       ) : (
         <div>
           <div className="NoTripAvailable-Mobile">
@@ -104,15 +105,17 @@ function HomePage() {
       {trips && trips.length > 0 ? (
         <>
           <div className="cardsAndTripInfoDesktop">
-            {trips.map((trip) => (
-              <Link
-                key={trip.id}
-                to={`/trip/${trip.id}/overview `}
-                className="link-to-userTrips"
-              >
-                <UserTripsCard trip={trip} />
-              </Link>
-            ))}
+            {trips
+              .filter((trip) => new Date(trip.start_date) > today)
+              .map((trip) => (
+                <Link
+                  key={trip.id}
+                  to={`/trip/${trip.id}/overview `}
+                  className="link-to-userTrips"
+                >
+                  <UserTripsCard trip={trip} />
+                </Link>
+              ))}
           </div>
         </>
       ) : (

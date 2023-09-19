@@ -45,11 +45,19 @@ input[type="file"] {
   color: #fff;
 }
 
+.doneButton {
+  background-color: #c5c884;
+  color: #fff;
+}
+
 .cancelledButton {
   background-color: #ffffff;
   color: #ff5a5f;
   margin-top: 20px;
   border: 2px solid #e9e9e9;
+}
+.cancelledButtonExit {
+  display: none;
 }
 
 @media only screen and (min-width: 700px) {

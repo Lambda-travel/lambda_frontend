@@ -9,6 +9,7 @@ const defaultCover =
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import Cookies from "js-cookie";
+import TripsContext from "../../contexts/TripsContext";
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -33,14 +34,16 @@ function formatDate(inputDate) {
 }
 
 const OverviewPage = () => {
+  
   const location = useLocation();
   const id = Number(useParams().id);
 
   const { user } = useContext(UserContext);
+  const { trips } = useContext(TripsContext);
 
   // ------------  GET ALL DAYS
 
-  const getAllDays = (id) => {
+  const getAllDays = () => {
     api
       .get(`/trip/${id}`)
       .then((response) => {
@@ -51,12 +54,16 @@ const OverviewPage = () => {
 
   // -------------- GET INFO ONE TRIP BY ID
 
-  const [tripInfo, setTripInfo] = useState([]);
+  const [tripInfo, setTripInfo] = useState();
 
-  const tripById = (id) => {
+  const tripById = () => {
     api
       .get(`/trip/overview/${id}`)
-      .then((response) => setTripInfo(response.data))
+      .then((response) => {
+        // console.log(response);
+        localStorage.setItem("lambda_country_trip", response.data[0].destination.replace(/^[^ ]* /, ''))
+        setTripInfo(response.data[0])
+      })
       .catch((error) => console.log(error));
   };
 
@@ -79,8 +86,8 @@ const OverviewPage = () => {
 
   useEffect(() => {
     getTravelMates();
-    getAllDays(id);
-    tripById(id);
+    getAllDays();
+    tripById();
   }, []);
 
   /*-------------  PAGE INFO -----------*/
@@ -97,10 +104,16 @@ const OverviewPage = () => {
     setEditTripPopUp(!editTripPopUp);
   };
 
+  const saveTripId =()=>{
+    localStorage.setItem("tripIdInviteTravelmate", id)
+  }
+
+  console.log();
+
   return (
     <>
-      {tripInfo.map((trip) => (
-        <article key={trip.id}>
+      {tripInfo ?
+        <article >
           {/*-------- H E A D E R -------------*/}
           <div className="header-container">
             <Link to="/home">
@@ -123,8 +136,8 @@ const OverviewPage = () => {
                 <p>Home</p>
               </button>
             </Link>
-            {trip.trip_image_url ? (
-              <img className="header-img" src={trip.trip_image_url} alt={""} />
+            {tripInfo.trip_image_url ? (
+              <img className="header-img" src={tripInfo.trip_image_url} alt={""} />
             ) : (
               <img className="header-img-default" src={defaultCover} alt={""} />
             )}
@@ -132,7 +145,7 @@ const OverviewPage = () => {
           {/*-------- INFO USER -------------*/}
           <div className="info-user-container">
             <div className="name-and-edit">
-              <h1 className="name-of-trip">{trip.destination}</h1>
+              <h1 className="name-of-trip">{trips.indexOf(trips.filter(trip => trip.destination === tripInfo.destination)[0])+1} - {tripInfo.destination}</h1>
               <button className="edit-trip-btn" onClick={toggleEditTrip}>
                 <svg
                   style={{ width: "1.2rem", cursor: "pointer" }}
@@ -151,10 +164,10 @@ const OverviewPage = () => {
                 </svg>
               </button>
 
-              {editTripPopUp && <EditTrip toggleEditTrip={toggleEditTrip} />}
+              {editTripPopUp && <EditTrip toggleEditTrip={toggleEditTrip} defaultDestination={tripInfo.destination} />}
             </div>
             <p className="date-of-trip">
-              {formatDate(trip.start_date)} - {formatDate(trip.end_date)}
+              {formatDate(tripInfo.start_date)} - {formatDate(tripInfo.end_date)}
             </p>
             <div className="container-avatar-and-button">
               {/* <img className="profile-icon" src={Avatar} alt={""} /> */}
@@ -175,7 +188,7 @@ const OverviewPage = () => {
                     </div>
                   ))
                 : null}
-              <Link to="/travelmate">
+              <Link onClick={saveTripId} to="/travelmate">
                 <button className="travel-mate-overview-page">+</button>
               </Link>
             </div>
@@ -205,7 +218,7 @@ const OverviewPage = () => {
           </div>
           <Outlet />
         </article>
-      ))}
+      :<h1>Loading..</h1>}
     </>
   );
 };
