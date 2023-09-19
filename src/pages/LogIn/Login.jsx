@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import AuthContext from "../../contexts/AuthContext.jsx";
+import { yupResolver } from "@hookform/resolvers/yup";
+import userSchema from "../../schemas/user-schema";
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -16,7 +18,9 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(userSchema),
+  });
 
   const [error, setError] = useState("");
 

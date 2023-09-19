@@ -5,13 +5,17 @@ import { useForm } from "react-hook-form";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import userSchema from "../../schemas/user-schema";
 
 function Register() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(userSchema),
+  });
 
   const navigate = useNavigate();
   const [error, setError] = useState("");
