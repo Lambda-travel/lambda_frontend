@@ -4,7 +4,7 @@ import "./Button.css";
 function Button({ text, newClassName }) {
   return (
     <>
-      <button className={`${newClassName}`}>{text}</button>
+      <button type="submit" className={`${newClassName}`}>{text}</button>
     </>
   );
 }

@@ -29,7 +29,7 @@ function formatDate(inputDate) {
   return formattedDate;
 }
 
-function ProfileUserCards({ trip, totalPlace }) {
+function ProfileUserCards({ trip, index, totalPlace }) {
   const { user } = useContext(UserContext);
 
   const [travelMates, setTravelMates] = useState();
@@ -43,10 +43,19 @@ function ProfileUserCards({ trip, totalPlace }) {
         },
       };
 
-      api.get(`/trip/${trip.id}/travelMates`, config).then((res) => {
-        // console.log(res.data);
-        setTravelMates(res.data);
-      });
+      api
+        .get(`/trip/${trip.id}/travelMates`, config)
+        .then((res) => {
+          // console.log(res.data);
+          setTravelMates(res.data);
+        })
+        .catch((error) => {
+          if(error.response.data === "Unable to find travel mates pictures"){
+            console.warn("No travel mates found.");
+          } else {
+            console.error(error)
+          }
+        });
     }
   };
 
@@ -63,7 +72,7 @@ function ProfileUserCards({ trip, totalPlace }) {
           className="tripImage"
         />
         <div className="titleDateMate ">
-          <h3 className="trip-title-profile">{trip.destination}</h3>
+          <h3 className="trip-title-profile">{index} - {trip.destination}</h3>
           <div className="tripDateAndMates">
             <div className="avatarContainerCards">
               <Avatar
@@ -93,7 +102,7 @@ function ProfileUserCards({ trip, totalPlace }) {
                 trip.end_date
               )}`}</p>
               <p className="date-trip-profile">
-                {totalPlace[0] ? `${totalPlace[0]} places` : ""}
+                {totalPlace && totalPlace[0] ? `${totalPlace[0]} places` : ""}
               </p>
             </div>
           </div>
