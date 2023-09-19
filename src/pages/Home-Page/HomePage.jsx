@@ -60,7 +60,7 @@ function HomePage() {
                 <p>Explore beauty of journey</p>
               </div>
               <div className="avatarContainer">
-                <Link to="/profile">
+                <Link to="/profile/trip-plans">
                   <Avatar
                     className="avatar"
                     src={user.profile_image_url ? user.profile_image_url : null}

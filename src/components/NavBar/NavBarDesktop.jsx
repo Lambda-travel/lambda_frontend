@@ -47,10 +47,10 @@ const NavbarDesktop = () => {
               alt="button to create new trip"
             />
           </Link>
-          <Link to="/profile">
+          <Link to="/profile/trip-plans">
             <img
               src={
-                location.pathname === "/profile" ||
+                location.pathname.includes("/profile") ||
                 location.pathname === "/change-password"
                   ? profileActive
                   : profileInactive

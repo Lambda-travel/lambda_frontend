@@ -80,18 +80,15 @@ function UserTripsCard({ trip }) {
         <img src={optionIcon} alt="" />
       </div>
       <div className="currentTripAndBorder">
-        {/* <p className="currentTripText">Current trip</p> */}
         <div className="borderLine"></div>
       </div>
 
       <div className="avatarsProfileAndDates">
         <div className="avatarContainerCards">
-          {/* <Link to="/profile"> */}
           <Avatar
             className="avatar"
             src={user.profile_image_url ? user.profile_image_url : null}
           />
-          {/* </Link> */}
           {travelMates
             ? travelMates.map((mate, index) => (
                 <div className="container-travel-mate" key={index}>

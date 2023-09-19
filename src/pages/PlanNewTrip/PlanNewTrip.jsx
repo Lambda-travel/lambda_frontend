@@ -41,7 +41,7 @@ function PlanNewTrip() {
     return `${year}-${month}-${day}`;
   };
 
-  const defaultDestination = "Portugal";
+  const defaultDestination = "🇵🇹 Portugal";
 
   useEffect(() => {
     if (endDate && startDate) {

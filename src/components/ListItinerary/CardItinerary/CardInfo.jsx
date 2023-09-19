@@ -9,8 +9,11 @@ const CardInfo = ({ dayID }) => {
 
   const destinationDetail = (dayID) => {
     api
-      .get(`/destination/detail/${dayID}`)
-      .then((response) => setDestination(response.data))
+      .get(`/destination/detailsCard/${dayID}`)
+      .then((response) => {
+        console.log(response.data);
+        setDestination(response.data)
+      })
       .catch((error) => console.log(error));
   };
 
@@ -37,7 +40,7 @@ const CardInfo = ({ dayID }) => {
           {destination.place_to_visit}
         </h3>
         <p className="description-card-itinerary">{destination.description}</p>
-        <Link to={`/overview/destination-detail/${destination.day_id}`}>
+        <Link to={`/overview/destination-detail/${destination.destination_id}`}>
           <button className="viewMore-card-itinerary">View Details</button>
         </Link>
       </div>

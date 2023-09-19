@@ -39,7 +39,7 @@ function ChangePassword() {
             if (response.status === 200) {
               setChangesSaved(true);
               setTimeout(() => {
-                navigate("/profile");
+                navigate("/profile/trip-plans");
               }, 3000);
             }
           })
@@ -106,7 +106,7 @@ function ChangePassword() {
             <Button text="SAVE CHANGES" newClassName="customButton" />
           )}
         </div>
-        <Link to="/profile">
+        <Link to="/profile/trip-plans">
           <div className="logInBtn">
             {changesSaved ? (
               <Button text="CANCEL CHANGES" newClassName="notShow" />

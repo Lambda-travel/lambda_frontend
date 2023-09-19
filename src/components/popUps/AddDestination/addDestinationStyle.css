@@ -49,6 +49,8 @@ body.active-modal {
     border-radius: 6px;
 }
 .textarea-addDestination {
+    padding: 10px;
+    resize: none;
     border-radius: 9px;
     height: 7rem;
 }

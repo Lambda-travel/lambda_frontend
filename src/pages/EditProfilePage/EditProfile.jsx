@@ -22,7 +22,7 @@ function EditProfile() {
     <div>
       <div className="editContainer">
         <div>
-          <Link to="/profile">
+          <Link to="/profile/trip-plans">
             <button className="editNavBtn">
               <svg
                 style={{ width: "1.5rem" }}

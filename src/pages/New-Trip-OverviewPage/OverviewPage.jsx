@@ -60,8 +60,8 @@ const OverviewPage = () => {
     api
       .get(`/trip/overview/${id}`)
       .then((response) => {
-        // console.log(response);
-        localStorage.setItem("lambda_country_trip", response.data[0].destination.replace(/^[^ ]* /, ''))
+        // console.log(response.data[0].destination.replace(/^[^ ]* /, '').split("-")[0].replace(/ /g, ''));
+        localStorage.setItem("lambda_country_trip", response.data[0].destination.replace(/^[^ ]* /, '').split("-")[0].replace(/ /g, ''))
         setTripInfo(response.data[0])
       })
       .catch((error) => console.log(error));
@@ -79,7 +79,6 @@ const OverviewPage = () => {
       };
 
       api.get(`/trip/${id}/travelMates`, config).then((res) => {
-        // console.log(res.data);
         setTravelMates(res.data);
       });
     }
@@ -109,15 +108,13 @@ const OverviewPage = () => {
     localStorage.setItem("tripIdInviteTravelmate", id)
   }
 
-  console.log();
-
   return (
     <>
       {tripInfo ?
         <article >
           {/*-------- H E A D E R -------------*/}
           <div className="header-container">
-            <Link to="/home">
+            <Link to='/profile/trip-plans'>
               <button className="header-btn-home">
                 <svg
                   style={{ width: "1.5rem", cursor: "pointer" }}
@@ -134,7 +131,7 @@ const OverviewPage = () => {
                     d="M15.75 19.5L8.25 12l7.5-7.5"
                   />
                 </svg>
-                <p>Home</p>
+                <p>Back</p>
               </button>
             </Link>
             {tripInfo.trip_image_url ? (

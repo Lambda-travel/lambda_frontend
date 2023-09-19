@@ -24,6 +24,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import { useContext } from "react";
 import NavBarMobile from "./components/NavBar/NavBarMobile";
 import NavbarDesktop from "./components/NavBar/NavBarDesktop";
+import Guides from "./components/ProfileTripsAndGuides/Guides";
+import TripPlans from "./components/ProfileTripsAndGuides/TripPlans";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -71,7 +73,10 @@ function App() {
             path="/overview/destination-detail/:id"
             element={<DestinationDetail />}
           />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route path="guides" element={<Guides />} />
+            <Route path="trip-plans" element={<TripPlans />} />
+          </Route>
           <Route path="/newtrip" element={<PlanNewTrip />} />
           <Route path="/travelmate" element={<InviteMate />} />
 

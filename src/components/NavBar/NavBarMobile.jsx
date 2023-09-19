@@ -40,7 +40,7 @@ const NavBarMobile = () => {
         <Link to="/profile">
           <img
             src={
-              location.pathname === "/profile" ||  location.pathname === "/change-password"
+              location.pathname.includes("/profile") ||  location.pathname === "/change-password"
                 ? profileActive
                 : profileInactive
             }
