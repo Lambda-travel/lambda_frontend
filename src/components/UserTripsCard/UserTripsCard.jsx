@@ -71,6 +71,8 @@ function UserTripsCard({ trip }) {
     getTotalPlaceCount();
     getTravelMates();
   }, []);
+
+  
   useEffect(() => {
     const storeProfileUrl = localStorage.getItem("profile_image_url");
     console.log("Stored Profile URL:", storeProfileUrl);

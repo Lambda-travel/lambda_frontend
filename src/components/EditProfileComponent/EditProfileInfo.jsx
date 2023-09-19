@@ -52,20 +52,28 @@ function EditProfileInfo() {
             };
             setUser(newUserData);
             localStorage.setItem("profile_image_url", url);
-            api.put(`/users/edit_user/${user_id}`, data).then((response) => {
-              if (response.status === 200) {
-                setChanges(false);
-                setTimeout(() => {
-                  navigate("/profile");
-                }, 400);
-              }
-            });
-            // console.log(url);
+            // api.put(`/users/edit_user/${user_id}`, data).then((response) => {
+            //   if (response.status === 200) {
+            //     setChanges(false);
+            //     setTimeout(() => {
+            //       navigate("/profile");
+            //     }, 400);
+            //   }
+            // });
+            console.log(user);
             console.log(data);
           })
           .catch((err) => console.error(err));
       });
     }
+    api.put(`/users/edit_user/${user_id}`, data).then((response) => {
+      if (response.status === 200) {
+        setChanges(false);
+        setTimeout(() => {
+          navigate("/profile");
+        }, 400);
+      }
+    });
     // else {
     //   setUser((prevUser) => ({ ...prevUser, ...data }));
     // }
@@ -120,13 +128,13 @@ function EditProfileInfo() {
           </div>
           {changes ? (
             <Button
-              // type="submit"
+              type="submit"
               text="SAVE CHANGES"
               newClassName="editButton editBtn"
             />
           ) : (
             <Button
-              // type="submit"
+              type="submit"
               text="CHANGES SAVED"
               newClassName="doneButton editBtn"
             />

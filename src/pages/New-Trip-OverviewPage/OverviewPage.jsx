@@ -34,12 +34,12 @@ function formatDate(inputDate) {
 }
 
 const OverviewPage = () => {
-  
   const location = useLocation();
   const id = Number(useParams().id);
 
   const { user } = useContext(UserContext);
   const { trips } = useContext(TripsContext);
+  const [profileImgUrl, setProfileImgUrl] = useState("");
 
   // ------------  GET ALL DAYS
 
@@ -61,8 +61,11 @@ const OverviewPage = () => {
       .get(`/trip/overview/${id}`)
       .then((response) => {
         // console.log(response);
-        localStorage.setItem("lambda_country_trip", response.data[0].destination.replace(/^[^ ]* /, ''))
-        setTripInfo(response.data[0])
+        localStorage.setItem(
+          "lambda_country_trip",
+          response.data[0].destination.replace(/^[^ ]* /, "")
+        );
+        setTripInfo(response.data[0]);
       })
       .catch((error) => console.log(error));
   };
@@ -91,6 +94,18 @@ const OverviewPage = () => {
     tripById();
   }, []);
 
+  //* User Profile UseEffect
+  useEffect(() => {
+    const storeProfileUrl = localStorage.getItem("profile_image_url");
+    console.log("Stored Profile URL:", storeProfileUrl);
+    if (storeProfileUrl) {
+      setProfileImgUrl(storeProfileUrl);
+    } else {
+      if (user && user.profile_image_url) {
+        setProfileImgUrl(user.profile_image_url);
+      }
+    }
+  }, [user]);
   /*-------------  PAGE INFO -----------*/
 
   const [editTripPopUp, setEditTripPopUp] = useState(false);
@@ -105,16 +120,16 @@ const OverviewPage = () => {
     setEditTripPopUp(!editTripPopUp);
   };
 
-  const saveTripId =()=>{
-    localStorage.setItem("tripIdInviteTravelmate", id)
-  }
+  const saveTripId = () => {
+    localStorage.setItem("tripIdInviteTravelmate", id);
+  };
 
   console.log();
 
   return (
     <>
-      {tripInfo ?
-        <article >
+      {tripInfo ? (
+        <article>
           {/*-------- H E A D E R -------------*/}
           <div className="header-container">
             <Link to="/home">
@@ -138,7 +153,11 @@ const OverviewPage = () => {
               </button>
             </Link>
             {tripInfo.trip_image_url ? (
-              <img className="header-img" src={tripInfo.trip_image_url} alt={""} />
+              <img
+                className="header-img"
+                src={tripInfo.trip_image_url}
+                alt={""}
+              />
             ) : (
               <img className="header-img-default" src={defaultCover} alt={""} />
             )}
@@ -146,7 +165,14 @@ const OverviewPage = () => {
           {/*-------- INFO USER -------------*/}
           <div className="info-user-container">
             <div className="name-and-edit">
-              <h1 className="name-of-trip">{trips.indexOf(trips.filter(trip => trip.destination === tripInfo.destination)[0])+1} - {tripInfo.destination}</h1>
+              <h1 className="name-of-trip">
+                {trips.indexOf(
+                  trips.filter(
+                    (trip) => trip.destination === tripInfo.destination
+                  )[0]
+                ) + 1}{" "}
+                - {tripInfo.destination}
+              </h1>
               <button className="edit-trip-btn" onClick={toggleEditTrip}>
                 <svg
                   style={{ width: "1.2rem", cursor: "pointer" }}
@@ -165,17 +191,23 @@ const OverviewPage = () => {
                 </svg>
               </button>
 
-              {editTripPopUp && <EditTrip toggleEditTrip={toggleEditTrip} defaultDestination={tripInfo.destination} />}
+              {editTripPopUp && (
+                <EditTrip
+                  toggleEditTrip={toggleEditTrip}
+                  defaultDestination={tripInfo.destination}
+                />
+              )}
             </div>
             <p className="date-of-trip">
-              {formatDate(tripInfo.start_date)} - {formatDate(tripInfo.end_date)}
+              {formatDate(tripInfo.start_date)} -{" "}
+              {formatDate(tripInfo.end_date)}
             </p>
             <div className="container-avatar-and-button">
               {/* <img className="profile-icon" src={Avatar} alt={""} /> */}
               <Avatar
                 // className="avatar"
                 className="profile-icon"
-                src={user.profile_image_url ? user.profile_image_url : null}
+                src={profileImgUrl ? profileImgUrl : null}
               />
               {travelMates
                 ? travelMates.map((mate, index) => (
@@ -219,7 +251,9 @@ const OverviewPage = () => {
           </div>
           <Outlet />
         </article>
-      :<h1>Loading..</h1>}
+      ) : (
+        <h1>Loading..</h1>
+      )}
     </>
   );
 };
