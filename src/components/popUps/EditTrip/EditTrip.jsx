@@ -1,21 +1,39 @@
 /* eslint-disable react/prop-types */
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import "./editTrip.css";
 import { storage } from "../../../services/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 import api from "../../../api/api";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import Select from "react-select";
+import TripsContext from "../../../contexts/TripsContext";
 
-const EditTrip = ({ toggleEditTrip }) => {
+const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
   const [loading, setLoading] = useState(false);
   const allDays = JSON.parse(localStorage.getItem("allDays"));
   const tripID = allDays.map((tripID) => tripID.trip_id)[0];
 
+  const { countries, selectedCountry, setSelectedCountry } =
+    useContext(TripsContext);
+
+  // const [validation, setValidation] = useState("");
+
   const reload = useNavigate();
 
-  const { register, handleSubmit } = useForm();
+  useEffect(() => {
+    setSelectedCountry(defaultDestination);
+  }, []);
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    watch,
+    setValue,
+    // formState: { errors },
+  } = useForm();
 
   const getCurrentDate = () => {
     const today = new Date();
@@ -25,7 +43,33 @@ const EditTrip = ({ toggleEditTrip }) => {
     return `${year}-${month}-${day}`;
   };
 
+  const [error, setError] = useState();
+  const startDate = watch(["start_date"]);
+  const endDate = watch(["end_date"]);
+
+  useEffect(() => {
+    if (endDate && startDate) {
+      if (endDate[0]?.length > 0 && startDate[0]?.length > 0) {
+        if (endDate < startDate) {
+          setError("End date should not be earlier that the Start date");
+        } else {
+          setError(null);
+        }
+      }
+    }
+  }, [endDate, startDate]);
+
   const editInfoTrip = (data) => {
+    setLoading(true);
+    //! Prevent fetch API info if don't have values
+    if (
+      data.destination == "" &&
+      data.end_date == "" &&
+      data.start_date == "" &&
+      data.trip_image_url.length == 0
+    ) {
+      return alert("Don't have Updates");
+    }
     setLoading(true);
     if (data.destination == "") {
       delete data.destination;
@@ -39,6 +83,31 @@ const EditTrip = ({ toggleEditTrip }) => {
     if (data.trip_image_url.length == 0) {
       delete data.trip_image_url;
     }
+
+    if (data.trip_image_url !== undefined && data.trip_image_url[0]) {
+      const destinationImage = data.trip_image_url[0];
+      const imageRef = ref(storage, `${uuid()}-trip-image`);
+
+      uploadBytes(imageRef, destinationImage)
+        .then(() => {
+          getDownloadURL(imageRef)
+            .then((urlImage) => {
+              data.trip_image_url = urlImage;
+              api
+                .put(`/trip/edit/${tripID}`, data)
+                .then((response) => response);
+            })
+            .catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
+    } else {
+      api.put(`/trip/edit/${tripID}`, data).then((response) => response);
+    }
+
+    setTimeout(() => {
+      toggleEditTrip();
+      reload(0);
+    }, 3000);
 
     if (data.trip_image_url !== undefined && data.trip_image_url[0]) {
       const destinationImage = data.trip_image_url[0];
@@ -82,14 +151,36 @@ const EditTrip = ({ toggleEditTrip }) => {
               className="form-popUp-edit"
               onSubmit={handleSubmit(editInfoTrip)}
             >
-              <label htmlFor="destination">Trip Name:</label>
-              <input
-                {...register("destination")}
-                name="destination"
-                className="inputs-popUp-edit"
-                type="text"
-                placeholder="e.g., Japan, Paris, Indonesia"
-              />
+              <label htmlFor="destination">Destination:</label>
+              <div className="divInput">
+                <Controller
+                  className="inputField"
+                  name="destination"
+                  control={control}
+                  defaultValue={defaultDestination}
+                  placeholder="e.g., Japan, Paris, Indonesia"
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={countries}
+                      onChange={(value) => {
+                        // console.log(value);
+                        setSelectedCountry(value);
+                        setValue("destination", value.label);
+                      }}
+                      value={selectedCountry}
+                    />
+                  )}
+                />
+              </div>
+              {/* <input
+                    {...register("destination")}
+                    onChange={handleChange}
+                    name="destination"
+                    className="inputs-popUp-edit"
+                    type="text"
+                    placeholder="e.g., Japan, Paris, Indonesia"
+                /> */}
 
               <label htmlFor="start_date">Start Date:</label>
               <input
@@ -109,10 +200,14 @@ const EditTrip = ({ toggleEditTrip }) => {
                 className="inputs-popUp-edit"
                 type="text"
                 placeholder="e.g. 17 Aug 2023"
-                min={getCurrentDate()}
+                min={startDate[0] ? startDate[0] : getCurrentDate()}
                 onFocus={(e) => (e.target.type = "date")}
                 onBlur={(e) => (e.target.type = "text")}
               />
+              {error && error.length > 0 ? (
+                <p className="required">{error}</p>
+              ) : null}
+
               <label
                 className="uploadImage-popUp-addDestination"
                 htmlFor="input-file"

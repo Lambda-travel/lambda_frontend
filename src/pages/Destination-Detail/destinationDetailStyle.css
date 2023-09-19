@@ -81,6 +81,9 @@
     .img {
         max-width: 100%;
     }
+    .destination-background {
+        height: 55rem;
+    }
 }
 
 /*-----------  LAPTOP VERSION ------------*/
@@ -102,6 +105,12 @@
         color: #FF5A5F;
         border: 1.6px solid #FF5A5F;
     }
+    .destination-background {
+    display: block;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 }
 
@@ -112,7 +121,7 @@
         margin-right: auto;
         margin-left: auto;
         display: block;
-        max-width: 60%;
+        max-width: 48%;
     }
     .card-description-destination {
         background-color: #ffffffd5;
@@ -137,7 +146,7 @@
         margin-right: auto;
         margin-left: auto;
         display: block;
-        max-width: 55%;
+        max-width: 35%;
     }
     .card-description-destination {
         background-color: #ffffffd5;

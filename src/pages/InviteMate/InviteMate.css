@@ -96,8 +96,10 @@ label{
 
     .inviteAndMaybeBtn{
         margin: 0 auto;
-        width: 40%;
+        width: 60%;
         left: 30%;
+        position:unset;
+        bottom: 15%;
     }
     .pageTitle h2{
         font-size: 40px;

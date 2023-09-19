@@ -3,11 +3,10 @@ import "./UserTripscard.css";
 import optionIcon from "../../assets/more-horizontal.svg";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
-import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Cookies from "js-cookie";
-
 import api from "../../api/api";
+import TripsContext from "../../contexts/TripsContext";
 
 function formatDate(inputDate) {
   const date = new Date(inputDate);
@@ -34,14 +33,17 @@ function formatDate(inputDate) {
 function UserTripsCard({ trip }) {
   const { user } = useContext(UserContext);
   const [profileImgUrl, setProfileImgUrl] = useState("");
-
+  const { trips } = useContext(TripsContext);
   const [totalPlaceCount, setTotalPlaceCount] = useState();
 
   const getTotalPlaceCount = () => {
     if (trip.id) {
-      api.get(`/trip/${trip.id}/total-places`).then((res) => {
-        setTotalPlaceCount(res.data[0].total_places);
-      });
+      api
+        .get(`/trip/${trip.id}/total-places`)
+        .then((res) => {
+          setTotalPlaceCount(res.data[0].total_places);
+        })
+        .catch((error) => console.log(error));
     }
   };
 
@@ -56,10 +58,12 @@ function UserTripsCard({ trip }) {
         },
       };
 
-      api.get(`/trip/${trip.id}/travelMates`, config).then((res) => {
-        // console.log(res.data);
-        setTravelMates(res.data);
-      });
+      api
+        .get(`/trip/${trip.id}/travelMates`, config)
+        .then((res) => {
+          setTravelMates(res.data);
+        })
+        .catch((error) => console.log(error));
     }
   };
 
@@ -82,7 +86,9 @@ function UserTripsCard({ trip }) {
   return (
     <div className="cardContainer">
       <div className="tripsLocationAndOption ">
-        <h3>{trip?.destination}</h3>
+        <h3>
+          {trips.indexOf(trip) + 1} - {trip?.destination}
+        </h3>
         <img src={optionIcon} alt="" />
       </div>
       <div className="currentTripAndBorder">
@@ -113,8 +119,8 @@ function UserTripsCard({ trip }) {
         </div>
       </div>
       <p className="number-places">
-        {`${formatDate(trip?.start_date)}-${formatDate(trip?.end_date)}`} -
-        {totalPlaceCount ? totalPlaceCount : "There is no"} places
+        {`${formatDate(trip?.start_date)} - ${formatDate(trip?.end_date)} -> `}
+        {totalPlaceCount ? totalPlaceCount : "There is no "} place(s)
       </p>
     </div>
   );

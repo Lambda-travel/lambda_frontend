@@ -22,6 +22,7 @@ body {
   width: 40px;
   height: 40px;
   margin: 0 2px;
+  z-index: 0;
 }
 .avatarContainer {
   background-color: white;
@@ -44,7 +45,7 @@ body {
 }
 .cardsAndTripInfosMobile {
   display: flex;
-  margin-top: -75px;
+  margin-top: -20px;
   width: 100%;
 }
 .myTripAndPlanNew {

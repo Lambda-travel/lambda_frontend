@@ -25,10 +25,19 @@ body.active-modal-place-to-visit {
     font-weight: 600;
 }
 .description-place {
+    overflow-wrap: break-word;
+    text-overflow: ellipsis; 
     color: #6B7280 ;
     margin-top: 0.5rem;
     font-weight: 400;
     font-size: 0.9rem;
+    width: 24rem;
+}
+.test-comment {
+    height: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 .add-place-to-visit-btn {
     cursor: pointer;
@@ -46,7 +55,7 @@ body.active-modal-place-to-visit {
     color: #ff676C;
     border: 1.7px solid #ff676c8f;
 }
-.add-place-to-visit-btn2 {
+/* .add-place-to-visit-btn2 {
     cursor: pointer;
     background-color: #ff676C;
     color: white;
@@ -55,9 +64,9 @@ body.active-modal-place-to-visit {
     height: 3rem;
     width: 3rem;
     border-radius: 0.5rem;
-    margin: 25% 0 -10% 85% ;
+    margin: 0% 0 -10% 85% ;
     transition: 0.7s;
-}
+} */
 .add-place-to-visit-btn2:hover {
 background-color: #ffffff;
 color: #ff676C;
@@ -92,5 +101,9 @@ display: none;
     }
     .description-container {
         align-items: center;
+    }
+    .description-place {
+        text-align: center;
+        width: 24rem;
     }
 }

@@ -50,7 +50,7 @@ body {
 
 .userAndInfos {
   background-color: #fff;
-  width: 100%;
+  /* width: 100%; */
   padding: 16px 24px;
 }
 .userAvatarAndName {
@@ -61,7 +61,7 @@ body {
   font-weight: 300;
 }
 .generalTips {
-  width: 100%;
+  /* width: 100%; */
   height: 125px;
   padding: 16px 24px;
   background-color: #fff;
@@ -81,7 +81,7 @@ body {
   font-weight: 300;
 }
 .daysAndContents {
-  width: 100%;
+  /* width: 100%; */
   height: 189px;
   background-color: #fff;
   margin-top: 41px;
@@ -129,7 +129,7 @@ body {
 @media only screen and (min-width: 700px) {
   .ImageAndNav {
     width: 100%;
-    height: 350px;
+    height: 550px;
     display: grid;
     align-items: center;
     position: relative;

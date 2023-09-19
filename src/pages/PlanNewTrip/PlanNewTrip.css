@@ -12,6 +12,10 @@ body {
   text-decoration: none;
 }
 
+.css-b62m3t-container{
+  width: 750px;
+}
+
 /* Title and small description */
 .pageTitle {
   display: flex;
@@ -61,10 +65,12 @@ body {
   padding: 10px;
   margin: 10px 0;
   height: 30px;
+  justify-content: center;
 }
-label {
+.newTripTraMate label {
   width: 35%;
-  font-size: 12px;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
 /* Buttons to start and cancel */
@@ -90,7 +96,7 @@ label {
 @media only screen and (min-width: 700px){
     .planNewTripForm{
         width: 40%;
-        margin: 7rem auto;
+        margin: 2rem auto;
     }
 
     .startCancelBtn{

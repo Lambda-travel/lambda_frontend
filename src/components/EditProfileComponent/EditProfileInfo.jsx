@@ -19,7 +19,7 @@ function EditProfileInfo() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
 
   const editUser = (data) => {
