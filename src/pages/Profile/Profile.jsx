@@ -66,7 +66,7 @@ function Profile() {
                 sx={{ width: 100, height: 100 }}
                 src={user.profile_image_url ? user.profile_image_url : null}
               />
-              <Link to="/editPage">
+              <Link to="/edit-profile">
                 <img src={editIcon} alt="edit icon" className="editIcon" />
               </Link>
             </div>
@@ -104,7 +104,7 @@ function Profile() {
 
           <div className="tripPlansContent">
             {trips && trips.length > 0 ? (
-              <div className="tripPlansContent">
+              <div>
                 {categoryStyle ? (
                   trips.map((trip, index) => (
                     <Link

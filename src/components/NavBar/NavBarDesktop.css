@@ -33,6 +33,7 @@
     height: 3.9375rem;
     justify-content: space-around;
     align-items: center;
+    z-index: 5;
 }
 
 @media screen and (max-width: 767px) {

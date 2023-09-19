@@ -77,7 +77,7 @@ function App() {
 
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/editPage" element={<EditProfile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
         </Route>
       </Routes>
     </>

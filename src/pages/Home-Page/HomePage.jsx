@@ -11,10 +11,11 @@ import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import TripsContext from "../../contexts/TripsContext";
 import Avatar from "@mui/material/Avatar";
+import Cookies from "js-cookie";
 
 function HomePage() {
   const { user } = useContext(UserContext);
-  const { trips } = useContext(TripsContext);
+  const { trips, fetchTrips } = useContext(TripsContext);
 
 
   const [articles, setArticles] = useState();
@@ -31,6 +32,17 @@ function HomePage() {
   };
 
   useEffect(() => {
+    const token = Cookies.get("user_token");
+    
+    if (token) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+     
+      fetchTrips(config)
+    }
     getArticles();
   }, []);
 
