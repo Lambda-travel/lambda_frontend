@@ -1,23 +1,73 @@
 /* eslint-disable react/prop-types */
 import "./addDestinationStyle.css";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import api from "../../../api/api";
-import {storage} from "../../../services/firebase"
-import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
+import { storage } from "../../../services/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 as uuid } from "uuid";
-
+import Select from "react-select";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const AddDestination = ({ toggleAddDestination, dayId }) => {
   const {
     register,
+    control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
+  const [cities, setCities] = useState();
+  const [loading, setLoading] = useState(false);
+  const [selectedCity, setSelectedCity] = useState();
 
+  const getCitiesByCountry = () => {
+    setLoading(true);
+    const country = localStorage.getItem("lambda_country_trip");
+    if (country) {
+      let data = {
+        country: country,
+      };
+      axios
+        .post("https://countriesnow.space/api/v0.1/countries/cities", data)
+        .then((response) => {
+          if (response.data.error === false) {
+            setCities(
+              response.data.data.map((city) => ({ value: city, label: city }))
+            );
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+    setLoading(false);
+  };
 
+  useEffect(() => {
+    getCitiesByCountry();
+  }, []);
 
   const submitDestination = (data) => {
+    // console.log(data);
+    if (data.image[0] !== null) {
+      const destinationImage = data.image[0];
+      const imageRef = ref(storage, `${uuid()}-destination-image`);
+      console.log(destinationImage);
+      console.log(imageRef);
+      console.log(dayId);
+      // uploadBytes(imageRef, destinationImage)
+      //   .then(() => {
+      //     getDownloadURL(imageRef)
+      //       .then((urlImage) => {
+      //         data.image = urlImage;
+      //         api
+      //           .post(`/destination/${dayId}`, data)
+      //           .then((response) => response);
+      //       })
+      //       .catch((error) => console.error(error));
+      //   })
+      //   .catch((error) => console.log(error));
+    }
 
      if(data.image[0] !== null){
      
@@ -63,16 +113,45 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             })}
             aria-invalid={errors.place_to_visit ? "true" : "false"}
           />
-          {errors.place_to_visit && <p className="style-error-form">{errors.place_to_visit?.message}</p>}
+          {errors.place_to_visit && (
+            <p className="style-error-form">{errors.place_to_visit?.message}</p>
+          )}
           <label>Location: </label>
-          <input
+          {loading ? (
+            <input
+              className="inputs-popUp-addDestination"
+              placeholder="Loading Cities..."
+              readOnly
+            />
+          ) : (
+            <Controller
+              className="inputs-popUp-addDestination"
+              name="location"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={cities}
+                  onChange={(value) => {
+                    // console.log(value);
+                    setSelectedCity(value);
+                    setValue("location", value);
+                  }}
+                  value={selectedCity}
+                />
+              )}
+            />
+          )}
+          {/* <input
             placeholder="location"
             type="text"
             className="inputs-popUp-addDestination"
             {...register("location", { required: "location is required" })}
             aria-invalid={errors.location ? "true" : "false"}
-          />
-          {errors.location && <p className="style-error-form">{errors.location?.message}</p>}
+          /> */}
+          {errors.location && (
+            <p className="style-error-form">{errors.location?.message}</p>
+          )}
           <label>Description: </label>
           <input
             placeholder="description"
@@ -83,7 +162,9 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             })}
             aria-invalid={errors.description ? "true" : "false"}
           />
-          {errors.description && <p className="style-error-form">{errors.description?.message}</p>}
+          {errors.description && (
+            <p className="style-error-form">{errors.description?.message}</p>
+          )}
           <label
             className="uploadImage-popUp-addDestination"
             htmlFor="input-file"
@@ -101,11 +182,16 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             })}
             aria-invalid={errors.image ? "true" : "false"}
           />
-          {errors.image && <p className="style-error-form">{errors.image?.message}</p>}
+          {errors.image && (
+            <p className="style-error-form">{errors.image?.message}</p>
+          )}
           <button type="submit" className="save-destination">
             SAVE DESTINATION
           </button>
-          <button onClick={()=>toggleAddDestination()} className="cancel-add-place">
+          <button
+            onClick={() => toggleAddDestination()}
+            className="cancel-add-place"
+          >
             CANCEL
           </button>
         </form>
@@ -113,7 +199,5 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
     </div>
   );
 };
-
-
 
 export default AddDestination;

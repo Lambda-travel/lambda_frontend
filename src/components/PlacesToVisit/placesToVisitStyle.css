@@ -55,7 +55,7 @@ body.active-modal-place-to-visit {
     color: #ff676C;
     border: 1.7px solid #ff676c8f;
 }
-.add-place-to-visit-btn2 {
+/* .add-place-to-visit-btn2 {
     cursor: pointer;
     background-color: #ff676C;
     color: white;
@@ -64,9 +64,9 @@ body.active-modal-place-to-visit {
     height: 3rem;
     width: 3rem;
     border-radius: 0.5rem;
-    margin: 25% 0 -10% 85% ;
+    margin: 0% 0 -10% 85% ;
     transition: 0.7s;
-}
+} */
 .add-place-to-visit-btn2:hover {
 background-color: #ffffff;
 color: #ff676C;

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfileUserCards from "../../components/profileUserCards/ProfileUserCards";
 import editIcon from "../../assets/Group 1689.svg";
 import api from "../../api/api";
-
+import Cookies from 'js-cookie';
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import Avatar from "@mui/material/Avatar";
@@ -15,9 +15,8 @@ import "./Profile.css";
 function Profile() {
   /* COUNT OF ITEMS IN TRIP PLANS*/
   const { user } = useContext(UserContext);
-  const { trips } = useContext(TripsContext);
+  const { trips, setTrips } = useContext(TripsContext);
 
-  const [totalPlace, setTotalPlace] = useState([]);
   const [categoryStyle, setCategoryStyle] = useState(true);
   // const [profileUsers, setProfileUsers] = useState();
 
@@ -28,13 +27,24 @@ function Profile() {
     navigate("/newtrip");
   };
 
-  const getTotalPlace = () => {
-    api.get("/trip/place").then((res) => {
-      //! /trip/place ??????
-      setTotalPlace(res.data);
-    });
-  };
-  
+  const getAllTrips = () => {
+    const token = Cookies.get("user_token");
+    if (token) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+    api
+    .get("/trip", config)
+    .then((response) => {
+      if (response.status === 200) {
+        setTrips(response.data);
+      }
+    })
+    .catch((error) => console.error(error));
+  }
+}
   const handleGuideCategoryStyle = () => {
     setCategoryStyle(false);
   };
@@ -43,15 +53,11 @@ function Profile() {
   };
 
   useEffect(() => {
-    getTotalPlace();
+    getAllTrips();
   }, []);
 
   return (
     <div className="bigContainer">
-      {/* <div className="homeButton">
-        <HomeNav />
-      </div> */}
-
       <div className="container-profile">
         {user ? (
           <div className="profileInfo">
@@ -100,7 +106,7 @@ function Profile() {
             {trips && trips.length > 0 ? (
               <div className="tripPlansContent">
                 {categoryStyle ? (
-                  trips.map((trip) => (
+                  trips.map((trip, index) => (
                     <Link
                       key={trip.id}
                       className="link-in-card-profile"
@@ -108,9 +114,8 @@ function Profile() {
                     >
                       <ProfileUserCards
                         trip={trip}
-                        totalPlace={totalPlace.map(
-                          (value) => value.total_places
-                        )}
+                        index={index+1}
+                        totalPlace={null}
                       />
                     </Link>
                   ))

@@ -120,11 +120,11 @@ function Login() {
             <p className="required">{errors.password?.message}</p>
           )}
           {error !== "" ? <p className="required">{error}</p> : null}
-          <Link to="/forgot-password" className="forgetPass">
-            <div>
-              <button>Forgot Password?</button>
-            </div>
-          </Link>
+          <div className="forgetPass">
+            <Link to="/forgot-password">
+              <button type="button">Forgot Password?</button>
+            </Link>
+          </div>
           <div className="logInBtn">
             <Button newClassName="customButton" text="LOG IN" />
           </div>
