@@ -18,7 +18,7 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
   const { countries, selectedCountry, setSelectedCountry } =
     useContext(TripsContext);
 
-  const [validation, setValidation] = useState("");
+  // const [validation, setValidation] = useState("");
 
   const reload = useNavigate();
 

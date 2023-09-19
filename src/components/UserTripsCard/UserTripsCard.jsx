@@ -32,6 +32,7 @@ function formatDate(inputDate) {
 
 function UserTripsCard({ trip }) {
   const { user } = useContext(UserContext);
+  const [profileImgUrl, setProfileImgUrl] = useState("");
   const { trips } = useContext(TripsContext);
   const [totalPlaceCount, setTotalPlaceCount] = useState();
 
@@ -70,12 +71,23 @@ function UserTripsCard({ trip }) {
     getTotalPlaceCount();
     getTravelMates();
   }, []);
+  useEffect(() => {
+    const storeProfileUrl = localStorage.getItem("profile_image_url");
+    console.log("Stored Profile URL:", storeProfileUrl);
+    if (storeProfileUrl) {
+      setProfileImgUrl(storeProfileUrl);
+    } else {
+      if (user && user.profile_image_url) {
+        setProfileImgUrl(user.profile_image_url);
+      }
+    }
+  }, [user]);
 
   return (
     <div className="cardContainer">
       <div className="tripsLocationAndOption ">
         <h3>
-          {trips.indexOf(trip)+1} - {trip?.destination}
+          {trips.indexOf(trip) + 1} - {trip?.destination}
         </h3>
         <img src={optionIcon} alt="" />
       </div>
@@ -89,7 +101,7 @@ function UserTripsCard({ trip }) {
           {/* <Link to="/profile"> */}
           <Avatar
             className="avatar"
-            src={user.profile_image_url ? user.profile_image_url : null}
+            src={profileImgUrl ? profileImgUrl : null}
           />
           {/* </Link> */}
           {travelMates
