@@ -1,70 +1,70 @@
-import { useState } from "react";
-import ChangePassword from "../../components/ChangePassword/ChangePassword";
-import EditProfileInfo from "../../components/EditProfileComponent/EditProfileInfo";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import Cookies from "js-cookie";
+import UserContext from "../../contexts/UserContext";
+import TripsContext from "../../contexts/TripsContext";
+import AuthContext from "../../contexts/AuthContext";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./EditProfile.css";
 
 function EditProfile() {
-  const [removeStyle, setRemoveStyle] = useState(false);
-  const [putStyle, setPutStyle] = useState(true);
+  const { setUser } = useContext(UserContext);
+  const { setTrips } = useContext(TripsContext);
+  const { setIsAuthenticated } = useContext(AuthContext);
 
-  const handlePutClick = () => {
-    setPutStyle(true);
-    setRemoveStyle(false);
-  };
+  const navigate = useNavigate();
 
-  const handleRemoveClick = () => {
-    setRemoveStyle(true);
-    setPutStyle(false);
+  const logOut = () => {
+    Cookies.remove("user_token");
+    setTrips([]);
+    setUser({});
+    setIsAuthenticated(false);
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
 
   return (
     <div>
       <div className="editContainer">
-        <div>
-          <Link to="/profile/trip-plans">
-            <button className="editNavBtn">
-              <svg
-                style={{ width: "1.5rem" }}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-              <p>Profile</p>
-            </button>
-          </Link>
-        </div>
-
         <div className="editContent">
           <div className="buttonsContainer">
-            <button
-              className={`btn ${putStyle ? "btnActive" : "btnDisabled"}`}
-              onClick={handlePutClick}
-            >
-              Edit Profile
-            </button>
-            <button
-              className={`btn ${removeStyle ? "btnActive" : "btnDisabled"}`}
-              onClick={handleRemoveClick}
-            >
-              Change Password
-            </button>
+            <Link to="/profile-info/edit">
+              <button
+                className={`btn 
+                ${
+                  location.pathname === "/profile-info/edit"
+                    ? "btnActive"
+                    : "btnDisabled"
+                }
+              `}
+              >
+                Edit Profile
+              </button>
+            </Link>
+            <Link to="/profile-info/change-password">
+              <button
+                className={`btn 
+                ${
+                  location.pathname === "/profile-info/change-password"
+                    ? "btnActive"
+                    : "btnDisabled"
+                }
+              `}
+              >
+                Change Password
+              </button>
+            </Link>
           </div>
 
           <div className="line"></div>
 
           <div className="details_Container">
-            {removeStyle && <ChangePassword />}
-            {putStyle && <EditProfileInfo />}
+            <Outlet />
+          <div className="logOutButton">
+            <button onClick={logOut} className="registerButton">
+              Log Out
+            </button>
+          </div>
           </div>
         </div>
       </div>

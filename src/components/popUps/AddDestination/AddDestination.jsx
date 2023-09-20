@@ -132,16 +132,18 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
               name="location"
               control={control}
               render={({ field }) => (
-                <Select
-                  {...field}
-                  options={cities}
-                  onChange={(value) => {
-                    // console.log(value);
-                    setSelectedCity(value);
-                    setValue("location", value.label);
-                  }}
-                  value={selectedCity}
-                />
+                <div className="select-container">
+                  <Select
+                    {...field}
+                    options={cities}
+                    onChange={(value) => {
+                      // console.log(value);
+                      setSelectedCity(value);
+                      setValue("location", value.label);
+                    }}
+                    value={selectedCity}
+                  />
+                </div>
               )}
             />
           )}

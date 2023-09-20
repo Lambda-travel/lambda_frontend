@@ -43,7 +43,7 @@ function HomePage() {
       fetchTrips(config)
     }
     getArticles();
-  }, []);
+  }, [user]);
 
   return (
     <div className="main-container">

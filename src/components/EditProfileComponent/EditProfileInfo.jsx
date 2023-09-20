@@ -79,8 +79,7 @@ function EditProfileInfo() {
     <div>
       <div className="formContainer">
         <form onSubmit={handleSubmit(editUser)}>
-          <div>
-            <label htmlFor="firstname"></label>
+            <label className="label-edit-profile"  htmlFor="firstname">Fist Name:</label>
             <input
               id="firstname"
               type="text"
@@ -88,9 +87,7 @@ function EditProfileInfo() {
               {...register("first_name")}
               className="inputs"
             />
-          </div>
-          <div>
-            <label htmlFor="lastname"></label>
+            <label className="label-edit-profile" htmlFor="lastname">Last Name:</label>
             <input
               id="lastname"
               type="text"
@@ -98,9 +95,7 @@ function EditProfileInfo() {
               {...register("last_name")}
               className="inputs"
             />
-          </div>
-          <div>
-            <label htmlFor="username"></label>
+            <label className="label-edit-profile" htmlFor="username">UserName:</label>
             <input
               id="username"
               type="text"
@@ -108,9 +103,8 @@ function EditProfileInfo() {
               {...register("user_name")}
               className="inputs"
             />
-          </div>
           <div className="upload">
-            <label htmlFor="image" className="label">
+            <label htmlFor="image" className="label-upload">
               Upload new profile image
               <input
                 id="image"

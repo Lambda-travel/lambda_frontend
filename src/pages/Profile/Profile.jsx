@@ -21,7 +21,7 @@ function Profile() {
                 sx={{ width: 100, height: 100 }}
                 src={user.profile_image_url ? user.profile_image_url : null}
               />
-              <Link to="/edit-profile">
+              <Link to="/profile-info/edit">
                 <img src={editIcon} alt="edit icon" className="editIcon" />
               </Link>
             </div>

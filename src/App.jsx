@@ -26,6 +26,7 @@ import NavBarMobile from "./components/NavBar/NavBarMobile";
 import NavbarDesktop from "./components/NavBar/NavBarDesktop";
 import Guides from "./components/ProfileTripsAndGuides/Guides";
 import TripPlans from "./components/ProfileTripsAndGuides/TripPlans";
+import EditProfileInfo from "./components/EditProfileComponent/EditProfileInfo";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -81,8 +82,11 @@ function App() {
           <Route path="/travelmate" element={<InviteMate />} />
 
           <Route path="/article/:id" element={<ArticlePage />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
+
+          <Route path="/profile-info" element={<EditProfile />}>
+            <Route path="change-password" element={<ChangePassword />} />
+            <Route path="edit" element={<EditProfileInfo />} />
+          </Route>
         </Route>
       </Routes>
     </>

@@ -20,9 +20,9 @@ const NavbarDesktop = () => {
     <nav className="navbar-desktop">
       <ul className="navbar-container-desktop">
         <Link to="/home">
-      <div className="navbar-icons-desktop">
-          <img className="navbar-logo-desktop" src={logo} />
-        </div>
+          <div className="navbar-icons-desktop">
+            <img className="navbar-logo-desktop" src={logo} />
+          </div>
         </Link>
         <div className="navbar-icons-desktop">
           <Link to="/home">
