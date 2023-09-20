@@ -48,27 +48,6 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
   }, []);
 
   const submitDestination = (data) => {
-    // console.log(data);
-    if (data.image[0] !== null) {
-      const destinationImage = data.image[0];
-      const imageRef = ref(storage, `${uuid()}-destination-image`);
-      console.log(destinationImage);
-      console.log(imageRef);
-      console.log(dayId);
-      // uploadBytes(imageRef, destinationImage)
-      //   .then(() => {
-      //     getDownloadURL(imageRef)
-      //       .then((urlImage) => {
-      //         data.image = urlImage;
-      //         api
-      //           .post(`/destination/${dayId}`, data)
-      //           .then((response) => response);
-      //       })
-      //       .catch((error) => console.error(error));
-      //   })
-      //   .catch((error) => console.log(error));
-    }
-
      if(data.image[0] !== null){
      
        const destinationImage = data.image[0]
@@ -119,21 +98,20 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
           <label>Location: </label>
           {loading ? (
             <input
-              className="inputs-popUp-addDestination"
               placeholder="Loading Cities..."
               readOnly
             />
           ) : (
+            <div className="">
             <Controller
-              className="inputs-popUp-addDestination"
               name="location"
               control={control}
               render={({ field }) => (
                 <Select
+                className= "add-container-input"
                   {...field}
                   options={cities}
                   onChange={(value) => {
-                    // console.log(value);
                     setSelectedCity(value);
                     setValue("location", value);
                   }}
@@ -141,14 +119,8 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
                 />
               )}
             />
+            </div>
           )}
-          {/* <input
-            placeholder="location"
-            type="text"
-            className="inputs-popUp-addDestination"
-            {...register("location", { required: "location is required" })}
-            aria-invalid={errors.location ? "true" : "false"}
-          /> */}
           {errors.location && (
             <p className="style-error-form">{errors.location?.message}</p>
           )}

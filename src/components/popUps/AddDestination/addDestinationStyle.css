@@ -51,6 +51,7 @@ body.active-modal {
 .textarea-addDestination {
     border-radius: 9px;
     height: 7rem;
+    border: 1px solid rgba(0, 0, 0, 0.644)
 }
 .uploadImage-popUp-addDestination {
     cursor: pointer;
@@ -92,4 +93,10 @@ label {
     font-size: 0.8rem;
     font-weight: 400;
     color: red;
+}
+
+.add-container-input {
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, 0.644);
+    border-radius: 5px;
 }

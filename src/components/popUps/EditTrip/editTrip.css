@@ -53,6 +53,16 @@
     border-radius: 6px;
 }
 
+.destination-edit-container {
+    border: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.644);
+    border-radius: 6px;
+    
+}
+
 .uploadImage-popUp-edit {
     margin-top: 1rem;
     display: flex;

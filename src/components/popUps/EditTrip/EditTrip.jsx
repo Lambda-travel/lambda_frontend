@@ -18,7 +18,7 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
   const { countries, selectedCountry, setSelectedCountry } =
     useContext(TripsContext);
 
-  // const [validation, setValidation] = useState("");
+   
 
   const reload = useNavigate();
 
@@ -32,7 +32,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
     handleSubmit,
     watch,
     setValue,
-    // formState: { errors },
   } = useForm();
 
   const getCurrentDate = () => {
@@ -108,31 +107,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
       toggleEditTrip();
       reload(0);
     }, 3000);
-
-    if (data.trip_image_url !== undefined && data.trip_image_url[0]) {
-      const destinationImage = data.trip_image_url[0];
-      const imageRef = ref(storage, `${uuid()}-trip-image`);
-
-      uploadBytes(imageRef, destinationImage)
-        .then(() => {
-          getDownloadURL(imageRef)
-            .then((urlImage) => {
-              data.trip_image_url = urlImage;
-              api
-                .put(`/trip/edit/${tripID}`, data)
-                .then((response) => response);
-            })
-            .catch((error) => console.error(error));
-        })
-        .catch((error) => console.log(error));
-    } else {
-      api.put(`/trip/edit/${tripID}`, data).then((response) => response);
-    }
-
-    setTimeout(() => {
-      toggleEditTrip();
-      reload(0);
-    }, 3000);
   };
 
   return (
@@ -152,10 +126,10 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
               onSubmit={handleSubmit(editInfoTrip)}
             >
               <label htmlFor="destination">Destination:</label>
-              <div className="divInput">
+              <div className="destination-edit-container">
                 <Controller
-                  className="inputField"
                   name="destination"
+                  className="inputField"
                   control={control}
                   defaultValue={defaultDestination}
                   placeholder="e.g., Japan, Paris, Indonesia"
@@ -164,7 +138,6 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
                       {...field}
                       options={countries}
                       onChange={(value) => {
-                        // console.log(value);
                         setSelectedCountry(value);
                         setValue("destination", value.label);
                       }}
@@ -173,14 +146,7 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
                   )}
                 />
               </div>
-              {/* <input
-                    {...register("destination")}
-                    onChange={handleChange}
-                    name="destination"
-                    className="inputs-popUp-edit"
-                    type="text"
-                    placeholder="e.g., Japan, Paris, Indonesia"
-                /> */}
+
 
               <label htmlFor="start_date">Start Date:</label>
               <input

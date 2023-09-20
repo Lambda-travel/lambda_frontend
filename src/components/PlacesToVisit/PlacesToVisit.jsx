@@ -15,10 +15,6 @@ const PlacesToVisit = () => {
       .get(`/trip/place/${id}`)
       .then((response) => {
         setPlacesInfo(response.data)
-        if (response.data.length > 0) {
-          setShowDetail(true);
-        }
-
       })
       .catch((error) => console.log(error));
   };
@@ -91,9 +87,6 @@ useEffect(()=>{
           {addPopUp && <AddPlace toggleAdd={toggleAdd}/>}
           <div className="places-to-visit-container"></div>
       {/*-------- RECOMMENDED PLACES -------------*/}
-      {/* <div>
-        <p className="recommended-places-overview">Recommended Places</p>
-      </div> */}
 
 
   </article>
