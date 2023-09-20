@@ -15,8 +15,11 @@ const PlacesToVisit = () => {
       .get(`/trip/place/${id}`)
       .then((response) => {
         setPlacesInfo(response.data)
+        if (response.data.length > 0) {
+          setShowDetail(true);
+        }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 useEffect(()=>{
   placesInfoHandle(id)
@@ -24,7 +27,7 @@ useEffect(()=>{
 
 
   const [addPopUp, setAddPopUp] = useState(false);
-  const [showDetail, setShowDetail] = useState(true);
+  const [showDetail, setShowDetail] = useState(false);
 
   const toggleAdd = () => {
     setAddPopUp(!addPopUp);
@@ -35,9 +38,9 @@ useEffect(()=>{
     }
   };
 
-  const toggleDetail = () => {
-    setShowDetail(!showDetail);
-  };
+  // const toggleDetail = () => {
+  //   setShowDetail(!showDetail);
+  // };
 
   const toggleViewMore = (placeID) => {
     setShowMore((prevState) => ({
@@ -52,17 +55,18 @@ useEffect(()=>{
       <div className="btn-and-title">
 
           {
-          showDetail ?  <svg onClick={toggleDetail} style={{width:"1.5rem",cursor:"pointer"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
+          showDetail ?  <svg  style={{width:"1.5rem",cursor:"pointer"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                       </svg>
                   :
-                  <svg onClick={toggleDetail} style={{width:"1.5rem",cursor:"pointer"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
+                  <svg  style={{width:"1.5rem",cursor:"pointer"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
                     </svg>
           }
-                      <h3 onClick={toggleDetail} className="places-to-visit">Places to Visit</h3>
+                      <h3  className="places-to-visit">Places to Visit</h3>
                       </div>
-               <button onClick={toggleAdd}  className={showDetail ? "add-place-to-visit-btn" :"none" }><p className="plus-icon-btn">+</p></button>
+                      
+               <button onClick={toggleAdd}  className="add-place-to-visit-btn"><p className="plus-icon-btn">+</p></button>
           </div>
           {
               showDetail ?
@@ -82,7 +86,6 @@ useEffect(()=>{
 
               : null
           }
-          <button onClick={toggleAdd} className={showDetail ? "none" : "add-place-to-visit-btn2" }><p className="plus-icon-btn">+</p></button>
 
           {addPopUp && <AddPlace toggleAdd={toggleAdd}/>}
           <div className="places-to-visit-container"></div>

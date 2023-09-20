@@ -20,14 +20,12 @@ function InviteMate() {
   const inviteTravelmate = (data) => {
     const tripId = localStorage.getItem("tripIdInviteTravelmate");
     data.trip_id = tripId;
-    // console.log(tripId);
     api
       .post("/travelmate", data)
       .then((response) => {
-        console.log(response);
         if (response.status === 201) {
           setError("");
-          navigate("/profile");
+          navigate("/profile/trip-plans");
         }
       })
       .catch((err) => {
@@ -66,7 +64,7 @@ function InviteMate() {
         {error !== "" ? <p className="required">{error}</p> : null}
         <div className="inviteAndMaybeBtn">
           <Button text="Invite Travelmate" newClassName="customButton" />
-          <Link to="/profile">
+          <Link to="/profile/trip-plans">
             <Button text="Maybe later" newClassName="cancelButton" />
           </Link>
         </div>

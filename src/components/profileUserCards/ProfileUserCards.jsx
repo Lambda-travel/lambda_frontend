@@ -46,7 +46,6 @@ function ProfileUserCards({ trip, index, totalPlace }) {
       api
         .get(`/trip/${trip.id}/travelMates`, config)
         .then((res) => {
-          // console.log(res.data);
           setTravelMates(res.data);
         })
         .catch((error) => {

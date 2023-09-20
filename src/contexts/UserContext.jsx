@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from "react";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import PropTypes from "prop-types";
 import api from "../api/api";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -9,8 +9,8 @@ const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = Cookies.get("user_token");
@@ -26,10 +26,10 @@ const UserContextProvider = ({ children }) => {
         .then((response) => {
           if (response.status === 200) {
             setUser(response.data);
-            if(location.pathname === "/"){
-              navigate("/home")
+            if (location.pathname === "/") {
+              navigate("/home");
             } else {
-              navigate(location.pathname)
+              navigate(location.pathname);
             }
           }
         })

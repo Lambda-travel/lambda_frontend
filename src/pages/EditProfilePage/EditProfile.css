@@ -15,12 +15,14 @@
   color: #6b7280;
 }
 
-.btn {
+/* .btn {
   margin-right: 20px;
-}
+} */
 
 .buttonsContainer {
+  display: flex;
   margin-top: 50px;
+  justify-content: space-around;
 }
 
 .line {
@@ -32,6 +34,8 @@
 
 .details_Container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 .editNavBtn {
@@ -42,10 +46,29 @@
   color: #333;
 }
 
+.logOutButton{
+  width:25%;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.logOutButton .registerButton{
+  margin: 50px auto;
+}
+
 @media only screen and (min-width: 700px) {
+  .editContainer {
+    padding-top: 100px;
+  }
   .buttonsContainer {
-    margin-top: 50px;
     display: flex;
-    justify-content: center;
+    margin-top: 50px;
+    padding-left: 250px;
+    padding-right: 250px;
+    justify-content: space-around;
+  }
+
+  .logOutButton .registerButton{
+    margin-bottom: auto;
   }
 }

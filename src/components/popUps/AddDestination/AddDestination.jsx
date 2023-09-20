@@ -15,12 +15,14 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
     control,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm();
 
   const [cities, setCities] = useState();
   const [loading, setLoading] = useState(false);
   const [selectedCity, setSelectedCity] = useState();
+  const imageUpload = watch(["image"]);
 
   const getCitiesByCountry = () => {
     setLoading(true);
@@ -48,31 +50,45 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
   }, []);
 
   const submitDestination = (data) => {
-     if(data.image[0] !== null){
-     
-       const destinationImage = data.image[0]
-       const imageRef = ref(storage,`${uuid()}-destination-image`)
-       uploadBytes(imageRef, destinationImage)
-       .then(()=>{
-          getDownloadURL(imageRef)
-         .then((urlImage)=>{
-          data.image = urlImage
-          api
-          .post(`/destination/${dayId}`,data)
-           .then((response)=> response)
-
-         })
-         .catch((error)=> console.error(error))
-       })
-        .catch((error)=>console.log(error) )
-
-      }
-
-
-
+    const destinationInfo = {...data};
+    if (destinationInfo) {
+      delete destinationInfo.image;
+      api
+        .post(`/destination/${dayId}`, destinationInfo)
+        .then((response) => {
+          if (response.data.destinationId) {
+            let destinationId = response.data.destinationId
+            Object.keys(data.image).forEach(async (image) => {
+              const destinationImage = data.image[image];
+              const imageRef = ref(storage, `${uuid()}-destination-image`);
+              await uploadBytes(imageRef, destinationImage)
+                .then(async () => {
+                  getDownloadURL(imageRef)
+                    .then(async (urlImage) => {
+                      let imageInfo={
+                        destination_id: destinationId,
+                        image_url: urlImage
+                      }
+                      api
+                        .post('/destination/images',imageInfo)
+                        .then((response) => {
+                          console.log("image saved", response);
+                        });
+                    })
+                    .catch((error) => console.error(error));
+                })
+                .catch((error) => {
+                  console.error(error.message, "error getting the image url");
+                });
+            });
+          } else {
+            console.warn("Error creating destination")
+          }
+        })
+        .catch((error) => console.error(error));
+    }
     toggleAddDestination();
-   };
-
+  };
 
   return (
     <div className="background-popUp-addDestination">
@@ -113,7 +129,7 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
                   options={cities}
                   onChange={(value) => {
                     setSelectedCity(value);
-                    setValue("location", value);
+                    setValue("location", value.label);
                   }}
                   value={selectedCity}
                 />
@@ -125,7 +141,7 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             <p className="style-error-form">{errors.location?.message}</p>
           )}
           <label>Description: </label>
-          <input
+          <textarea
             placeholder="description"
             type="text"
             className="textarea-addDestination"
@@ -141,7 +157,11 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             className="uploadImage-popUp-addDestination"
             htmlFor="input-file"
           >
-            <span className="text-uploadImage">Upload an Image</span>
+          <span className="text-uploadImage">
+          {imageUpload[0] && imageUpload[0][0]
+          ? imageUpload[0][0].name
+          : "Upload an Image"}
+          </span>
           </label>
           <input
             id="input-file"

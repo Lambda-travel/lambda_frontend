@@ -45,6 +45,7 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
   const [error, setError] = useState();
   const startDate = watch(["start_date"]);
   const endDate = watch(["end_date"]);
+  const imageUpload = watch(["trip_image_url"]);
 
   useEffect(() => {
     if (endDate && startDate) {
@@ -60,26 +61,23 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
 
   const editInfoTrip = (data) => {
     setLoading(true);
-    //! Prevent fetch API info if don't have values
-    if (
-      data.destination == "" &&
-      data.end_date == "" &&
-      data.start_date == "" &&
-      data.trip_image_url.length == 0
-    ) {
-      return alert("Don't have Updates");
+    if (data.tripName !== "" && data.destination) {
+      data.destination = data.destination + " - " + data.tripName;
+      delete data.tripName;
     }
-    setLoading(true);
-    if (data.destination == "") {
+    if (data.tripName === "") {
+      delete data.tripName;
+    }
+    if (data.destination === "") {
       delete data.destination;
     }
-    if (data.end_date == "") {
+    if (data.end_date === "") {
       delete data.end_date;
     }
-    if (data.start_date == "") {
+    if (data.start_date === "") {
       delete data.start_date;
     }
-    if (data.trip_image_url.length == 0) {
+    if (data.trip_image_url?.length === 0) {
       delete data.trip_image_url;
     }
 
@@ -94,16 +92,22 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
               data.trip_image_url = urlImage;
               api
                 .put(`/trip/edit/${tripID}`, data)
-                .then((response) => response);
+                .then((response) => response)
+                .catch((error) => console.error(error));
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
     } else {
-      api.put(`/trip/edit/${tripID}`, data).then((response) => response);
+      api
+        .put(`/trip/edit/${tripID}`, data)
+        .then((response) => response)
+        .catch((error) => console.error(error));
     }
-
+   
+   
     setTimeout(() => {
+      setLoading(false);
       toggleEditTrip();
       reload(0);
     }, 3000);
@@ -146,7 +150,15 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
                   )}
                 />
               </div>
+              <label htmlFor="tripName">Trip Name:</label>
 
+              <input
+                {...register("tripName")}
+                name="tripName"
+                className="inputs-popUp-edit"
+                type="text"
+                placeholder="e.g. Exploring"
+              />
 
               <label htmlFor="start_date">Start Date:</label>
               <input
@@ -178,13 +190,15 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
                 className="uploadImage-popUp-addDestination"
                 htmlFor="input-file"
               >
-                <span className="text-uploadImage">Upload an Image</span>
+                <span className="text-uploadImage">
+                  {imageUpload[0] && imageUpload[0][0]
+                    ? imageUpload[0][0].name
+                    : "Upload an Image"}
+                </span>
               </label>
               <input
                 id="input-file"
                 accept="image/*"
-                multiple
-                placeholder="Upload an Image"
                 type="file"
                 {...register("trip_image_url")}
               />

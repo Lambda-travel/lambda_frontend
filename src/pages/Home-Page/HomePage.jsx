@@ -11,11 +11,11 @@ import { useEffect, useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import TripsContext from "../../contexts/TripsContext";
 import Avatar from "@mui/material/Avatar";
+import Cookies from "js-cookie";
 
 function HomePage() {
   const { user } = useContext(UserContext);
-  const { trips } = useContext(TripsContext);
-  const [profileImgUrl, setProfileImgUrl] = useState("");
+  const { trips, fetchTrips } = useContext(TripsContext)
 
   const [articles, setArticles] = useState();
 
@@ -27,23 +27,22 @@ function HomePage() {
       .then((response) => {
         setArticles(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {
-    getArticles();
-  }, []);
-
-  useEffect(() => {
-    const storeProfileUrl = localStorage.getItem("profile_image_url");
-    console.log("Stored Profile URL:", storeProfileUrl);
-    if (storeProfileUrl) {
-      setProfileImgUrl(storeProfileUrl);
-    } else {
-      if (user && user.profile_image_url) {
-        setProfileImgUrl(user.profile_image_url);
-      }
+    const token = Cookies.get("user_token");
+    
+    if (token) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+     
+      fetchTrips(config)
     }
+    getArticles();
   }, [user]);
 
   return (
@@ -59,10 +58,10 @@ function HomePage() {
                 <p>Explore beauty of journey</p>
               </div>
               <div className="avatarContainer">
-                <Link to="/profile">
+                <Link to="/profile/trip-plans">
                   <Avatar
                     className="avatar"
-                    src={profileImgUrl ? profileImgUrl : null}
+                    src={user.profile_image_url ? user.profile_image_url : null}
                   />
                 </Link>
               </div>

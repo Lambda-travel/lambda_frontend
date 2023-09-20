@@ -9,9 +9,11 @@ const CardInfo = ({ dayID }) => {
 
   const destinationDetail = (dayID) => {
     api
-      .get(`/destination/detail/${dayID}`)
-      .then((response) => setDestination(response.data))
-      .catch((error) => console.log(error));
+      .get(`/destination/detailsCard/${dayID}`)
+      .then((response) => {
+        setDestination(response.data)
+      })
+      .catch((error) => console.error(error));
   };
 
 
@@ -21,7 +23,7 @@ const CardInfo = ({ dayID }) => {
 
 
   function getIndex(id){
-    const index = destinations.map((idx)=> idx.id).indexOf(id)+1
+    const index = destinations.map((idx)=> idx.destination_id).indexOf(id)+1
     return index
   }
   
@@ -33,11 +35,11 @@ const CardInfo = ({ dayID }) => {
       ></img>
       <div className="description-itinerary-card">
         <h3 className="title-card-itinerary">
-          <span className="number-desc-card">{getIndex(destination.id)}.</span>
+          <span className="number-desc-card">{getIndex(destination.destination_id)}.</span>
           {destination.place_to_visit}
         </h3>
         <p className="description-card-itinerary">{destination.description}</p>
-        <Link to={`/overview/destination-detail/${destination.day_id}`}>
+        <Link to={`/overview/destination-detail/${destination.destination_id}`}>
           <button className="viewMore-card-itinerary">View Details</button>
         </Link>
       </div>

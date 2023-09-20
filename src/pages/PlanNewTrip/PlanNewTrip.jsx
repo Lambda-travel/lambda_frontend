@@ -41,7 +41,7 @@ function PlanNewTrip() {
     return `${year}-${month}-${day}`;
   };
 
-  const defaultDestination = "Portugal";
+  const defaultDestination = "🇵🇹 Portugal";
 
   useEffect(() => {
     if (endDate && startDate) {
@@ -66,7 +66,6 @@ function PlanNewTrip() {
       };
   
       data.user_id = user.id; 
-      // console.log(data);
       api
         .post("/trip", data, config)
         .then((response) => {
@@ -78,7 +77,7 @@ function PlanNewTrip() {
             navigate("/travelmate");
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
     }
   };
 
@@ -102,7 +101,6 @@ function PlanNewTrip() {
                 {...field}
                 options={countries}
                 onChange={(value) => {
-                  // console.log(value);
                   setSelectedCountry(value);
                   setValue("destination", value.label);
                 }}
