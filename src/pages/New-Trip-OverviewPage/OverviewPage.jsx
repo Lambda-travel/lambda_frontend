@@ -59,12 +59,9 @@ const OverviewPage = () => {
     api
       .get(`/trip/overview/${id}`)
       .then((response) => {
-        localStorage.setItem(
+          localStorage.setItem(
           "lambda_country_trip",
-          response.data[0].destination
-            .replace(/^[^ ]* /, "")
-            .split("-")[0]
-            .replace(/ /g, "")
+          response.data[0].destination.split("-")[0].split(" ")[1]
         );
         setTripInfo(response.data[0]);
       })
