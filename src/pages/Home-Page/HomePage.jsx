@@ -96,7 +96,7 @@ function HomePage() {
             slidesPerView={isMobile ? 1 : 4}
           >
             {trips
-              .filter((trip) => new Date(trip.start_date) > today)
+              .filter((trip) => new Date(trip.end_date) >= today)
               .map((trip) => (
                 <SwiperSlide key={trip.id}>
                   <Link to={`/trip/${trip.id}/overview `} className="link-tags">
