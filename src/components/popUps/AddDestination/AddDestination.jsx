@@ -15,12 +15,14 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
     control,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm();
 
   const [cities, setCities] = useState();
   const [loading, setLoading] = useState(false);
   const [selectedCity, setSelectedCity] = useState();
+  const imageUpload = watch(["image"]);
 
   const getCitiesByCountry = () => {
     setLoading(true);
@@ -48,7 +50,6 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
   }, []);
 
   const submitDestination = (data) => {
-    // console.log(data);
     const destinationInfo = {...data};
     if (destinationInfo) {
       delete destinationInfo.image;
@@ -57,22 +58,13 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
         .then((response) => {
           if (response.data.destinationId) {
             let destinationId = response.data.destinationId
-            // console.log(destinationId);
-            // console.log(data);
             Object.keys(data.image).forEach(async (image) => {
-              // console.log(data.image[image]);
               const destinationImage = data.image[image];
               const imageRef = ref(storage, `${uuid()}-destination-image`);
-              // console.log(destinationImage);
-              // console.log(imageRef);
-              // console.log(dayId);
               await uploadBytes(imageRef, destinationImage)
                 .then(async () => {
                   getDownloadURL(imageRef)
                     .then(async (urlImage) => {
-                      // data.image = urlImage;
-                      console.log("url",urlImage);
-                      console.log("id",destinationId);
                       let imageInfo={
                         destination_id: destinationId,
                         image_url: urlImage
@@ -122,38 +114,29 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
           <label>Location: </label>
           {loading ? (
             <input
-              className="inputs-popUp-addDestination"
               placeholder="Loading Cities..."
               readOnly
             />
           ) : (
+            <div className="">
             <Controller
-              className="inputs-popUp-addDestination"
               name="location"
               control={control}
               render={({ field }) => (
-                <div className="select-container">
-                  <Select
-                    {...field}
-                    options={cities}
-                    onChange={(value) => {
-                      // console.log(value);
-                      setSelectedCity(value);
-                      setValue("location", value.label);
-                    }}
-                    value={selectedCity}
-                  />
-                </div>
+                <Select
+                className= "add-container-input"
+                  {...field}
+                  options={cities}
+                  onChange={(value) => {
+                    setSelectedCity(value);
+                    setValue("location", value.label);
+                  }}
+                  value={selectedCity}
+                />
               )}
             />
+            </div>
           )}
-          {/* <input
-            placeholder="location"
-            type="text"
-            className="inputs-popUp-addDestination"
-            {...register("location", { required: "location is required" })}
-            aria-invalid={errors.location ? "true" : "false"}
-          /> */}
           {errors.location && (
             <p className="style-error-form">{errors.location?.message}</p>
           )}
@@ -174,7 +157,11 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             className="uploadImage-popUp-addDestination"
             htmlFor="input-file"
           >
-            <span className="text-uploadImage">Upload an Image</span>
+          <span className="text-uploadImage">
+          {imageUpload[0] && imageUpload[0][0]
+          ? imageUpload[0][0].name
+          : "Upload an Image"}
+          </span>
           </label>
           <input
             id="input-file"

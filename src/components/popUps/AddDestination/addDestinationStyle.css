@@ -94,11 +94,13 @@ label {
 }
 
 .style-error-form {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: red;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: red;
 }
 
-.select-container  .css-b62m3t-container{
-    width: 320px;
+.add-container-input {
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, 0.644);
+    border-radius: 5px;
 }

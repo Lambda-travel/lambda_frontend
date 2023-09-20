@@ -47,7 +47,7 @@ body.active-modal-edit {
     gap: 0.2rem;
     font-weight: bold;
     margin-top: 15%;
-    color: white;
+    color: rgba(49, 49, 49, 0.795);
     position: absolute;
     display: flex;
     align-items: center;
@@ -77,6 +77,7 @@ body.active-modal-edit {
 .name-of-trip {
     color: #353535;
     font-weight: 400;
+    margin-right: 1rem;
 }
 
 
@@ -244,8 +245,6 @@ body.active-modal-edit {
     }
     .edit-trip-btn {
         cursor: pointer;
-        position: absolute;
-        margin-right: -20rem;
     }
     .date-of-trip {
         align-self: center;

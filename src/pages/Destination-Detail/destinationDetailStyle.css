@@ -82,7 +82,7 @@
         max-width: 100%;
     }
     .destination-background {
-        height: 55rem;
+        height: 40rem;
     }
 }
 
@@ -107,9 +107,11 @@
     }
     .destination-background {
     display: block;
-    width: 65%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    height: 40rem;
+}
+.img {
+    width: 50%;
 }
 
 }
@@ -117,12 +119,6 @@
 /*---------------- DESKTOP VERSION ( WIDTH 1440)---------------*/
 
 @media screen and (min-width:1440px) {
-    .destination-background {
-        margin-right: auto;
-        margin-left: auto;
-        display: block;
-        max-width: 48%;
-    }
     .card-description-destination {
         background-color: #ffffffd5;
     }
@@ -142,12 +138,6 @@
 /*---------------- DESKTOP VERSION ( WIDTH 1680)---------------*/
 
 @media screen and (min-width:1680px) {
-    .destination-background {
-        margin-right: auto;
-        margin-left: auto;
-        display: block;
-        max-width: 35%;
-    }
     .card-description-destination {
         background-color: #ffffffd5;
     }

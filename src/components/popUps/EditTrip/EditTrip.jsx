@@ -18,7 +18,7 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
   const { countries, selectedCountry, setSelectedCountry } =
     useContext(TripsContext);
 
-  // const [validation, setValidation] = useState("");
+   
 
   const reload = useNavigate();
 
@@ -130,10 +130,10 @@ const EditTrip = ({ toggleEditTrip, defaultDestination }) => {
               onSubmit={handleSubmit(editInfoTrip)}
             >
               <label htmlFor="destination">Destination:</label>
-              <div className="divInput">
+              <div className="destination-edit-container">
                 <Controller
-                  className="inputField"
                   name="destination"
+                  className="inputField"
                   control={control}
                   defaultValue={defaultDestination}
                   placeholder="e.g., Japan, Paris, Indonesia"

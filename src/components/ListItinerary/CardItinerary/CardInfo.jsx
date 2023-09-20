@@ -23,7 +23,7 @@ const CardInfo = ({ dayID }) => {
 
 
   function getIndex(id){
-    const index = destinations.map((idx)=> idx.id).indexOf(id)+1
+    const index = destinations.map((idx)=> idx.destination_id).indexOf(id)+1
     return index
   }
   
@@ -35,7 +35,7 @@ const CardInfo = ({ dayID }) => {
       ></img>
       <div className="description-itinerary-card">
         <h3 className="title-card-itinerary">
-          <span className="number-desc-card">{getIndex(destination.id)}.</span>
+          <span className="number-desc-card">{getIndex(destination.destination_id)}.</span>
           {destination.place_to_visit}
         </h3>
         <p className="description-card-itinerary">{destination.description}</p>

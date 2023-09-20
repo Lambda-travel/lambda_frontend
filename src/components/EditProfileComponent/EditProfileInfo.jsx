@@ -17,8 +17,8 @@ function EditProfileInfo() {
 
   const navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm();
-
+  const { register, handleSubmit,watch } = useForm();
+  const imageUpload = watch(["profile_image_url"]);
   const editUser = (data) => {
     setLoading(true);
     if (data.first_name == "") {
@@ -105,7 +105,11 @@ function EditProfileInfo() {
             />
           <div className="upload">
             <label htmlFor="image" className="label-upload">
-              Upload new profile image
+            <span className="text-uploadImage">
+          {imageUpload[0] && imageUpload[0][0]
+          ? imageUpload[0][0].name
+          : "Upload a new profile Image"}
+          </span>
               <input
                 id="image"
                 type="file"
