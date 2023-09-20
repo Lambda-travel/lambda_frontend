@@ -19,7 +19,7 @@ function NavBar({ color }) {
             {/* <Link to="/newtrip">
               <li className={`navAdd ${color}`}>Add</li>
             </Link> */}
-            <Link to="/profile">
+            <Link to="/profile/trip-plans">
               {" "}
               <li className={`navProfile ${color}`}>Profile</li>
             </Link>
@@ -33,7 +33,7 @@ function NavBar({ color }) {
         <Link to="/newtrip">
           <img src={addIcon} alt="Add Icon" className="icons" />
         </Link>
-        <Link to="/profile">
+        <Link to="/profile/trip-plans">
           <img src={profileIcon} alt="Profile Icon" className="icons" />
         </Link>
       </div>

@@ -25,13 +25,12 @@ function Register() {
       .post("/users/register", data)
       .then((response) => {
         if (response.status === 201) {
-          console.log(response);
           setError("");
           navigate("/login");
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setError("This user name or email are already in use");
       });
   };

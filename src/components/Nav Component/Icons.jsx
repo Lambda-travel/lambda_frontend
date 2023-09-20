@@ -85,7 +85,7 @@ function Icons() {
       </Link>
       {/* group 36 aka profileIcon */}
       {/* Profile */}
-      <Link to="/profile">
+      <Link to="/profile/trip-plans">
         <div onClick={handleProfileIconStyles} style={{ cursor: "pointer" }}>
           <svg
             width="27"

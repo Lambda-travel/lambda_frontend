@@ -52,15 +52,16 @@ body {
 
 .avatarContainerCards {
   background-color: white;
-  width: 54px;
-  height: 54px;
+  /* width: 54px; */
+  /* height: 54px; */
   border-radius: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-left: 10px;
+  /* padding-left: 10px; */
   margin-bottom: 10px;
+  z-index: 0;
 }
 
 .cardContainer {

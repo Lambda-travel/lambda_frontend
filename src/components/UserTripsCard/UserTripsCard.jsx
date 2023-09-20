@@ -32,7 +32,6 @@ function formatDate(inputDate) {
 
 function UserTripsCard({ trip }) {
   const { user } = useContext(UserContext);
-  const [profileImgUrl, setProfileImgUrl] = useState("");
   const { trips } = useContext(TripsContext);
   const [totalPlaceCount, setTotalPlaceCount] = useState();
 
@@ -43,7 +42,7 @@ function UserTripsCard({ trip }) {
         .then((res) => {
           setTotalPlaceCount(res.data[0].total_places);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
     }
   };
 
@@ -63,7 +62,7 @@ function UserTripsCard({ trip }) {
         .then((res) => {
           setTravelMates(res.data);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
     }
   };
 
@@ -71,17 +70,6 @@ function UserTripsCard({ trip }) {
     getTotalPlaceCount();
     getTravelMates();
   }, []);
-  useEffect(() => {
-    const storeProfileUrl = localStorage.getItem("profile_image_url");
-    console.log("Stored Profile URL:", storeProfileUrl);
-    if (storeProfileUrl) {
-      setProfileImgUrl(storeProfileUrl);
-    } else {
-      if (user && user.profile_image_url) {
-        setProfileImgUrl(user.profile_image_url);
-      }
-    }
-  }, [user]);
 
   return (
     <div className="cardContainer">
@@ -92,18 +80,15 @@ function UserTripsCard({ trip }) {
         <img src={optionIcon} alt="" />
       </div>
       <div className="currentTripAndBorder">
-        {/* <p className="currentTripText">Current trip</p> */}
         <div className="borderLine"></div>
       </div>
 
       <div className="avatarsProfileAndDates">
         <div className="avatarContainerCards">
-          {/* <Link to="/profile"> */}
           <Avatar
             className="avatar"
-            src={profileImgUrl ? profileImgUrl : null}
+            src={user.profile_image_url ? user.profile_image_url : null}
           />
-          {/* </Link> */}
           {travelMates
             ? travelMates.map((mate, index) => (
                 <div className="container-travel-mate" key={index}>

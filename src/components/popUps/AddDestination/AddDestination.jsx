@@ -49,51 +49,54 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
 
   const submitDestination = (data) => {
     // console.log(data);
-    if (data.image[0] !== null) {
-      const destinationImage = data.image[0];
-      const imageRef = ref(storage, `${uuid()}-destination-image`);
-      console.log(destinationImage);
-      console.log(imageRef);
-      console.log(dayId);
-      // uploadBytes(imageRef, destinationImage)
-      //   .then(() => {
-      //     getDownloadURL(imageRef)
-      //       .then((urlImage) => {
-      //         data.image = urlImage;
-      //         api
-      //           .post(`/destination/${dayId}`, data)
-      //           .then((response) => response);
-      //       })
-      //       .catch((error) => console.error(error));
-      //   })
-      //   .catch((error) => console.log(error));
+    const destinationInfo = {...data};
+    if (destinationInfo) {
+      delete destinationInfo.image;
+      api
+        .post(`/destination/${dayId}`, destinationInfo)
+        .then((response) => {
+          if (response.data.destinationId) {
+            let destinationId = response.data.destinationId
+            // console.log(destinationId);
+            // console.log(data);
+            Object.keys(data.image).forEach(async (image) => {
+              // console.log(data.image[image]);
+              const destinationImage = data.image[image];
+              const imageRef = ref(storage, `${uuid()}-destination-image`);
+              // console.log(destinationImage);
+              // console.log(imageRef);
+              // console.log(dayId);
+              await uploadBytes(imageRef, destinationImage)
+                .then(async () => {
+                  getDownloadURL(imageRef)
+                    .then(async (urlImage) => {
+                      // data.image = urlImage;
+                      console.log("url",urlImage);
+                      console.log("id",destinationId);
+                      let imageInfo={
+                        destination_id: destinationId,
+                        image_url: urlImage
+                      }
+                      api
+                        .post('/destination/images',imageInfo)
+                        .then((response) => {
+                          console.log("image saved", response);
+                        });
+                    })
+                    .catch((error) => console.error(error));
+                })
+                .catch((error) => {
+                  console.error(error.message, "error getting the image url");
+                });
+            });
+          } else {
+            console.warn("Error creating destination")
+          }
+        })
+        .catch((error) => console.error(error));
     }
-
-     if(data.image[0] !== null){
-     
-       const destinationImage = data.image[0]
-       const imageRef = ref(storage,`${uuid()}-destination-image`)
-       uploadBytes(imageRef, destinationImage)
-       .then(()=>{
-          getDownloadURL(imageRef)
-         .then((urlImage)=>{
-          data.image = urlImage
-          api
-          .post(`/destination/${dayId}`,data)
-           .then((response)=> response)
-
-         })
-         .catch((error)=> console.error(error))
-       })
-        .catch((error)=>console.log(error) )
-
-      }
-
-
-
     toggleAddDestination();
-   };
-
+  };
 
   return (
     <div className="background-popUp-addDestination">
@@ -129,16 +132,18 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
               name="location"
               control={control}
               render={({ field }) => (
-                <Select
-                  {...field}
-                  options={cities}
-                  onChange={(value) => {
-                    // console.log(value);
-                    setSelectedCity(value);
-                    setValue("location", value);
-                  }}
-                  value={selectedCity}
-                />
+                <div className="select-container">
+                  <Select
+                    {...field}
+                    options={cities}
+                    onChange={(value) => {
+                      // console.log(value);
+                      setSelectedCity(value);
+                      setValue("location", value.label);
+                    }}
+                    value={selectedCity}
+                  />
+                </div>
               )}
             />
           )}
@@ -153,7 +158,7 @@ const AddDestination = ({ toggleAddDestination, dayId }) => {
             <p className="style-error-form">{errors.location?.message}</p>
           )}
           <label>Description: </label>
-          <input
+          <textarea
             placeholder="description"
             type="text"
             className="textarea-addDestination"
