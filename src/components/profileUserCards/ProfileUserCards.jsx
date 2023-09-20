@@ -46,6 +46,7 @@ function ProfileUserCards({ trip, index, totalPlace }) {
       api
         .get(`/trip/${trip.id}/travelMates`, config)
         .then((res) => {
+          console.log(res.data);
           setTravelMates(res.data);
         })
         .catch((error) => {
@@ -88,7 +89,7 @@ function ProfileUserCards({ trip, index, totalPlace }) {
                     <div className="container-travel-mate" key={index}>
                       <Avatar
                         className="avatar"
-                        src={mate.picture ? mate.picture : null}
+                        src={mate.profile_image_url ? mate.profile_image_url : null}
                         alt={mate.user_name}
                       />
                       <div className="mate-username">{mate.user_name}</div>

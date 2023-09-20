@@ -15,10 +15,10 @@ import Cookies from "js-cookie";
 
 function HomePage() {
   const { user } = useContext(UserContext);
-  const { trips, fetchTrips } = useContext(TripsContext)
+  const { trips, fetchTrips } = useContext(TripsContext);
 
   const [articles, setArticles] = useState();
-
+  const [isMobile, setIsMobile] = useState(false);
   const today = new Date();
 
   const getArticles = (data) => {
@@ -32,18 +32,31 @@ function HomePage() {
 
   useEffect(() => {
     const token = Cookies.get("user_token");
-    
+
     if (token) {
       let config = {
         headers: {
           Authorization: "Bearer " + token,
         },
       };
-     
-      fetchTrips(config)
+
+      fetchTrips(config);
     }
     getArticles();
   }, [user]);
+
+  const handleResize = () => {
+    if (window.innerWidth < 700) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  // create an event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
 
   return (
     <div className="main-container">
@@ -78,7 +91,10 @@ function HomePage() {
       </div>
       {trips && trips?.length > 0 ? (
         <div className="cardsAndTripInfosMobile">
-          <Swiper spaceBetween={250} slidesPerView={1}>
+          <Swiper
+            spaceBetween={isMobile ? 250 : 30}
+            slidesPerView={isMobile ? 1 : 4}
+          >
             {trips
               .filter((trip) => new Date(trip.start_date) > today)
               .map((trip) => (
@@ -101,7 +117,7 @@ function HomePage() {
         </div>
       )}
 
-      {trips && trips.length > 0 ? (
+      {/* {trips && trips.length > 0 ? (
         <>
           <div className="cardsAndTripInfoDesktop">
             {trips
@@ -126,7 +142,7 @@ function HomePage() {
             </p>
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="articleCards">
         {articles ? (

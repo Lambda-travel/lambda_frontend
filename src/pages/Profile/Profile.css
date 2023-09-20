@@ -7,8 +7,10 @@ body {
   font-family: "Poppins";
 }
 .bigContainer {
-  margin: 60px auto 100px auto;
-  padding-top: 50px;
+  height: 100vh;
+  padding: 100px 0 100px 0;
+  overflow-x: hidden;
+  margin-bottom: 60px;
 }
 
 .homeButton {

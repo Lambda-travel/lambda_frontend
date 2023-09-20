@@ -110,15 +110,6 @@ body {
     margin-top: -75px;
     width: 100%;
   }
-  .cardsAndTripInfosMobile {
-    display: none;
-  }
-  /* .articleContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr, 1fr;
-    width: 400px;
-  } */
   .nameAndMessageAndAvatar {
     display: flex;
     flex-direction: column-reverse;

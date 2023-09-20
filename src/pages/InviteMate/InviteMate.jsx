@@ -35,7 +35,7 @@ function InviteMate() {
   };
 
   return (
-    <>
+    <div className="invite-mate-page-container">
       <div className="pageTitle">
         <h2>Invite your travelmate</h2>
         <p>
@@ -63,13 +63,13 @@ function InviteMate() {
         {errors.value && <p className="required">{errors.value?.message}</p>}
         {error !== "" ? <p className="required">{error}</p> : null}
         <div className="inviteAndMaybeBtn">
-          <Button text="Invite Travelmate" newClassName="customButton" />
+          <Button text="Invite Travelmate" newClassName="customButton btn-invite" />
           <Link to="/profile/trip-plans">
             <Button text="Maybe later" newClassName="cancelButton" />
           </Link>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
