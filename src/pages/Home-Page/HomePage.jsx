@@ -92,7 +92,7 @@ function HomePage() {
       {trips && trips?.length > 0 ? (
         <div className="cardsAndTripInfosMobile">
           <Swiper
-            spaceBetween={isMobile ? 250 : trips?.length > 2 ? 30: 350}
+            spaceBetween={isMobile ? 250 : trips?.length > 3 ? 30: 350}
             slidesPerView={isMobile ? 1 : 4}
           >
             {trips
