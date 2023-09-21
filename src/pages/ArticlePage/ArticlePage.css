@@ -56,13 +56,13 @@ body {
 .userAvatarAndName {
   display: flex;
 }
-.userAndInfos p {
-  font-size: 12px;
-  font-weight: 300;
+.userAndInfos h3 {
+  font-size: 16px;
+  font-weight: 600;
 }
 .generalTips {
   /* width: 100%; */
-  height: 125px;
+  /* height: 125px; */
   padding: 16px 24px;
   background-color: #fff;
   margin-top: 41px;
@@ -79,10 +79,11 @@ body {
 .generalTips p {
   font-size: 12px;
   font-weight: 300;
+
 }
 .daysAndContents {
   /* width: 100%; */
-  height: 189px;
+  /* height: 189px; */
   background-color: #fff;
   margin-top: 41px;
   padding: 20px 21px;
@@ -158,7 +159,7 @@ body {
   }
   .generalTips {
     width: 80%;
-    height: 125px;
+    /* height: 125px; */
     padding: 16px 24px;
     background-color: #fff;
     margin-top: 41px;

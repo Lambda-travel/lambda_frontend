@@ -141,9 +141,9 @@ body {
   }
 }
 @media screen and (max-width: 767px) {
-  .NoTripAvailable-Mobile {
+  /* .NoTripAvailable-Mobile {
     display: none;
-  }
+  } */
   .NoTripAvailable-Desktop {
     display: flex;
     justify-content: space-evenly;

@@ -12,6 +12,7 @@ function ArticlePage() {
 
   const getTotalPlaceCount = () => {
     api.get(`/articles/${id}`).then((res) => {
+      console.log(res.data[0]);
       setArticle(res.data[0]);
     });
   };
@@ -25,9 +26,6 @@ function ArticlePage() {
       {article ? (
         <>
           <div className="ImageAndNav">
-            {/* <div className="navCover">
-              <HomeNav new_style_home="new_header_home" />
-            </div> */}
             <h3>{article.name}</h3>
             <img
               className="backImg"
@@ -36,38 +34,28 @@ function ArticlePage() {
             />
           </div>
           <div className="userAndInfos">
-            <div className="userAvatarAndName">
-              <img src={elliseIcon} alt="" />
-              <p>Marc</p>
-            </div>
-            <p>{article.description}</p>
+            <h3>{article.description}</h3>
           </div>
           <div className="generalTips">
             <div className="iconAndHeader">
               <img src={arrowIcon} alt="arrow icon" />
               <h4>General Tips</h4>
             </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a dui
-              etvelit rhoncus commodo. Donec vestibulum condimentum leo ac
-              mattis.
-            </p>
-          </div>
-          <div className="daysAndContents">
-            <div className="iconAndDays">
-              <img src={arrowIcon} alt="arrow icon" />
-              <h4>Day 1</h4>
-            </div>
-            <div className="textContent">
-              {/* <h5>The Grewat Wall</h5> */}
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
-                dui et velit rhoncus commodo. Donec vestibulum condimentum leo
-                ac mattis.
-              </p>
-              <p>
-                <span>View Details</span>
-              </p>
+            <div>
+              {article.tips.split("- Travel Tip").map((tip, index) =>
+                index === 0 ? null : (
+                  <div key={index} className="daysAndContents">
+                    <div className="iconAndDays">
+                      <img src={arrowIcon} alt="arrow icon" />
+                      <h4>Tip {index}</h4>
+                    </div>
+                    <div className="textContent">
+                      {/* <h5>The Grewat Wall</h5> */}
+                      <p>{tip}</p>
+                    </div>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </>
