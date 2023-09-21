@@ -1,5 +1,4 @@
 // import HomeNav from "../../components/HomeNav/HomeNav";
-import elliseIcon from "../../assets/ellipse 1.svg";
 import arrowIcon from "../../assets/arrow-pointing-down.svg";
 import "./ArticlePage.css";
 import { useEffect, useState } from "react";

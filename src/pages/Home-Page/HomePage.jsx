@@ -117,33 +117,6 @@ function HomePage() {
         </div>
       )}
 
-      {/* {trips && trips.length > 0 ? (
-        <>
-          <div className="cardsAndTripInfoDesktop">
-            {trips
-              .filter((trip) => new Date(trip.start_date) > today)
-              .map((trip) => (
-                <Link
-                  key={trip.id}
-                  to={`/trip/${trip.id}/overview `}
-                  className="link-to-userTrips"
-                >
-                  <UserTripsCard trip={trip} />
-                </Link>
-              ))}
-          </div>
-        </>
-      ) : (
-        <div>
-          <div className="NoTripAvailable-Desktop">
-            <p>
-              No Trips available.{"  "}
-              <Link to="/newtrip">Plan your trip.</Link>
-            </p>
-          </div>
-        </div>
-      )} */}
-
       <div className="articleCards">
         {articles ? (
           articles.map((article) => (
