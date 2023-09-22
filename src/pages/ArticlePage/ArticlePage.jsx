@@ -1,5 +1,5 @@
 // import HomeNav from "../../components/HomeNav/HomeNav";
-import arrowIcon from "../../assets/arrow-pointing-down.svg";
+import arrowIcon from "src/assets/arrow-back.svg";
 import "./ArticlePage.css";
 import { useEffect, useState } from "react";
 import api from "../../api/api";
